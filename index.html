@@ -1,0 +1,4229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Day of VB — Gaming Reviews, Unboxing & Vlogs</title>
+  <meta name="description" content="Sinhala gaming reviews, unboxings and vlogs by Visal. Subscribe on YouTube @DayofVB" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&family=Rajdhani:wght@500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0
+      
+      ; padding: 0; }
+
+    :root {
+      --red: #FF2D55;
+      --red-dark: #CC0033;
+      --red-dim: rgba(255,45,85,0.15);
+      --bg: #060810;
+      --bg2: #0D0F1A;
+      --bg3: #141625;
+      --anime-pink: #FF2D8A;
+      --anime-blue: #00D4FF;
+      --anime-purple: #9D00FF;
+      --anime-gold: #FFD700;
+      --sakura: #FFB7C5;
+      --border: rgba(255,255,255,0.08);
+      --border2: rgba(255,255,255,0.14);
+      --text: #F0F0F0;
+      --text2: #9A9BA8;
+      --text3: #6B6C78;
+      --font-display: 'Orbitron', 'Space Grotesk', sans-serif;
+      --font-body: 'Rajdhani', 'Inter', sans-serif;
+      --font-jp: 'Orbitron', sans-serif;
+      --radius: 10px;
+      --radius-lg: 16px;
+      --purple-glow: #a855f7;
+      --cyan-glow: #06b6d4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── BACKGROUND CANVAS ── */
+    #bgCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    nav, section, footer, .blog-section, .contact-section { position: relative; z-index: 1; }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { display: block; max-width: 100%; }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      height: 60px;
+      background: rgba(49, 2, 4, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span { color: var(--red); }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      color: var(--text2);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-sub { display: none; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 24px 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 55% at 50% 30%, rgba(232,53,42,0.18) 0%, transparent 70%);
+      pointer-events: none;
+      animation: auroraShift 8s ease-in-out infinite alternate;
+    }
+    @keyframes auroraShift {
+      0%   { opacity: 0.8; transform: scale(1) translateY(0); }
+      100% { opacity: 1;   transform: scale(1.1) translateY(-20px); }
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+      background: var(--red-dim);
+      border: 1px solid rgba(232,53,42,0.3);
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 8vw, 76px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 20px;
+      max-width: 800px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--red);
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: var(--text2);
+      max-width: 480px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      font-size: 14px;
+      font-weight: 500;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      font-family: var(--font-body);
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: #fff;
+    }
+
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text2);
+      border: 1px solid var(--border2);
+    }
+
+    .btn-secondary:hover { background: var(--bg3); color: var(--text); }
+
+    .hero-stats {
+      display: flex;
+      gap: 36px;
+      margin-top: 56px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--text3);
+      margin-top: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .stat-divider {
+      width: 1px;
+      background: var(--border2);
+      align-self: stretch;
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .section {
+      padding: 72px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      margin-bottom: 40px;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 8px;
+    }
+
+    .section-header h2 {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .section-header p {
+      color: var(--text2);
+      margin-top: 8px;
+      font-size: 15px;
+    }
+
+    /* ── VIDEOS ── */
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .vid-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .vid-card:hover {
+      border-color: var(--border2);
+      transform: translateY(-3px);
+    }
+
+    .vid-thumb {
+      position: relative;
+      height: 160px;
+      background: var(--bg3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .vid-thumb-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #1a1a2e, #0f3460);
+      opacity: 0.8;
+    }
+
+    .vid-thumb-icon {
+      position: relative;
+      font-size: 40px;
+      opacity: 0.3;
+    }
+
+    .play-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .play-circle {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(232,53,42,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+
+    .vid-card:hover .play-circle { transform: scale(1.1); }
+
+    .play-circle svg {
+      width: 18px;
+      height: 18px;
+      fill: #fff;
+      margin-left: 3px;
+    }
+
+    .vid-duration {
+      position: absolute;
+      bottom: 8px;
+      right: 10px;
+      font-size: 11px;
+      font-weight: 500;
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .vid-body { padding: 14px 16px 16px; }
+
+    .vid-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+
+    .tag-review { background: rgba(232,53,42,0.15); color: #F09595; }
+    .tag-unboxing { background: rgba(55,138,221,0.15); color: #85B7EB; }
+    .tag-vlog { background: rgba(29,158,117,0.15); color: #5DCAA5; }
+    .tag-short { background: rgba(186,117,23,0.15); color: #EF9F27; }
+
+    .vid-title {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .vid-meta {
+      font-size: 12px;
+      color: var(--text3);
+    }
+
+    .view-all-row {
+      text-align: center;
+      margin-top: 28px;
+    }
+
+    /* ── BLOG ── */
+    .blog-section { background: var(--bg2); }
+
+    .blog-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 72px 24px;
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .blog-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      transition: border-color 0.2s;
+      cursor: pointer;
+    }
+
+    .blog-card:hover { border-color: var(--border2); }
+
+    .blog-card-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .blog-cat {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    .cat-gaming { background: rgba(232,53,42,0.15); color: #F09595; }
+    .cat-tech { background: rgba(55,138,221,0.15); color: #85B7EB; }
+    .cat-tips { background: rgba(29,158,117,0.15); color: #5DCAA5; }
+
+    .blog-date { font-size: 11px; color: var(--text3); }
+
+    .blog-card h3 {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 10px;
+      letter-spacing: -0.2px;
+    }
+
+    .blog-card p { font-size: 13px; color: var(--text2); line-height: 1.65; }
+
+    .blog-card-footer {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 16px;
+      font-size: 12px;
+      color: var(--red);
+      font-weight: 500;
+    }
+
+    /* ── SHOP ── */
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .shop-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+      cursor: pointer;
+    }
+
+    .shop-card:hover {
+      border-color: var(--border2);
+      transform: translateY(-3px);
+    }
+
+    .shop-img {
+      height: 140px;
+      background: var(--bg3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+    }
+
+    .shop-body { padding: 14px 16px; }
+
+    .shop-name {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .shop-sub { font-size: 11px; color: var(--text3); margin-bottom: 10px; }
+
+    .shop-price {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--red);
+    }
+
+    .shop-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-top: 10px;
+      padding: 8px;
+      font-size: 12px;
+      font-weight: 500;
+      border: 1px solid var(--border2);
+      border-radius: var(--radius);
+      color: var(--text2);
+      transition: all 0.2s;
+      background: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+    }
+
+    .shop-btn:hover { background: var(--bg3); color: var(--text); }
+
+    /* ── CONTACT ── */
+    .contact-section { background: var(--bg2); }
+
+    .contact-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 72px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .contact-info h2 {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 14px;
+    }
+
+    .contact-info p { font-size: 15px; color: var(--text2); line-height: 1.7; margin-bottom: 28px; }
+
+    .contact-links { display: flex; flex-direction: column; gap: 12px; }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--text2);
+      transition: color 0.2s;
+    }
+
+    .contact-link:hover { color: var(--text); }
+
+    .contact-link-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+
+    .contact-form {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+    }
+
+    .form-group { margin-bottom: 16px; }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text2);
+      margin-bottom: 6px;
+      letter-spacing: 0.04em;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius);
+      padding: 10px 14px;
+      font-size: 14px;
+      color: var(--text);
+      font-family: var(--font-body);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: var(--red); }
+
+    .form-group textarea { height: 120px; resize: vertical; }
+
+    .form-group select option { background: var(--bg2); }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    .submit-btn {
+      width: 100%;
+      background: var(--red);
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: var(--font-body);
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .submit-btn:hover { background: var(--red-dark); }
+    .submit-btn:active { transform: scale(0.99); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 24px 28px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-brand p { font-size: 13px; color: var(--text3); margin-top: 8px; max-width: 280px; }
+
+    .footer-links { display: flex; gap: 48px; flex-wrap: wrap; }
+
+    .footer-col h4 {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 12px;
+    }
+
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+
+    .footer-col a { font-size: 13px; color: var(--text2); transition: color 0.2s; }
+
+    .footer-col a:hover { color: var(--text); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom p { font-size: 12px; color: var(--text3); }
+
+    .social-links { display: flex; gap: 12px; }
+
+    .social-link {
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      color: var(--text2);
+      transition: all 0.2s;
+    }
+
+    .social-link:hover { background: var(--bg3); color: var(--text); border-color: var(--border2); }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #1C2A1C;
+      color: #5DCAA5;
+      border: 1px solid rgba(93,202,165,0.3);
+      padding: 12px 18px;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 500;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: all 0.3s;
+      z-index: 999;
+      pointer-events: none;
+    }
+
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 16px; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-sub {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: var(--bg2);
+        border-bottom: 1px solid var(--border);
+        padding: 16px 24px;
+        display: none;
+        flex-direction: column;
+        gap: 16px;
+        z-index: 99;
+      }
+      .nav-sub.open { display: flex; }
+      .nav-sub a { font-size: 15px; color: var(--text2); }
+
+      .hero h1 { letter-spacing: -1px; }
+      .hero-stats { gap: 20px; }
+      .stat-divider { display: none; }
+
+      .section { padding: 48px 16px; }
+
+      .videos-grid { grid-template-columns: 1fr; }
+      .blog-grid { grid-template-columns: 1fr; }
+      .shop-grid { grid-template-columns: 1fr 1fr; }
+
+      .contact-inner { grid-template-columns: 1fr; gap: 32px; }
+      .form-row { grid-template-columns: 1fr; }
+
+      .footer-top { flex-direction: column; }
+      .footer-links { gap: 32px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ── SUBSCRIBE BUTTON ANIMATED ── */
+    .btn-subscribe {
+      position: relative;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 26px;
+      font-size: 14px; font-weight: 600;
+      border-radius: var(--radius);
+      cursor: pointer; border: none;
+      font-family: var(--font-body);
+      color: #fff;
+      background: linear-gradient(135deg, #E8352A 0%, #c0271e 100%);
+      box-shadow: 0 0 0 0 rgba(232,53,42,0.5);
+      animation: pulseSub 2.4s ease-in-out infinite;
+      transition: transform 0.15s, box-shadow 0.15s;
+      overflow: hidden;
+      text-decoration: none;
+    }
+    .btn-subscribe::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -80%;
+      width: 60%; height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.28), transparent);
+      animation: shimmer 2.8s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+      0%   { left: -80%; }
+      60%  { left: 130%; }
+      100% { left: 130%; }
+    }
+    @keyframes pulseSub {
+      0%, 100% { box-shadow: 0 0 0 0   rgba(232,53,42,0.55), 0 4px 18px rgba(232,53,42,0.3); }
+      50%       { box-shadow: 0 0 0 10px rgba(232,53,42,0),   0 4px 24px rgba(232,53,42,0.5); }
+    }
+    .btn-subscribe:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 0 0 0 rgba(232,53,42,0), 0 8px 28px rgba(232,53,42,0.55);
+    }
+    .btn-subscribe:active { transform: scale(0.97); }
+    .live-dot {
+      width: 7px; height: 7px; border-radius: 50%; background: #fff;
+      animation: blink 1.2s step-start infinite; flex-shrink: 0;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.2; }
+    }
+
+    /* ── LIVE SUB BADGE ── */
+    .sub-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 24px; padding: 7px 16px; margin-top: 18px;
+      font-size: 13px;
+      animation: fadeUp 0.9s 0.45s ease both;
+    }
+    .sub-badge-live {
+      display: flex; align-items: center; gap: 5px;
+      font-size: 10px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: #E8352A;
+    }
+    .sub-badge-live .dot {
+      width: 6px; height: 6px; border-radius: 50%; background: #E8352A;
+      animation: blink 1s ease-in-out infinite;
+    }
+    .sub-count {
+      font-family: var(--font-display);
+      font-size: 15px; font-weight: 700; color: var(--text);
+      transition: all 0.4s; min-width: 40px;
+    }
+    .sub-label { font-size: 12px; color: var(--text2); }
+    @keyframes countFlip {
+      0%   { opacity: 0; transform: translateY(-8px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .count-updated { animation: countFlip 0.35s ease; }
+
+    /* ── API NOTICE ── */
+    .api-notice {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 11px; color: var(--text3);
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 6px; padding: 4px 10px; margin-top: 6px;
+    }
+
+
+    /* ── NAV LOGO WITH IMAGE ── */
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo-img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(232,53,42,0.6);
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .nav-logo:hover .nav-logo-img {
+      border-color: var(--red);
+      transform: rotate(10deg) scale(1.08);
+    }
+    .nav-logo-text {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--text);
+    }
+    .nav-logo-text span { color: #E8352A; text-shadow: 0 0 10px rgba(232,53,42,0.5); }
+
+    /* ── HERO LOGO ── */
+    .hero-logo-wrap {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 28px;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-logo-img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      position: relative;
+      z-index: 2;
+      border: 3px solid rgba(232,53,42,0.5);
+      animation: heroLogoFloat 4s ease-in-out infinite;
+    }
+    @keyframes heroLogoFloat {
+      0%, 100% { transform: translateY(0) scale(1); box-shadow: 0 0 30px rgba(232,53,42,0.3), 0 0 60px rgba(232,53,42,0.1); }
+      50%       { transform: translateY(-10px) scale(1.03); box-shadow: 0 0 50px rgba(232,53,42,0.5), 0 0 90px rgba(232,53,42,0.2); }
+    }
+    /* spinning ring around logo */
+    .hero-logo-ring {
+      position: absolute;
+      inset: -10px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      border-top-color: #E8352A;
+      border-right-color: rgba(232,53,42,0.3);
+      animation: spinRing 3s linear infinite;
+      z-index: 1;
+    }
+    .hero-logo-ring2 {
+      position: absolute;
+      inset: -18px;
+      border-radius: 50%;
+      border: 1px solid transparent;
+      border-bottom-color: rgba(232,53,42,0.4);
+      border-left-color: rgba(232,53,42,0.15);
+      animation: spinRing 5s linear infinite reverse;
+      z-index: 1;
+    }
+    @keyframes spinRing {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+    /* pulse glow behind logo */
+    .hero-logo-glow {
+      position: absolute;
+      inset: -20px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(232,53,42,0.25) 0%, transparent 70%);
+      animation: glowPulse 2.5s ease-in-out infinite;
+      z-index: 0;
+    }
+    @keyframes glowPulse {
+      0%, 100% { transform: scale(1); opacity: 0.7; }
+      50%       { transform: scale(1.2); opacity: 1; }
+    }
+
+    /* ── LOADING SCREEN ── */
+    #loadingScreen {
+      position: fixed;
+      inset: 0;
+      background: #0B0C10;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+    #loadingScreen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    /* progress bar */
+    .loading-bar-wrap {
+      width: 160px;
+      height: 3px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    .loading-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #E8352A, #ff6b5b);
+      border-radius: 3px;
+      animation: loadProgress 2.8s cubic-bezier(0.4,0,0.2,1) forwards;
+    }
+    @keyframes loadProgress {
+      0%   { width: 0%; }
+      40%  { width: 55%; }
+      80%  { width: 85%; }
+      100% { width: 100%; }
+    }
+    /* logo entrance */
+    .loading-logo-wrap {
+      animation: loadLogoIn 0.6s ease both;
+    }
+    @keyframes loadLogoIn {
+      from { opacity: 0; transform: scale(0.6); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    /* text entrance */
+    .loading-text {
+      animation: loadTextIn 0.6s 0.3s ease both;
+    }
+    @keyframes loadTextIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .loading-logo-wrap {
+      position: relative;
+      width: 100px;
+      height: 100px;
+    }
+    .loading-logo-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(232,53,42,0.6);
+      animation: loadingPulse 1.2s ease-in-out infinite;
+    }
+    @keyframes loadingPulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(232,53,42,0.4); transform: scale(1); }
+      50%       { box-shadow: 0 0 50px rgba(232,53,42,0.7); transform: scale(1.06); }
+    }
+    .loading-ring {
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      border-top-color: #E8352A;
+      animation: spinRing 1s linear infinite;
+    }
+    .loading-text {
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--text);
+    }
+    .loading-text span { color: #E8352A; }
+    .loading-dots {
+      display: flex;
+      gap: 8px;
+    }
+    .loading-dots span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #E8352A;
+      animation: dotBounce 1.2s ease-in-out infinite;
+    }
+    .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes dotBounce {
+      0%, 100% { transform: translateY(0); opacity: 0.4; }
+      50%       { transform: translateY(-10px); opacity: 1; }
+    }
+    .loading-sub {
+      font-size: 13px;
+      color: var(--text3);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+    /* ── VB GAMING SECTION ── */
+    .gaming-section {
+      background: #07050f;
+      border-top: 1px solid rgba(168,85,247,0.2);
+      border-bottom: 1px solid rgba(168,85,247,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    /* deep space base */
+    .gaming-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 15% 30%, rgba(80,20,180,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 85% 70%, rgba(147,51,234,0.14) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 50% 0%,  rgba(60,10,140,0.2)  0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    /* 3D canvas for gaming bg */
+    #gamingCanvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .gaming-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      position: relative;
+      z-index: 1;
+    }
+    .gaming-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+      margin-bottom: 64px;
+    }
+    .gaming-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #a855f7;
+      background: rgba(168,85,247,0.12);
+      border: 1px solid rgba(168,85,247,0.3);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 16px;
+    }
+    .gaming-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .gaming-title .g-accent { color: #a855f7; }
+    .gaming-desc {
+      font-size: 15px;
+      color: var(--text2);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .gaming-btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn-purple {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 22px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: var(--radius);
+      cursor: pointer;
+      border: none;
+      font-family: var(--font-body);
+      color: #fff;
+      background: linear-gradient(135deg, #9333ea, #7c3aed);
+      box-shadow: 0 0 0 0 rgba(147,51,234,0.5);
+      animation: purplePulse 2.6s ease-in-out infinite;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.15s;
+    }
+    .btn-purple::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -80%;
+      width: 60%; height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.22), transparent);
+      animation: shimmer 3s ease-in-out infinite;
+    }
+    @keyframes purplePulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(147,51,234,0.5), 0 4px 18px rgba(147,51,234,0.3); }
+      50%      { box-shadow: 0 0 0 10px rgba(147,51,234,0), 0 4px 24px rgba(147,51,234,0.5); }
+    }
+    .btn-purple:hover { transform: translateY(-2px) scale(1.03); }
+    .gaming-preview {
+      position: relative;
+      perspective: 900px;
+    }
+    /* 3D card container */
+    .gaming-3d-card {
+      width: 100%;
+      aspect-ratio: 16/9;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: card3dFloat 6s ease-in-out infinite;
+      border-radius: var(--radius-lg);
+    }
+    @keyframes card3dFloat {
+      0%   { transform: rotateY(-8deg) rotateX(4deg) translateY(0px); }
+      33%  { transform: rotateY(5deg)  rotateX(-3deg) translateY(-8px); }
+      66%  { transform: rotateY(-4deg) rotateX(6deg) translateY(-4px); }
+      100% { transform: rotateY(-8deg) rotateX(4deg) translateY(0px); }
+    }
+    .gaming-screen {
+      background: linear-gradient(145deg, #0a0514, #110828, #0d0520);
+      border: 1px solid rgba(168,85,247,0.35);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        0 0 40px rgba(147,51,234,0.25),
+        0 20px 60px rgba(0,0,0,0.6),
+        inset 0 1px 0 rgba(168,85,247,0.2);
+    }
+    /* scanline overlay */
+    .gaming-screen::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(0,0,0,0.08) 3px,
+        rgba(0,0,0,0.08) 4px
+      );
+      pointer-events: none;
+      z-index: 2;
+    }
+    /* corner decorations */
+    .gaming-corner {
+      position: absolute;
+      width: 22px; height: 22px;
+      z-index: 3;
+    }
+    .gaming-corner-tl { top: 10px; left: 10px; border-top: 2px solid rgba(168,85,247,0.7); border-left: 2px solid rgba(168,85,247,0.7); }
+    .gaming-corner-tr { top: 10px; right: 10px; border-top: 2px solid rgba(168,85,247,0.7); border-right: 2px solid rgba(168,85,247,0.7); }
+    .gaming-corner-bl { bottom: 10px; left: 10px; border-bottom: 2px solid rgba(168,85,247,0.7); border-left: 2px solid rgba(168,85,247,0.7); }
+    .gaming-corner-br { bottom: 10px; right: 10px; border-bottom: 2px solid rgba(168,85,247,0.7); border-right: 2px solid rgba(168,85,247,0.7); }
+    /* glow pulse background */
+    .gaming-screen-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(147,51,234,0.2) 0%, transparent 70%);
+      animation: glowPulse 2.8s ease-in-out infinite;
+      z-index: 0;
+    }
+    /* particle grid bg */
+    .gaming-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(168,85,247,0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(168,85,247,0.07) 1px, transparent 1px);
+      background-size: 28px 28px;
+      z-index: 0;
+    }
+    .gaming-screen-content {
+      text-align: center;
+      position: relative;
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    /* logo wrapper with rings */
+    .gaming-logo-wrap {
+      position: relative;
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 14px;
+    }
+    .gaming-logo-img {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(168,85,247,0.6);
+      animation: heroLogoFloat 3.5s ease-in-out infinite;
+      position: relative;
+      z-index: 2;
+    }
+    .gaming-logo-ring1 {
+      position: absolute;
+      inset: -10px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      border-top-color: #a855f7;
+      border-right-color: rgba(168,85,247,0.3);
+      animation: spinRing 2.5s linear infinite;
+      z-index: 1;
+    }
+    .gaming-logo-ring2 {
+      position: absolute;
+      inset: -18px;
+      border-radius: 50%;
+      border: 1px solid transparent;
+      border-bottom-color: rgba(168,85,247,0.45);
+      border-left-color: rgba(168,85,247,0.2);
+      animation: spinRing 4s linear infinite reverse;
+      z-index: 1;
+    }
+    .gaming-logo-ring3 {
+      position: absolute;
+      inset: -26px;
+      border-radius: 50%;
+      border: 1px dashed rgba(168,85,247,0.18);
+      animation: spinRing 8s linear infinite;
+      z-index: 1;
+    }
+    .gaming-logo-glow {
+      position: absolute;
+      inset: -24px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(147,51,234,0.3) 0%, transparent 70%);
+      animation: glowPulse 2.2s ease-in-out infinite;
+      z-index: 0;
+    }
+    .gaming-screen-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: #c084fc;
+      margin-bottom: 4px;
+      text-shadow: 0 0 20px rgba(168,85,247,0.6);
+      letter-spacing: 1px;
+    }
+    .gaming-screen-sub {
+      font-size: 11px;
+      color: rgba(168,85,247,0.6);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    /* reflection under card */
+    .gaming-reflection {
+      position: absolute;
+      bottom: -18px;
+      left: 5%;
+      width: 90%;
+      height: 18px;
+      background: linear-gradient(to bottom, rgba(147,51,234,0.15), transparent);
+      filter: blur(6px);
+      border-radius: 50%;
+    }
+    /* side glow edge */
+    .gaming-edge-glow {
+      position: absolute;
+      top: 10%;
+      left: -2px;
+      width: 3px;
+      height: 80%;
+      background: linear-gradient(to bottom, transparent, rgba(168,85,247,0.5), transparent);
+      border-radius: 3px;
+      animation: edgePulse 3s ease-in-out infinite;
+    }
+    @keyframes edgePulse {
+      0%,100% { opacity: 0.4; }
+      50%      { opacity: 1; }
+    }
+    /* corner decorations */
+    .gaming-screen::after {
+      content: '';
+      position: absolute;
+      top: 8px; left: 8px;
+      width: 20px; height: 20px;
+      border-top: 2px solid rgba(168,85,247,0.5);
+      border-left: 2px solid rgba(168,85,247,0.5);
+    }
+    .gaming-screen::before {
+      content: '';
+      position: absolute;
+      bottom: 8px; right: 8px;
+      width: 20px; height: 20px;
+      border-bottom: 2px solid rgba(168,85,247,0.5);
+      border-right: 2px solid rgba(168,85,247,0.5);
+      z-index: 1;
+    }
+    /* gaming stats row */
+    .gaming-stats {
+      display: flex;
+      gap: 0;
+      background: var(--bg2);
+      border: 1px solid rgba(168,85,247,0.15);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 48px;
+    }
+    .gaming-stat {
+      flex: 1;
+      padding: 20px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+    .gaming-stat:last-child { border-right: none; }
+    .gaming-stat:hover { background: var(--bg3); }
+    .gaming-stat-num {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      color: #a855f7;
+      margin-bottom: 4px;
+    }
+    .gaming-stat-label {
+      font-size: 11px;
+      color: var(--text3);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    /* gaming video cards */
+    .gaming-videos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .gaming-vid-card {
+      background: var(--bg2);
+      border: 1px solid rgba(168,85,247,0.12);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+      text-decoration: none;
+      display: block;
+    }
+    .gaming-vid-card:hover {
+      border-color: rgba(168,85,247,0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(147,51,234,0.2);
+    }
+    .gaming-thumb {
+      height: 150px;
+      background: linear-gradient(135deg, #0d0520, #1a0a3a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      font-size: 40px;
+    }
+    .gaming-play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .gaming-play-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(147,51,234,0.88);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .gaming-vid-card:hover .gaming-play-circle {
+      transform: scale(1.15);
+      box-shadow: 0 0 20px rgba(147,51,234,0.6);
+    }
+    .gaming-play-circle svg { width: 16px; height: 16px; fill: #fff; margin-left: 3px; }
+    .gaming-vid-duration {
+      position: absolute;
+      bottom: 8px; right: 10px;
+      font-size: 10px; font-weight: 500;
+      background: rgba(0,0,0,0.7); color: #fff;
+      padding: 2px 6px; border-radius: 4px;
+    }
+    .gaming-vid-body { padding: 14px 16px; }
+    .gaming-vid-tag {
+      display: inline-block;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 3px 8px; border-radius: 4px; margin-bottom: 8px;
+    }
+    .tag-gameplay { background: rgba(147,51,234,0.15); color: #c084fc; }
+    .tag-stream   { background: rgba(239,68,68,0.15);  color: #fca5a5; }
+    .tag-guide    { background: rgba(16,185,129,0.15); color: #6ee7b7; }
+    .gaming-vid-title { font-size: 14px; font-weight: 500; line-height: 1.4; margin-bottom: 6px; }
+    .gaming-vid-meta  { font-size: 12px; color: var(--text3); }
+
+    @media (max-width: 768px) {
+      .gaming-hero { grid-template-columns: 1fr; gap: 32px; }
+      .gaming-videos-grid { grid-template-columns: 1fr; }
+      .gaming-stats { flex-wrap: wrap; }
+      .gaming-stat { flex: 1 1 50%; border-bottom: 1px solid var(--border); }
+    }
+
+
+    /* ── CYBER GRID ── */
+    .cyber-grid {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        linear-gradient(rgba(6,182,212,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(6,182,212,0.025) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: gridScroll 20s linear infinite;
+    }
+    @keyframes gridScroll {
+      0%   { background-position: 0 0; }
+      100% { background-position: 60px 60px; }
+    }
+
+    /* ── ANIME BG WRAP ── */
+    .anime-bg-wrap {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      width: 520px;
+      height: 680px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.18;
+      mask-image: linear-gradient(to left, rgba(0,0,0,0.8) 0%, transparent 85%),
+                  linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 85%);
+      -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,0.8) 0%, transparent 85%),
+                          linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 85%);
+      -webkit-mask-composite: destination-in;
+      mask-composite: intersect;
+    }
+    .anime-bg-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(30%) brightness(0.7);
+    }
+
+    /* ── VLOG SECTION ── */
+    .vlog-section {
+      background: rgba(6,182,212,0.015);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(6px);
+    }
+    .btn-cyan {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 24px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: var(--radius);
+      color: #fff;
+      background: linear-gradient(135deg, #06b6d4, #0891b2);
+      text-decoration: none;
+      transition: all 0.2s;
+      box-shadow: 0 0 0 0 rgba(6,182,212,0.5);
+      animation: cyanPulse 2.6s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-cyan::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -80%;
+      width: 60%; height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.22), transparent);
+      animation: shimmer 3s ease-in-out infinite;
+    }
+    @keyframes cyanPulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(6,182,212,0.5), 0 4px 18px rgba(6,182,212,0.25); }
+      50%      { box-shadow: 0 0 0 10px rgba(6,182,212,0), 0 4px 24px rgba(6,182,212,0.45); }
+    }
+    .btn-cyan:hover { transform: translateY(-2px) scale(1.03); }
+
+    .vlog-stats {
+      display: flex;
+      background: rgba(11,12,18,0.5);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 40px;
+      backdrop-filter: blur(8px);
+    }
+    .vlog-stat {
+      flex: 1;
+      padding: 22px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+    .vlog-stat:last-child { border-right: none; }
+    .vlog-stat:hover { background: var(--bg3); }
+    .vlog-stat-num {
+      font-family: var(--font-display);
+      font-size: 24px; font-weight: 700;
+      color: var(--cyan-glow);
+      text-shadow: 0 0 10px rgba(6,182,212,0.3);
+      margin-bottom: 4px;
+    }
+    .vlog-stat-label {
+      font-size: 11px; color: var(--text3);
+      text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;
+    }
+    /* update gaming-stats too */
+    .gaming-stats {
+      backdrop-filter: blur(8px);
+    }
+    .gaming-stat-num {
+      text-shadow: 0 0 10px rgba(168,85,247,0.3);
+    }
+
+    @media (max-width: 768px) {
+      .anime-bg-wrap { width: 300px; height: 420px; opacity: 0.13; }
+      .vlog-stats { flex-wrap: wrap; }
+      .vlog-stat { flex: 1 1 50%; padding: 16px; }
+    }
+
+
+    /* ══ ANIME CHARACTER OVERLAY ══ */
+    .card-anime-wrap {
+      position: absolute;
+      bottom: 0;
+      right: -12px;
+      width: 54%;
+      height: 95%;
+      z-index: 3;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .card-anime-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: bottom right;
+      filter: drop-shadow(0 0 18px rgba(6,182,212,0.55)) drop-shadow(0 0 40px rgba(6,182,212,0.25));
+      animation: animeFloat 5s ease-in-out infinite;
+    }
+    .card-anime-wrap.purple img {
+      filter: drop-shadow(0 0 18px rgba(168,85,247,0.65)) drop-shadow(0 0 40px rgba(168,85,247,0.3));
+    }
+    @keyframes animeFloat {
+      0%,100% { transform: translateY(0px) scale(1); }
+      50%      { transform: translateY(-10px) scale(1.02); }
+    }
+    /* left-side content shift */
+    .card-content-left {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 55%;
+      z-index: 4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    /* ══ 3D SHADOW CARD WRAP ══ */
+    .card-3d-shadow-wrap {
+      position: relative;
+    }
+    /* hard drop shadow layers */
+    .card-3d-shadow-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius-lg);
+      transform: translate(8px, 12px) rotateX(2deg);
+      background: rgba(6,182,212,0.12);
+      filter: blur(16px);
+      z-index: 0;
+    }
+    .card-3d-shadow-wrap.purple::before {
+      background: rgba(147,51,234,0.18);
+      filter: blur(18px);
+    }
+    /* bottom reflection stripe */
+    .card-3d-shadow-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: -14px;
+      left: 8%;
+      width: 84%;
+      height: 14px;
+      background: rgba(6,182,212,0.18);
+      filter: blur(8px);
+      border-radius: 50%;
+      z-index: 0;
+    }
+    .card-3d-shadow-wrap.purple::after {
+      background: rgba(147,51,234,0.22);
+    }
+
+    /* ══ UPGRADE GAMING-3D-CARD ══ */
+    .gaming-3d-card {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* scan line sweep animation */
+    .scan-sweep {
+      position: absolute;
+      top: -100%;
+      left: 0;
+      width: 100%;
+      height: 40%;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.025), transparent);
+      animation: scanSweep 4s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 5;
+    }
+    @keyframes scanSweep {
+      0%   { top: -40%; }
+      100% { top: 110%; }
+    }
+
+    /* corner tick marks animate */
+    .gaming-corner {
+      animation: cornerPulse 2s ease-in-out infinite;
+    }
+    @keyframes cornerPulse {
+      0%,100% { opacity: 0.6; }
+      50%      { opacity: 1; }
+    }
+
+    /* ══ VLOG CARD SPECIFIC ══ */
+    .vlog-card-screen {
+      position: relative;
+      overflow: visible !important;
+    }
+
+    @media (max-width: 768px) {
+      .card-anime-wrap { width: 45%; right: -6px; }
+      .card-content-left { width: 58%; }
+    }
+
+
+    /* ══ ANIME GLOBAL VIBE ══ */
+    body {
+      background: var(--bg);
+      background-image:
+        radial-gradient(ellipse 80% 40% at 20% 20%, rgba(255,45,85,0.04) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(0,212,255,0.04) 0%, transparent 60%);
+    }
+
+    /* Neon text glow helper */
+    .neon-red  { text-shadow: 0 0 10px rgba(255,45,85,0.8),  0 0 30px rgba(255,45,85,0.4),  0 0 60px rgba(255,45,85,0.2);  }
+    .neon-blue { text-shadow: 0 0 10px rgba(0,212,255,0.8),  0 0 30px rgba(0,212,255,0.4);  }
+    .neon-pink { text-shadow: 0 0 10px rgba(255,45,138,0.8), 0 0 30px rgba(255,45,138,0.4); }
+
+    /* ── Sakura canvas layer ── */
+    #sakuraCanvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.55;
+    }
+
+    /* ── Hero anime title glitch ── */
+    .hero h1 {
+      position: relative;
+    }
+    .hero h1 em {
+      color: var(--anime-pink) !important;
+      text-shadow: 0 0 20px rgba(255,45,138,0.7), 0 0 50px rgba(255,45,138,0.3) !important;
+      animation: neonFlicker 4s ease-in-out infinite;
+    }
+    @keyframes neonFlicker {
+      0%,96%,100% { opacity: 1; text-shadow: 0 0 20px rgba(255,45,138,0.7), 0 0 50px rgba(255,45,138,0.3); }
+      97%          { opacity: 0.4; text-shadow: none; }
+      98%          { opacity: 1; text-shadow: 0 0 40px rgba(255,45,138,1); }
+      99%          { opacity: 0.6; }
+    }
+
+    /* ── Glitch effect on logo ── */
+    .hero-logo-img {
+      animation: heroLogoFloat 4s ease-in-out infinite, animeGlitch 8s step-end infinite !important;
+    }
+    @keyframes animeGlitch {
+      0%,92%,100% { filter: none; }
+      93% { filter: hue-rotate(90deg) saturate(2) brightness(1.5); transform: translateX(3px); }
+      94% { filter: hue-rotate(-90deg); transform: translateX(-3px) translateY(-2px); }
+      95% { filter: none; transform: none; }
+    }
+
+    /* ── Navbar anime style ── */
+    nav {
+      background: rgba(6,8,16,0.92) !important;
+      border-bottom: 1px solid rgba(255,45,85,0.2) !important;
+      box-shadow: 0 2px 20px rgba(255,45,85,0.1);
+    }
+    .nav-links a {
+      font-family: 'Rajdhani', sans-serif !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.1em !important;
+      text-transform: uppercase !important;
+    }
+    .nav-links a:hover {
+      color: var(--anime-pink) !important;
+      text-shadow: 0 0 8px rgba(255,45,138,0.6);
+    }
+
+    /* ── Section headers anime ── */
+    .section-header h2, .gaming-title, .contact-info h2 {
+      font-family: 'Orbitron', sans-serif !important;
+      letter-spacing: -0.5px;
+    }
+    .eyebrow {
+      color: var(--anime-pink) !important;
+      font-family: 'Rajdhani', sans-serif !important;
+      letter-spacing: 0.2em !important;
+    }
+
+    /* ── Hero eyebrow anime badge ── */
+    .hero-eyebrow {
+      background: rgba(255,45,138,0.12) !important;
+      border-color: rgba(255,45,138,0.4) !important;
+      color: var(--anime-pink) !important;
+      font-family: 'Rajdhani', sans-serif !important;
+      letter-spacing: 0.15em !important;
+    }
+
+    /* ── Hero logo ring — pink ── */
+    .hero-logo-ring  { border-top-color: var(--anime-pink) !important; }
+    .hero-logo-ring2 { border-bottom-color: rgba(255,45,138,0.4) !important; border-left-color: rgba(0,212,255,0.3) !important; }
+
+    /* ── Sub badge anime ── */
+    .sub-badge {
+      background: rgba(255,45,138,0.08) !important;
+      border-color: rgba(255,45,138,0.25) !important;
+    }
+    .sub-badge-live .dot { background: var(--anime-pink) !important; }
+    .sub-badge-live { color: var(--anime-pink) !important; }
+
+    /* ── Subscribe button anime ── */
+    .btn-subscribe {
+      background: linear-gradient(135deg, #FF2D55, #FF2D8A) !important;
+      box-shadow: 0 0 0 0 rgba(255,45,85,0.6) !important;
+    }
+    @keyframes pulseSub {
+      0%,100% { box-shadow: 0 0 0 0 rgba(255,45,85,0.6), 0 4px 18px rgba(255,45,85,0.35); }
+      50%      { box-shadow: 0 0 0 10px rgba(255,45,85,0), 0 4px 28px rgba(255,45,85,0.55); }
+    }
+
+    /* ── Video cards anime border ── */
+    .vid-card:hover {
+      border-color: rgba(255,45,138,0.45) !important;
+      box-shadow: 0 12px 32px rgba(255,45,85,0.2), 0 0 0 1px rgba(255,45,138,0.1) !important;
+    }
+    .vid-title { font-family: 'Rajdhani', sans-serif !important; font-size: 15px !important; }
+
+    /* ── Blog cards anime ── */
+    .blog-card { border-color: rgba(255,45,138,0.1) !important; }
+    .blog-card:hover { border-color: rgba(255,45,138,0.35) !important; }
+    .blog-card h3 { font-family: 'Orbitron', sans-serif !important; font-size: 16px !important; }
+
+    /* ── Shop cards anime ── */
+    .shop-card:hover { border-color: rgba(255,45,138,0.35) !important; box-shadow: 0 12px 28px rgba(255,45,85,0.2) !important; }
+
+    /* ── Submit button anime ── */
+    .submit-btn { background: linear-gradient(135deg, #FF2D55, #FF2D8A) !important; }
+
+    /* ── Footer anime ── */
+    footer { border-top-color: rgba(255,45,138,0.15) !important; }
+
+    /* ── Sakura petal shape ── */
+    .sakura-petal {
+      position: absolute;
+      width: 8px; height: 8px;
+      background: radial-gradient(ellipse at center, rgba(255,183,197,0.9) 0%, rgba(255,105,180,0.4) 60%, transparent 100%);
+      border-radius: 50% 0 50% 0;
+      pointer-events: none;
+    }
+
+    /* ── JP text decoration ── */
+    .jp-label {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: rgba(255,45,138,0.4);
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    /* ══ VLOG CARD — anime girl (cyan/sakura) ══ */
+    .anime-vlog-char {
+      position: absolute;
+      right: -8px; bottom: 0;
+      width: 52%;
+      height: 100%;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .anime-vlog-char svg {
+      width: 100%; height: 100%;
+      filter: drop-shadow(0 0 14px rgba(0,212,255,0.6)) drop-shadow(0 0 35px rgba(255,45,138,0.25));
+      animation: animeFloat 5s ease-in-out infinite;
+    }
+
+    /* ══ GAMING CARD — anime warrior (purple/red) ══ */
+    .anime-gaming-char {
+      position: absolute;
+      right: -8px; bottom: 0;
+      width: 52%;
+      height: 100%;
+      z-index: 3;
+      pointer-events: none;
+    }
+    .anime-gaming-char svg {
+      width: 100%; height: 100%;
+      filter: drop-shadow(0 0 16px rgba(157,0,255,0.65)) drop-shadow(0 0 35px rgba(255,45,85,0.3));
+      animation: animeFloat 4.5s 0.5s ease-in-out infinite;
+    }
+
+    /* ── Loading screen anime ── */
+    #loadingScreen {
+      background: radial-gradient(ellipse at center, #0a0416 0%, #060810 60%) !important;
+    }
+    .loading-text {
+      font-family: 'Orbitron', sans-serif !important;
+      color: var(--anime-pink) !important;
+      text-shadow: 0 0 20px rgba(255,45,138,0.6) !important;
+    }
+    .loading-dots span { background: var(--anime-pink) !important; }
+    .loading-ring { border-top-color: var(--anime-pink) !important; }
+    .loading-logo-img { border-color: var(--anime-pink) !important; }
+
+    /* ── Section dividers — neon line ── */
+    .section::before {
+      content: '';
+      display: block;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,45,138,0.3), rgba(0,212,255,0.3), transparent);
+      margin-bottom: 40px;
+    }
+
+
+    /* ═══════════════════════════════
+       ANIME VIBE — GLOBAL OVERHAUL
+    ═══════════════════════════════ */
+
+    /* Glitch text effect for headings */
+    .glitch {
+      position: relative;
+      display: inline-block;
+    }
+    .glitch::before, .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+    }
+    .glitch::before {
+      color: var(--cyan-glow);
+      animation: glitchTop 4s infinite;
+      clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+    }
+    .glitch::after {
+      color: #ff2d55;
+      animation: glitchBot 4s infinite;
+      clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+    }
+    @keyframes glitchTop {
+      0%,90%,100% { transform: translate(0); opacity: 0; }
+      92%          { transform: translate(-3px, -2px); opacity: 0.7; }
+      94%          { transform: translate(3px, 2px); opacity: 0.5; }
+      96%          { transform: translate(0); opacity: 0; }
+    }
+    @keyframes glitchBot {
+      0%,91%,100% { transform: translate(0); opacity: 0; }
+      93%         { transform: translate(3px, 2px); opacity: 0.6; }
+      95%         { transform: translate(-3px, -1px); opacity: 0.4; }
+      97%         { transform: translate(0); opacity: 0; }
+    }
+
+    /* Neon border cards */
+    .vid-card, .blog-card, .shop-card {
+      border-color: rgba(255,45,85,0.15) !important;
+      position: relative;
+      overflow: hidden;
+    }
+    .vid-card::before, .blog-card::before, .shop-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, transparent, var(--red), var(--cyan-glow), transparent);
+      animation: neonSweep 4s ease-in-out infinite;
+      z-index: 5;
+    }
+    .vid-card:nth-child(2)::before { animation-delay: 0.8s; }
+    .vid-card:nth-child(3)::before { animation-delay: 1.6s; }
+    .blog-card:nth-child(2)::before { animation-delay: 1s; }
+    .shop-card:nth-child(2)::before { animation-delay: 0.6s; }
+    .shop-card:nth-child(3)::before { animation-delay: 1.2s; }
+    .shop-card:nth-child(4)::before { animation-delay: 1.8s; }
+    @keyframes neonSweep {
+      0%   { left: -100%; opacity: 0; }
+      20%  { opacity: 1; }
+      80%  { opacity: 1; }
+      100% { left: 100%; opacity: 0; }
+    }
+    .vid-card:hover {
+      border-color: rgba(255,45,85,0.5) !important;
+      box-shadow: 0 0 20px rgba(255,45,85,0.2), 0 12px 32px rgba(0,0,0,0.5) !important;
+    }
+    .blog-card:hover {
+      border-color: rgba(6,182,212,0.4) !important;
+      box-shadow: 0 0 18px rgba(6,182,212,0.15) !important;
+    }
+    .shop-card:hover {
+      border-color: rgba(168,85,247,0.4) !important;
+      box-shadow: 0 0 18px rgba(168,85,247,0.2), 0 12px 28px rgba(0,0,0,0.4) !important;
+    }
+
+    /* Japanese kanji decoration */
+    .jp-deco {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--text3);
+      text-transform: uppercase;
+      opacity: 0.6;
+    }
+
+    /* Anime section divider */
+    .anime-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .anime-divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--red), transparent);
+    }
+    .anime-divider-icon {
+      font-size: 14px;
+      color: var(--red);
+    }
+
+    /* Neon eyebrow labels */
+    .eyebrow {
+      font-family: 'Orbitron', sans-serif !important;
+      letter-spacing: 0.2em !important;
+      text-shadow: 0 0 10px currentColor !important;
+    }
+
+    /* Nav links anime style */
+    .nav-links a {
+      font-family: 'Orbitron', sans-serif !important;
+      font-size: 11px !important;
+      letter-spacing: 0.1em !important;
+      text-transform: uppercase !important;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--red);
+      transition: width 0.3s;
+      box-shadow: 0 0 6px var(--red);
+    }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* Hero h1 neon glow */
+    .hero h1 em {
+      text-shadow: 0 0 20px rgba(255,45,85,0.6), 0 0 40px rgba(255,45,85,0.3) !important;
+    }
+
+    /* Section headings neon */
+    .section-header h2,
+    .gaming-title,
+    .contact-info h2 {
+      text-shadow: 0 0 30px rgba(255,45,85,0.2);
+    }
+
+    /* Hero eyebrow pulse */
+    .hero-eyebrow {
+      animation: eyebrowPulse 3s ease-in-out infinite !important;
+      box-shadow: 0 0 15px rgba(255,45,85,0.2), inset 0 0 15px rgba(255,45,85,0.05) !important;
+    }
+    @keyframes eyebrowPulse {
+      0%,100% { box-shadow: 0 0 10px rgba(255,45,85,0.2); }
+      50%      { box-shadow: 0 0 25px rgba(255,45,85,0.45), 0 0 40px rgba(255,45,85,0.15); }
+    }
+
+    /* Stats neon numbers */
+    .stat-num {
+      text-shadow: 0 0 15px rgba(255,45,85,0.4) !important;
+    }
+
+    /* Video thumbnails anime overlay */
+    .vid-thumb-bg {
+      background: linear-gradient(135deg, #0a0015, #12002a, #0a0818) !important;
+    }
+
+    /* Play button neon */
+    .play-circle {
+      box-shadow: 0 0 15px rgba(255,45,85,0.5) !important;
+    }
+    .vid-card:hover .play-circle {
+      box-shadow: 0 0 30px rgba(255,45,85,0.8) !important;
+    }
+
+    /* Blog cards anime */
+    .blog-card {
+      background: rgba(6,4,15,0.7) !important;
+      backdrop-filter: blur(12px) !important;
+    }
+    .blog-card h3 {
+      text-shadow: 0 0 10px rgba(255,255,255,0.1);
+    }
+
+    /* Shop img neon bg */
+    .shop-img {
+      background: linear-gradient(145deg, #0a0015, #12002a) !important;
+      position: relative;
+    }
+    .shop-img::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 80%, rgba(168,85,247,0.12) 0%, transparent 70%);
+    }
+
+    /* Submit button neon */
+    .submit-btn {
+      background: linear-gradient(135deg, #FF2D55, #cc0033) !important;
+      box-shadow: 0 0 20px rgba(255,45,85,0.3) !important;
+    }
+    .submit-btn:hover {
+      box-shadow: 0 0 30px rgba(255,45,85,0.6) !important;
+    }
+
+    /* Footer neon border */
+    footer {
+      border-top: 1px solid rgba(255,45,85,0.2) !important;
+      background: linear-gradient(to bottom, transparent, rgba(255,45,85,0.03)) !important;
+    }
+
+    /* Loading screen anime */
+    #loadingScreen {
+      background: radial-gradient(ellipse at 50% 50%, #0a0010 0%, #060810 100%) !important;
+    }
+    .loading-text {
+      text-shadow: 0 0 20px rgba(255,45,85,0.5) !important;
+    }
+    .loading-sub {
+      font-family: 'Orbitron', sans-serif !important;
+      letter-spacing: 0.3em !important;
+    }
+
+    /* Contact form inputs anime */
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--red) !important;
+      box-shadow: 0 0 10px rgba(255,45,85,0.2) !important;
+    }
+
+    /* Scroll reveal from side for cards */
+    .vid-card.reveal, .blog-card.reveal, .shop-card.reveal {
+      transform: translateY(24px) scale(0.97);
+    }
+    .vid-card.visible, .blog-card.visible, .shop-card.visible {
+      transform: translateY(0) scale(1);
+    }
+
+    /* Gaming section neon borders upgrade */
+    .gaming-section {
+      border-top: 1px solid rgba(168,85,247,0.25) !important;
+      border-bottom: 1px solid rgba(168,85,247,0.25) !important;
+    }
+    .vlog-section {
+      border-top: 1px solid rgba(6,182,212,0.25) !important;
+      border-bottom: 1px solid rgba(6,182,212,0.25) !important;
+    }
+
+    /* Stat badge anime glow */
+    .sub-badge {
+      border-color: rgba(255,45,85,0.3) !important;
+      background: rgba(255,45,85,0.05) !important;
+      box-shadow: 0 0 15px rgba(255,45,85,0.1) !important;
+    }
+    .sub-count {
+      text-shadow: 0 0 10px rgba(255,45,85,0.5) !important;
+    }
+
+    /* HUD corner decorations on hero */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 20px; right: 20px;
+      width: 40px; height: 40px;
+      border-top: 2px solid rgba(255,45,85,0.4);
+      border-right: 2px solid rgba(255,45,85,0.4);
+      pointer-events: none;
+    }
+    .hero::before {
+      border-radius: 0 !important;
+    }
+
+    /* Typing cursor on hero subtitle */
+    .hero-sub::after {
+      content: '|';
+      color: var(--red);
+      animation: cursorBlink 1s step-start infinite;
+      margin-left: 2px;
+    }
+    @keyframes cursorBlink {
+      0%,100% { opacity: 1; }
+      50%      { opacity: 0; }
+    }
+
+
+    /* ── REAL THUMBNAILS ── */
+    .vid-thumb-real {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease, filter 0.4s ease;
+      filter: brightness(0.75) saturate(1.1);
+    }
+    .vid-card:hover .vid-thumb-real,
+    .gaming-vid-card:hover .vid-thumb-real {
+      transform: scale(1.06);
+      filter: brightness(0.6) saturate(1.2);
+    }
+    .gaming-thumb-real {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease, filter 0.4s ease;
+      filter: brightness(0.7) saturate(1.1);
+    }
+    .gaming-vid-card:hover .gaming-thumb-real {
+      transform: scale(1.06);
+      filter: brightness(0.55) saturate(1.2);
+    }
+
+    /* neon border on thumb hover */
+    .vid-thumb { overflow: hidden; }
+    .gaming-thumb { overflow: hidden; }
+
+    /* ── SKELETON LOADERS ── */
+    .skeleton-thumb {
+      background: linear-gradient(135deg, #0d0f1a, #141625) !important;
+      position: relative;
+      overflow: hidden;
+    }
+    .skeleton-shine {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(168,85,247,0.08) 40%,
+        rgba(232,53,42,0.08) 50%,
+        rgba(6,182,212,0.08) 60%,
+        transparent 100%
+      );
+      animation: skeletonShine 1.8s ease-in-out infinite;
+      background-size: 200% 100%;
+    }
+    @keyframes skeletonShine {
+      0%   { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .skeleton-line {
+      height: 10px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 5px;
+      animation: skeletonShine 1.8s ease-in-out infinite;
+    }
+    .skeleton-line.mt8 { margin-top: 8px; }
+    .skeleton-line.w80 { width: 80%; }
+    .skeleton-line.w60 { width: 60%; }
+    .skeleton-line.w50 { width: 50%; }
+    .skeleton-line.w40 { width: 40%; }
+    .vid-skeleton .vid-body, .vid-skeleton .gaming-vid-body { padding: 14px 16px; }
+
+    /* ── TIME AGO badge ── */
+    .vid-timeago {
+      font-size: 11px;
+      color: var(--text3);
+    }
+    /* ── View count ── */
+    .vid-views {
+      color: var(--text2);
+      font-size: 11px;
+    }
+
+  </style>
+</head>
+<body>
+<canvas id="bgCanvas"></canvas>
+<canvas id="sakuraCanvas"></canvas>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo"><img src="channels4_profile.jpg" alt="Day of VB" class="nav-logo-img" /><span class="nav-logo-text">Day of <span>VB</span></span></a>
+  <ul class="nav-links">
+    <li><a href="#videos">Videos</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#shop">Shop</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#vlogs" style="color:var(--cyan-glow);font-weight:600">🎬 Vlogs</a></li>
+    <li><a href="#gaming" style="color:#a855f7;font-weight:600">🎮 VB Gaming</a></li>
+  </ul>
+  <button class="hamburger" aria-label="Menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<nav class="nav-sub" id="navSub">
+  <a href="#videos" onclick="toggleMenu()">Videos</a>
+  <a href="#blog" onclick="toggleMenu()">Blog</a>
+  <a href="#shop" onclick="toggleMenu()">Shop</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <a href="#vlogs" onclick="toggleMenu()" style="color:var(--cyan-glow);font-weight:600">🎬 Vlogs</a>
+  <a href="#gaming" onclick="toggleMenu()" style="color:#a855f7;font-weight:600">🎮 VB Gaming</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-logo-wrap">
+  <div class="hero-logo-glow"></div>
+  <div class="hero-logo-ring"></div>
+  <div class="hero-logo-ring2"></div>
+  <img src="channels4_profile.jpg" alt="Day of VB Logo" class="hero-logo-img" />
+</div>
+<div class="hero-eyebrow">🎮 Sinhala Gaming Channel</div>
+  <h1>Welcome to<br><em class="glitch" data-text="Day of VB">Day of VB</em></h1>
+  <p class="hero-sub">Gaming reviews, unboxings & vlogs in Sinhala — for the Sri Lankan gaming community.</p>
+  <div class="hero-actions">
+    <a href="https://www.youtube.com/@DayofVB" target="_blank" class="btn-subscribe" id="subBtn">
+      <div class="live-dot"></div>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+      Subscribe on YouTube
+    </a>
+    <a href="#videos" class="btn btn-secondary">Watch Videos ↓</a>
+  </div>
+
+  <!-- LIVE SUBSCRIBER COUNT BADGE -->
+  <div class="sub-badge">
+    <div class="sub-badge-live"><span class="dot"></span> LIVE</div>
+    <span class="sub-count" id="subCount">—</span>
+    <span class="sub-label">subscribers</span>
+  </div>
+  <div class="api-notice" id="apiNotice" style="display:none">
+    ⚙️ Add your YouTube API key to show live count
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num" id="statSubs">—</div>
+      <div class="stat-label">Subscribers</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="stat-num">50+</div>
+      <div class="stat-label">Videos</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="stat-num">3+</div>
+      <div class="stat-label">Years</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat">
+      <div class="stat-num">🇱🇰</div>
+      <div class="stat-label">Sri Lanka</div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEOS -->
+<section id="videos" class="section">
+  <div class="section-header reveal">
+    <div class="eyebrow">Latest content</div>
+    <h2>Recent videos</h2>
+    <p>Gaming reviews, unboxings and vlogs — new videos every week.</p>
+  </div>
+  <div class="videos-grid" id="dayofvbGrid">
+    <!-- skeleton loaders -->
+    <div class="vid-card reveal vid-skeleton"><div class="vid-thumb skeleton-thumb"><div class="skeleton-shine"></div></div><div class="vid-body"><div class="skeleton-line w80"></div><div class="skeleton-line w60 mt8"></div><div class="skeleton-line w40 mt8"></div></div></div>
+    <div class="vid-card reveal vid-skeleton"><div class="vid-thumb skeleton-thumb"><div class="skeleton-shine"></div></div><div class="vid-body"><div class="skeleton-line w80"></div><div class="skeleton-line w60 mt8"></div><div class="skeleton-line w40 mt8"></div></div></div>
+    <div class="vid-card reveal vid-skeleton"><div class="vid-thumb skeleton-thumb"><div class="skeleton-shine"></div></div><div class="vid-body"><div class="skeleton-line w80"></div><div class="skeleton-line w60 mt8"></div><div class="skeleton-line w40 mt8"></div></div></div>
+    <div class="vid-card reveal vid-skeleton"><div class="vid-thumb skeleton-thumb"><div class="skeleton-shine"></div></div><div class="vid-body"><div class="skeleton-line w80"></div><div class="skeleton-line w60 mt8"></div><div class="skeleton-line w40 mt8"></div></div></div>
+    <div class="vid-card reveal vid-skeleton"><div class="vid-thumb skeleton-thumb"><div class="skeleton-shine"></div></div><div class="vid-body"><div class="skeleton-line w80"></div><div class="skeleton-line w60 mt8"></div><div class="skeleton-line w40 mt8"></div></div></div>
+    <div class="vid-card reveal vid-skeleton"><div class="vid-thumb skeleton-thumb"><div class="skeleton-shine"></div></div><div class="vid-body"><div class="skeleton-line w80"></div><div class="skeleton-line w60 mt8"></div><div class="skeleton-line w40 mt8"></div></div></div>
+  </div>
+  </div>
+  <div class="view-all-row">
+    <a href="https://www.youtube.com/@DayofVB" target="_blank" class="btn btn-secondary">View all videos on YouTube →</a>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog" class="blog-section">
+  <div class="blog-inner">
+    <div class="section-header reveal">
+      <div class="eyebrow">News & Updates</div>
+      <h2>From the blog</h2>
+      <p>Gaming news, tips, and thoughts from Visal.</p>
+    </div>
+    <div class="blog-grid">
+
+      <div class="blog-card reveal">
+        <div class="blog-card-top">
+          <span class="blog-cat cat-gaming">Gaming</span>
+          <span class="blog-date">June 2026</span>
+        </div>
+        <h3>GTA VI — What Sri Lankan Gamers Need to Know</h3>
+        <p>The release date is coming up fast. Here's what we know about price, specs, and whether it's worth buying in Sri Lanka right now.</p>
+        <div class="blog-card-footer">Read more →</div>
+      </div>
+
+      <div class="blog-card reveal">
+        <div class="blog-card-top">
+          <span class="blog-cat cat-tech">Tech</span>
+          <span class="blog-date">May 2026</span>
+        </div>
+        <h3>Best Budget Mics for Streaming in 2026</h3>
+        <p>Tested 5 microphones under LKR 15,000. If you're starting a channel or streaming, this is the one to buy without second thoughts.</p>
+        <div class="blog-card-footer">Read more →</div>
+      </div>
+
+      <div class="blog-card reveal">
+        <div class="blog-card-top">
+          <span class="blog-cat cat-tips">Tips</span>
+          <span class="blog-date">April 2026</span>
+        </div>
+        <h3>How to Grow a YouTube Channel in Sri Lanka</h3>
+        <p>From zero to my first 500 subscribers — the SEO tricks, thumbnail strategies, and posting schedule that actually moved the needle.</p>
+        <div class="blog-card-footer">Read more →</div>
+      </div>
+
+      <div class="blog-card reveal">
+        <div class="blog-card-top">
+          <span class="blog-cat cat-gaming">Gaming</span>
+          <span class="blog-date">March 2026</span>
+        </div>
+        <h3>Ghost of Tsushima — Is It Worth Playing in 2026?</h3>
+        <p>One of the most beautiful games ever made. Here's my honest take after 40+ hours exploring Tsushima Island.</p>
+        <div class="blog-card-footer">Read more →</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SHOP -->
+<section id="shop" class="section">
+  <div class="section-header reveal">
+    <div class="eyebrow">Gear & Merch</div>
+    <h2>Shop</h2>
+    <p>Recommended gear and Day of VB merch.</p>
+  </div>
+  <div class="shop-grid">
+
+    <div class="shop-card reveal">
+      <div class="shop-img">🎧</div>
+      <div class="shop-body">
+        <div class="shop-name">Gaming Headset</div>
+        <div class="shop-sub">7.1 Surround Sound</div>
+        <div class="shop-price">LKR 8,500</div>
+        <button class="shop-btn" onclick="openShop()">View Product →</button>
+      </div>
+    </div>
+
+    <div class="shop-card reveal">
+      <div class="shop-img">🎙️</div>
+      <div class="shop-body">
+        <div class="shop-name">USB Microphone</div>
+        <div class="shop-sub">Plug & Play, Cardioid</div>
+        <div class="shop-price">LKR 12,000</div>
+        <button class="shop-btn" onclick="openShop()">View Product →</button>
+      </div>
+    </div>
+
+    <div class="shop-card reveal">
+      <div class="shop-img">🖥️</div>
+      <div class="shop-body">
+        <div class="shop-name">Gaming Monitor</div>
+        <div class="shop-sub">144Hz, 24 inch</div>
+        <div class="shop-price">LKR 45,000</div>
+        <button class="shop-btn" onclick="openShop()">View Product →</button>
+      </div>
+    </div>
+
+    <div class="shop-card reveal">
+      <div class="shop-img">👕</div>
+      <div class="shop-body">
+        <div class="shop-name">VB Merch Tee</div>
+        <div class="shop-sub">Unisex, S–XL</div>
+        <div class="shop-price">LKR 2,500</div>
+        <button class="shop-btn" onclick="openShop()">Order Now →</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section" style="padding:60px 24px;text-align:center;">
+  <div style="max-width:600px;margin:0 auto;">
+    <div class="eyebrow reveal" style="margin-bottom:12px;">Get in touch</div>
+    <h2 class="reveal" style="font-family:var(--font-display);font-size:clamp(28px,4vw,42px);font-weight:700;letter-spacing:-0.5px;margin-bottom:16px;">
+      Contact <span style="color:var(--red)">Visal</span>
+    </h2>
+    <p class="reveal" style="color:var(--text2);font-size:15px;line-height:1.7;margin-bottom:36px;">
+      Business inquiries, collaborations, sponsorships, or just to say hi — I'll reply to every message!
+    </p>
+    <a href="contact.html" class="btn-subscribe reveal" style="font-size:16px;padding:16px 40px;display:inline-flex;gap:10px;align-items:center;text-decoration:none;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Send a Message
+    </a>
+  </div>
+</section>
+
+
+<!-- VLOGS -->
+<section id="vlogs" class="gaming-section vlog-section">
+  <div class="gaming-inner">
+    <div class="gaming-hero">
+      <div>
+        <div class="gaming-badge reveal" style="color:var(--cyan-glow); background:rgba(6,182,212,0.1); border-color:rgba(6,182,212,0.25)">🎬 VLOG DIVISION</div>
+        <h2 class="gaming-title reveal">Day of VB <span style="color:var(--cyan-glow)">Vlogs</span></h2>
+        <p class="gaming-desc reveal">Travel breakdowns, setups behind-the-scenes diaries, and daily routines records. Step outside the stream space with me!</p>
+        <div>
+          <a href="https://youtube.com/@dayofvb?si=bQN9gWYx8QhzKbsu" target="_blank" class="btn-cyan">Subscribe Vlogs</a>
+        </div>
+      </div>
+      <div class="gaming-preview reveal">
+        <div class="card-3d-shadow-wrap">
+          <div class="gaming-3d-card">
+            <div class="gaming-screen vlog-card-screen" style="border-color:rgba(6,182,212,0.4); background:linear-gradient(145deg,#030d12,#041a22,#020e14); box-shadow:0 0 50px rgba(6,182,212,0.2), 0 20px 60px rgba(0,0,0,0.7), inset 0 1px 0 rgba(6,182,212,0.15);">
+              <!-- grid bg -->
+              <div class="gaming-grid-bg" style="background-image:linear-gradient(rgba(6,182,212,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(6,182,212,0.06) 1px,transparent 1px)"></div>
+              <!-- scan sweep -->
+              <div class="scan-sweep"></div>
+              <!-- corners cyan -->
+              <div class="gaming-corner gaming-corner-tl" style="border-color:rgba(6,182,212,0.8)"></div>
+              <div class="gaming-corner gaming-corner-tr" style="border-color:rgba(6,182,212,0.8)"></div>
+              <div class="gaming-corner gaming-corner-bl" style="border-color:rgba(6,182,212,0.8)"></div>
+              <div class="gaming-corner gaming-corner-br" style="border-color:rgba(6,182,212,0.8)"></div>
+              <!-- edge glow cyan -->
+              <div class="gaming-edge-glow" style="background:linear-gradient(to bottom,transparent,rgba(6,182,212,0.6),transparent)"></div>
+              <!-- glow bg -->
+              <div style="position:absolute;inset:0;background:radial-gradient(ellipse 65% 55% at 30% 50%,rgba(6,182,212,0.1) 0%,transparent 70%);z-index:0"></div>
+
+              <!-- LEFT content -->
+              <div class="card-content-left">
+                <div class="gaming-logo-wrap" style="width:90px;height:90px;">
+                  <div class="gaming-logo-glow" style="background:radial-gradient(circle,rgba(6,182,212,0.3) 0%,transparent 70%)"></div>
+                  <div class="gaming-logo-ring3" style="border-color:rgba(6,182,212,0.18)"></div>
+                  <div class="gaming-logo-ring2" style="border-bottom-color:rgba(6,182,212,0.45);border-left-color:rgba(6,182,212,0.2)"></div>
+                  <div class="gaming-logo-ring1" style="border-top-color:#06b6d4;border-right-color:rgba(6,182,212,0.3);width:90px;height:90px;inset:-10px"></div>
+                  <img src="channels4_profile.jpg" alt="Vlog Logo" style="width:90px;height:90px;border-radius:50%;object-fit:cover;border:2px solid rgba(6,182,212,0.7);box-shadow:0 0 25px rgba(6,182,212,0.5);position:relative;z-index:2;animation:heroLogoFloat 3.5s ease-in-out infinite;" />
+                </div>
+                <div style="font-family:var(--font-display);font-size:15px;font-weight:700;color:#22d3ee;text-shadow:0 0 20px rgba(6,182,212,0.7);letter-spacing:1px;">DAY OF VB VLOGS</div>
+                <div style="font-size:10px;color:rgba(6,182,212,0.55);letter-spacing:0.12em;text-transform:uppercase;">@dayofvb · Life & Style</div>
+              </div>
+
+                            <!-- VLOG anime character — kawaii girl -->
+              <div class="anime-vlog-char">
+                <svg viewBox="0 0 220 400" xmlns="http://www.w3.org/2000/svg">
+                  <!-- long flowing hair back -->
+                  <path d="M70 55 Q30 90 28 200 Q40 170 52 140 Q58 100 70 80Z" fill="rgba(255,183,197,0.25)" stroke="rgba(255,150,180,0.5)" stroke-width="1.2"/>
+                  <path d="M150 55 Q190 90 192 200 Q180 170 168 140 Q162 100 150 80Z" fill="rgba(255,183,197,0.25)" stroke="rgba(255,150,180,0.5)" stroke-width="1.2"/>
+                  <!-- hair top -->
+                  <ellipse cx="110" cy="52" rx="46" ry="48" fill="rgba(255,120,160,0.2)" stroke="rgba(255,100,150,0.6)" stroke-width="1.3"/>
+                  <!-- ahoge hair strand -->
+                  <path d="M108 10 Q95 2 100 18 Q105 28 112 22 Q118 8 108 10Z" fill="rgba(255,100,150,0.4)" stroke="rgba(255,100,150,0.7)" stroke-width="1"/>
+                  <path d="M118 8 Q130 0 124 16 Q118 26 112 22" fill="rgba(255,120,160,0.35)" stroke="rgba(255,100,150,0.6)" stroke-width="0.9"/>
+                  <!-- face -->
+                  <ellipse cx="110" cy="62" rx="28" ry="30" fill="rgba(255,220,230,0.08)" stroke="rgba(0,212,255,0.45)" stroke-width="1"/>
+                  <!-- big anime eyes -->
+                  <!-- left eye -->
+                  <ellipse cx="97" cy="60" rx="9" ry="8" fill="rgba(0,180,230,0.15)" stroke="rgba(0,212,255,0.8)" stroke-width="1.2"/>
+                  <ellipse cx="97" cy="61" rx="6" ry="5.5" fill="rgba(0,212,255,0.5)"/>
+                  <ellipse cx="97" cy="61" rx="3.5" ry="3.5" fill="rgba(0,150,220,0.9)"/>
+                  <circle cx="99.5" cy="58.5" r="2" fill="white" opacity="0.95"/>
+                  <circle cx="94" cy="63" r="1" fill="white" opacity="0.6"/>
+                  <!-- right eye -->
+                  <ellipse cx="123" cy="60" rx="9" ry="8" fill="rgba(0,180,230,0.15)" stroke="rgba(0,212,255,0.8)" stroke-width="1.2"/>
+                  <ellipse cx="123" cy="61" rx="6" ry="5.5" fill="rgba(0,212,255,0.5)"/>
+                  <ellipse cx="123" cy="61" rx="3.5" ry="3.5" fill="rgba(0,150,220,0.9)"/>
+                  <circle cx="125.5" cy="58.5" r="2" fill="white" opacity="0.95"/>
+                  <circle cx="120" cy="63" r="1" fill="white" opacity="0.6"/>
+                  <!-- eyelashes -->
+                  <path d="M88 55 Q87 51 91 53" stroke="rgba(255,100,150,0.8)" stroke-width="1.2" fill="none"/>
+                  <path d="M106 55 Q108 51 107 54" stroke="rgba(255,100,150,0.8)" stroke-width="1.2" fill="none"/>
+                  <path d="M114 55 Q113 51 115 54" stroke="rgba(255,100,150,0.8)" stroke-width="1.2" fill="none"/>
+                  <path d="M132 55 Q133 51 129 53" stroke="rgba(255,100,150,0.8)" stroke-width="1.2" fill="none"/>
+                  <!-- blush -->
+                  <ellipse cx="90" cy="68" rx="7" ry="4" fill="rgba(255,100,150,0.18)"/>
+                  <ellipse cx="130" cy="68" rx="7" ry="4" fill="rgba(255,100,150,0.18)"/>
+                  <!-- small nose + mouth -->
+                  <path d="M108 72 Q110 74 112 72" stroke="rgba(255,120,150,0.6)" stroke-width="1" fill="none"/>
+                  <!-- outfit — idol/magical girl style -->
+                  <!-- dress body -->
+                  <path d="M82 92 L72 180 L90 192 L110 185 L130 192 L148 180 L138 92 Q124 82 110 80 Q96 82 82 92Z" fill="rgba(0,180,230,0.12)" stroke="rgba(0,212,255,0.5)" stroke-width="1.2"/>
+                  <!-- ribbon bow -->
+                  <path d="M100 96 Q110 88 120 96 L115 104 Q110 100 105 104Z" fill="rgba(255,45,138,0.3)" stroke="rgba(255,45,138,0.7)" stroke-width="1"/>
+                  <circle cx="110" cy="96" r="4" fill="rgba(255,45,138,0.5)" stroke="rgba(255,45,138,0.9)" stroke-width="1"/>
+                  <!-- collar detail -->
+                  <path d="M90 92 Q110 86 130 92" stroke="rgba(0,212,255,0.6)" stroke-width="1" fill="none"/>
+                  <!-- skirt flare -->
+                  <path d="M72 180 Q60 200 68 210 L90 192Z" fill="rgba(0,180,230,0.15)" stroke="rgba(0,212,255,0.4)" stroke-width="0.9"/>
+                  <path d="M148 180 Q160 200 152 210 L130 192Z" fill="rgba(0,180,230,0.15)" stroke="rgba(0,212,255,0.4)" stroke-width="0.9"/>
+                  <!-- magical staff in right hand -->
+                  <line x1="150" y1="180" x2="178" y2="60" stroke="rgba(0,212,255,0.75)" stroke-width="2"/>
+                  <line x1="150" y1="180" x2="178" y2="60" stroke="rgba(150,230,255,0.2)" stroke-width="6"/>
+                  <!-- star tip -->
+                  <path d="M178 60 L181 52 L184 60 L192 60 L186 65 L188 73 L181 68 L174 73 L176 65 L170 60Z" fill="rgba(255,220,50,0.5)" stroke="rgba(255,220,50,0.9)" stroke-width="0.8">
+                    <animate attributeName="opacity" values="0.7;1;0.7" dur="1.5s" repeatCount="indefinite"/>
+                  </path>
+                  <!-- arms -->
+                  <path d="M82 98 L58 148 L70 153 L86 112" fill="rgba(0,180,230,0.1)" stroke="rgba(0,212,255,0.4)" stroke-width="1"/>
+                  <path d="M138 98 L162 148 L150 153 L134 112" fill="rgba(0,180,230,0.1)" stroke="rgba(0,212,255,0.4)" stroke-width="1"/>
+                  <!-- legs -->
+                  <path d="M94 192 L88 290 L100 292 L110 240 L120 292 L132 290 L126 192Z" fill="rgba(0,180,230,0.1)" stroke="rgba(0,212,255,0.4)" stroke-width="1"/>
+                  <!-- thigh highs -->
+                  <path d="M88 255 L86 292 Q90 300 102 297 L100 265Z" fill="rgba(255,45,138,0.18)" stroke="rgba(255,45,138,0.5)" stroke-width="1"/>
+                  <path d="M132 255 L134 292 Q130 300 118 297 L120 265Z" fill="rgba(255,45,138,0.18)" stroke="rgba(255,45,138,0.5)" stroke-width="1"/>
+                  <!-- sakura petals floating -->
+                  <g opacity="0.8">
+                    <path d="M42 120 Q46 115 50 120 Q46 125 42 120Z" fill="rgba(255,183,197,0.7)" stroke="rgba(255,100,150,0.5)" stroke-width="0.5"><animate attributeName="transform" values="translate(0,0) rotate(0,46,120);translate(5,-15) rotate(30,46,120);translate(-3,-30) rotate(60,46,120)" dur="4s" repeatCount="indefinite"/></path>
+                    <path d="M175 90 Q179 85 183 90 Q179 95 175 90Z" fill="rgba(255,183,197,0.7)" stroke="rgba(255,100,150,0.5)" stroke-width="0.5"><animate attributeName="transform" values="translate(0,0) rotate(0,179,90);translate(-5,-12) rotate(-25,179,90);translate(4,-28) rotate(-50,179,90)" dur="3.5s" repeatCount="indefinite"/></path>
+                    <path d="M55 200 Q59 195 63 200 Q59 205 55 200Z" fill="rgba(255,183,197,0.6)" stroke="rgba(255,100,150,0.4)" stroke-width="0.5"><animate attributeName="transform" values="translate(0,0);translate(-8,-20) rotate(40,59,200);translate(3,-42) rotate(80,59,200)" dur="5s" repeatCount="indefinite"/></path>
+                    <path d="M168 165 Q172 160 176 165 Q172 170 168 165Z" fill="rgba(255,183,197,0.65)" stroke="rgba(255,100,150,0.4)" stroke-width="0.5"><animate attributeName="transform" values="translate(0,0) rotate(0,172,165);translate(6,-18) rotate(-35,172,165);translate(-2,-38) rotate(-70,172,165)" dur="4.2s" repeatCount="indefinite"/></path>
+                  </g>
+                  <!-- glow aura -->
+                  <ellipse cx="110" cy="160" rx="65" ry="80" fill="none" stroke="rgba(0,212,255,0.06)" stroke-width="2">
+                    <animate attributeName="rx" values="65;72;65" dur="3s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0.5;1;0.5" dur="3s" repeatCount="indefinite"/>
+                  </ellipse>
+                </svg>
+              </div>
+
+            </div>
+            <div class="gaming-reflection" style="background:linear-gradient(to bottom,rgba(0,212,255,0.18),transparent)"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="vlog-stats reveal">
+      <div class="vlog-stat"><div class="vlog-stat-num" id="vlogSubCount">—</div><div class="vlog-stat-label">Subscribers</div></div>
+      <div class="vlog-stat"><div class="vlog-stat-num">15+</div><div class="vlog-stat-label">Vlogs</div></div>
+      <div class="vlog-stat"><div class="vlog-stat-num">🇱🇰</div><div class="vlog-stat-label">Sri Lanka</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VB GAMING -->
+<section id="gaming" class="gaming-section">
+  <canvas id="gamingCanvas"></canvas>
+  <div class="gaming-inner">
+
+    <div class="gaming-hero">
+      <div>
+        <div class="gaming-badge reveal">🎮 Second Channel</div>
+        <h2 class="gaming-title reveal">
+          Welcome to<br><span class="g-accent">VB Gaming</span>
+        </h2>
+        <p class="gaming-desc reveal">
+          Gameplay walkthroughs, live stream highlights, gaming guides and challenge runs — all in Sinhala. Subscribe for pure gaming content every week!
+        </p>
+        <div class="gaming-btns reveal">
+          <a href="https://youtube.com/@vb_gaming01?si=sxLt5mMRx_yer3o4" target="_blank" class="btn-purple">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+            Subscribe — @vb_gaming01
+          </a>
+          <a href="https://youtube.com/@vb_gaming01" target="_blank" class="btn btn-secondary">Watch Now →</a>
+        </div>
+      </div>
+      <div class="gaming-preview reveal">
+        <div class="card-3d-shadow-wrap purple">
+          <div class="gaming-3d-card">
+            <div class="gaming-screen">
+              <div class="gaming-grid-bg"></div>
+              <div class="scan-sweep"></div>
+              <div class="gaming-screen-glow"></div>
+              <div class="gaming-corner gaming-corner-tl"></div>
+              <div class="gaming-corner gaming-corner-tr"></div>
+              <div class="gaming-corner gaming-corner-bl"></div>
+              <div class="gaming-corner gaming-corner-br"></div>
+              <div class="gaming-edge-glow"></div>
+
+              <!-- LEFT content -->
+              <div class="card-content-left">
+                <div class="gaming-logo-wrap">
+                  <div class="gaming-logo-glow"></div>
+                  <div class="gaming-logo-ring3"></div>
+                  <div class="gaming-logo-ring2"></div>
+                  <div class="gaming-logo-ring1"></div>
+                  <img src="vb_gaming_logo.jpg" alt="VB Gaming Logo" class="gaming-logo-img" />
+                </div>
+                <div class="gaming-screen-title">VB GAMING</div>
+                <div class="gaming-screen-sub">@vb_gaming01 · Sinhala Gameplay</div>
+              </div>
+
+              <!-- RIGHT anime — Demon Hunter / Dark Mage (purple) DIFFERENT design -->
+              <div class="card-anime-wrap purple">
+                <svg viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;opacity:0.6;filter:drop-shadow(0 0 20px rgba(168,85,247,0.85)) drop-shadow(0 0 40px rgba(168,85,247,0.3))">
+                  <!-- spiky dark hair — tall -->
+                  <path d="M100 8 L88 35 L78 18 L72 45 L62 28 L65 58" fill="rgba(100,30,180,0.4)" stroke="rgba(168,85,247,0.65)" stroke-width="1.3"/>
+                  <path d="M100 8 L112 35 L122 18 L128 45 L138 28 L135 58" fill="rgba(100,30,180,0.4)" stroke="rgba(168,85,247,0.65)" stroke-width="1.3"/>
+                  <path d="M100 8 L95 38 L100 35 L105 38 L100 8" fill="rgba(168,85,247,0.3)" stroke="rgba(192,132,252,0.7)" stroke-width="1"/>
+                  <!-- hood / cloak draping from head -->
+                  <path d="M62 55 Q38 75 32 160 Q48 135 58 120 Q65 95 68 78" fill="rgba(60,15,120,0.35)" stroke="rgba(168,85,247,0.4)" stroke-width="1"/>
+                  <path d="M138 55 Q162 75 168 160 Q152 135 142 120 Q135 95 132 78" fill="rgba(60,15,120,0.35)" stroke="rgba(168,85,247,0.4)" stroke-width="1"/>
+                  <!-- head -->
+                  <ellipse cx="100" cy="60" rx="26" ry="28" fill="rgba(168,85,247,0.07)" stroke="rgba(168,85,247,0.5)" stroke-width="1.2"/>
+                  <!-- demon / sharp angular eyes -->
+                  <path d="M82 54 L95 54 L92 61 L82 59Z" fill="rgba(168,85,247,0.9)"/>
+                  <path d="M105 54 L118 54 L118 59 L108 61Z" fill="rgba(168,85,247,0.9)"/>
+                  <!-- eye glow pupils -->
+                  <ellipse cx="88" cy="57" rx="3" ry="4" fill="rgba(220,180,255,1)">
+                    <animate attributeName="opacity" values="0.9;1;0.7;1;0.9" dur="3s" repeatCount="indefinite"/>
+                  </ellipse>
+                  <ellipse cx="112" cy="57" rx="3" ry="4" fill="rgba(220,180,255,1)">
+                    <animate attributeName="opacity" values="0.9;1;0.7;1;0.9" dur="3s" repeatCount="indefinite"/>
+                  </ellipse>
+                  <!-- eye sclera shine -->
+                  <circle cx="87" cy="55" r="1.5" fill="white" opacity="0.8"/>
+                  <circle cx="111" cy="55" r="1.5" fill="white" opacity="0.8"/>
+                  <!-- smirk -->
+                  <path d="M92 73 Q100 78 108 73 Q104 75 100 74 Q96 75 92 73Z" stroke="rgba(192,132,252,0.6)" stroke-width="0.8" fill="rgba(168,85,247,0.15)"/>
+                  <!-- tattoo / scar under left eye -->
+                  <path d="M82 63 L80 68 M80 68 L78 66" stroke="rgba(192,132,252,0.7)" stroke-width="1"/>
+                  <!-- armor body — dark mage robes with plates -->
+                  <path d="M74 88 L65 172 L100 185 L135 172 L126 88 Q112 76 100 74 Q88 76 74 88Z" fill="rgba(60,15,120,0.3)" stroke="rgba(168,85,247,0.55)" stroke-width="1.3"/>
+                  <!-- chest hexagon plate -->
+                  <path d="M100 88 L116 96 L116 115 L100 123 L84 115 L84 96Z" fill="rgba(168,85,247,0.18)" stroke="rgba(192,132,252,0.8)" stroke-width="1.2"/>
+                  <!-- hex inner glow -->
+                  <path d="M100 95 L110 100 L110 112 L100 117 L90 112 L90 100Z" fill="rgba(168,85,247,0.15)" stroke="rgba(192,132,252,0.6)" stroke-width="0.8"/>
+                  <!-- pulsing core rune -->
+                  <circle cx="100" cy="106" r="7" fill="none" stroke="rgba(192,132,252,0.9)" stroke-width="1.5">
+                    <animate attributeName="r" values="6;10;6" dur="2s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0.9;0.4;0.9" dur="2s" repeatCount="indefinite"/>
+                  </circle>
+                  <circle cx="100" cy="106" r="3" fill="rgba(255,220,255,0.9)">
+                    <animate attributeName="opacity" values="0.9;1;0.6;1;0.9" dur="2s" repeatCount="indefinite"/>
+                  </circle>
+                  <!-- big ornate pauldrons -->
+                  <path d="M74 90 Q50 80 42 100 Q45 120 60 118 Q66 108 72 100Z" fill="rgba(80,20,160,0.35)" stroke="rgba(168,85,247,0.7)" stroke-width="1.2"/>
+                  <path d="M74 90 Q54 88 48 105" stroke="rgba(192,132,252,0.5)" stroke-width="0.8" fill="none"/>
+                  <path d="M126 90 Q150 80 158 100 Q155 120 140 118 Q134 108 128 100Z" fill="rgba(80,20,160,0.35)" stroke="rgba(168,85,247,0.7)" stroke-width="1.2"/>
+                  <!-- arms with gloves -->
+                  <path d="M74 94 L46 152 L58 157 L78 110" fill="rgba(60,15,120,0.2)" stroke="rgba(168,85,247,0.45)" stroke-width="1.1"/>
+                  <path d="M126 94 L154 152 L142 157 L122 110" fill="rgba(60,15,120,0.2)" stroke="rgba(168,85,247,0.45)" stroke-width="1.1"/>
+                  <!-- scythe / dark blade -->
+                  <!-- pole -->
+                  <line x1="148" y1="150" x2="172" y2="30" stroke="rgba(100,50,200,0.8)" stroke-width="2.5"/>
+                  <!-- blade curve -->
+                  <path d="M165 38 Q185 10 195 25 Q185 45 168 48" fill="rgba(168,85,247,0.25)" stroke="rgba(192,132,252,0.95)" stroke-width="2"/>
+                  <!-- blade edge glow -->
+                  <path d="M165 38 Q185 10 195 25" stroke="rgba(255,220,255,0.4)" stroke-width="5" fill="none"/>
+                  <!-- blade drip -->
+                  <circle cx="195" cy="25" r="5" fill="rgba(192,132,252,0.8)">
+                    <animate attributeName="r" values="4;7;4" dur="1.6s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" values="0.8;1;0.8" dur="1.6s" repeatCount="indefinite"/>
+                  </circle>
+                  <!-- crossguard -->
+                  <line x1="142" y1="143" x2="164" y2="128" stroke="rgba(168,85,247,0.8)" stroke-width="2.2"/>
+                  <!-- long dark robes -->
+                  <path d="M74 172 L62 310 L90 312 L100 240 L110 312 L138 310 L126 172Z" fill="rgba(40,10,90,0.35)" stroke="rgba(168,85,247,0.4)" stroke-width="1.1"/>
+                  <!-- robe split lines -->
+                  <line x1="84" y1="174" x2="72" y2="305" stroke="rgba(168,85,247,0.18)" stroke-width="0.8"/>
+                  <line x1="116" y1="174" x2="128" y2="305" stroke="rgba(168,85,247,0.18)" stroke-width="0.8"/>
+                  <!-- armored boots with spikes -->
+                  <path d="M62 308 L55 340 Q60 350 75 347 L80 315Z" fill="rgba(80,20,160,0.35)" stroke="rgba(168,85,247,0.65)" stroke-width="1.1"/>
+                  <path d="M138 308 L145 340 Q140 350 125 347 L120 315Z" fill="rgba(80,20,160,0.35)" stroke="rgba(168,85,247,0.65)" stroke-width="1.1"/>
+                  <!-- boot spikes -->
+                  <path d="M55 340 L50 355" stroke="rgba(192,132,252,0.7)" stroke-width="1.5"/>
+                  <path d="M145 340 L150 355" stroke="rgba(192,132,252,0.7)" stroke-width="1.5"/>
+                  <!-- floating dark runes -->
+                  <text x="18" y="105" font-size="12" fill="rgba(192,132,252,0.55)" font-family="serif">ꔪ</text>
+                  <text x="168" y="85" font-size="10" fill="rgba(192,132,252,0.5)" font-family="serif">ꕤ</text>
+                  <text x="22" y="185" font-size="9" fill="rgba(168,85,247,0.45)" font-family="serif">⟁</text>
+                  <!-- floating orbs -->
+                  <circle cx="22" cy="120" r="3" fill="rgba(192,132,252,0.65)"><animate attributeName="cy" values="120;105;120" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.65;1;0.65" dur="3s" repeatCount="indefinite"/></circle>
+                  <circle cx="175" cy="95" r="2.5" fill="rgba(168,85,247,0.7)"><animate attributeName="cy" values="95;80;95" dur="2.5s" repeatCount="indefinite"/></circle>
+                  <circle cx="168" cy="175" r="3" fill="rgba(192,132,252,0.55)"><animate attributeName="cy" values="175;158;175" dur="3.5s" repeatCount="indefinite"/></circle>
+                  <circle cx="25" cy="200" r="2" fill="rgba(168,85,247,0.5)"><animate attributeName="cy" values="200;185;200" dur="4s" repeatCount="indefinite"/></circle>
+                  <!-- dark magic circle on ground -->
+                  <ellipse cx="100" cy="350" rx="55" ry="12" fill="none" stroke="rgba(168,85,247,0.25)" stroke-width="1">
+                    <animate attributeName="rx" values="50;60;50" dur="3s" repeatCount="indefinite"/>
+                  </ellipse>
+                  <ellipse cx="100" cy="350" rx="38" ry="8" fill="none" stroke="rgba(168,85,247,0.15)" stroke-width="0.8">
+                    <animate attributeName="rx" values="35;45;35" dur="3s" repeatCount="indefinite"/>
+                  </ellipse>
+                </svg>
+              </div>
+            </div>
+            <div class="gaming-reflection"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gaming-stats reveal">
+      <div class="gaming-stat">
+        <div class="gaming-stat-num" id="gamingSubCount">—</div>
+        <div class="gaming-stat-label">Subscribers</div>
+      </div>
+      <div class="gaming-stat">
+        <div class="gaming-stat-num">20+</div>
+        <div class="gaming-stat-label">Videos</div>
+      </div>
+      <div class="gaming-stat">
+        <div class="gaming-stat-num">100%</div>
+        <div class="gaming-stat-label">Sinhala</div>
+      </div>
+      <div class="gaming-stat">
+        <div class="gaming-stat-num">🇱🇰</div>
+        <div class="gaming-stat-label">Sri Lanka</div>
+      </div>
+    </div>
+
+    <div class="section-header reveal">
+      <div class="eyebrow" style="color:#a855f7">Gaming Content</div>
+      <h2>Latest from VB Gaming</h2>
+      <p>Pure gameplay, guides and live stream highlights — in Sinhala.</p>
+    </div>
+
+    <div class="gaming-videos-grid" id="vbGamingGrid">
+      <!-- skeleton loaders -->
+      <div class="gaming-vid-card reveal vid-skeleton"><div class="gaming-thumb skeleton-thumb"><div class="skeleton-shine"></div></div><div class="gaming-vid-body"><div class="skeleton-line w80"></div><div class="skeleton-line w50 mt8"></div></div></div>
+      <div class="gaming-vid-card reveal vid-skeleton"><div class="gaming-thumb skeleton-thumb"><div class="skeleton-shine"></div></div><div class="gaming-vid-body"><div class="skeleton-line w80"></div><div class="skeleton-line w50 mt8"></div></div></div>
+      <div class="gaming-vid-card reveal vid-skeleton"><div class="gaming-thumb skeleton-thumb"><div class="skeleton-shine"></div></div><div class="gaming-vid-body"><div class="skeleton-line w80"></div><div class="skeleton-line w50 mt8"></div></div></div>
+    </div>
+
+    <div class="view-all-row" style="margin-top:28px">
+      <a href="https://youtube.com/@vb_gaming01?si=sxLt5mMRx_yer3o4" target="_blank" class="btn-purple" style="display:inline-flex">
+        View all videos on VB Gaming →
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand reveal">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><img src="channels4_profile.jpg" alt="Logo" style="width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid rgba(232,53,42,0.5)"><span style="font-family:var(--font-display);font-size:18px;font-weight:700">Day of <span style="color:#E8352A">VB</span></span></div>
+        <p>Sinhala gaming reviews, unboxings & vlogs for the Sri Lankan community. New videos every week.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Content</h4>
+          <ul>
+            <li><a href="#videos">Videos</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="https://www.youtube.com/@DayofVB" target="_blank">YouTube →</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Channels</h4>
+          <ul>
+            <li><a href="https://youtube.com/@vb_gaming01" target="_blank">VB Gaming</a></li>
+            <li><a href="#vlogs">Vlogs</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="https://www.youtube.com/@DayofVB" target="_blank">YouTube</a></li>
+            <li><a href="https://youtube.com/@vb_gaming01" target="_blank" style="color:#a855f7">VB Gaming →</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Day of VB · Made with ❤️ in Sri Lanka 🇱🇰</p>
+      <div class="social-links">
+        <a href="https://www.youtube.com/@DayofVB" target="_blank" class="social-link" title="YouTube">▶</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast">✓ Message sent! I'll reply soon.</div>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('navSub').classList.toggle('open');
+  }
+
+  function openShop() {
+    window.open('https://www.youtube.com/@DayofVB', '_blank');
+  }
+
+  async function handleSubmit() {
+    var name    = document.getElementById('fname').value.trim();
+    var email   = document.getElementById('femail').value.trim();
+    var subject = document.getElementById('fsubject').value;
+    var msg     = document.getElementById('fmessage').value.trim();
+    if (!name || !email || !msg) { alert('Please fill in all fields.'); return; }
+
+    var btn = document.querySelector('.submit-btn');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+
+    function showToast(text, bg, color, border) {
+      var t = document.getElementById('toast');
+      t.textContent = text;
+      t.style.background = bg;
+      t.style.color = color;
+      t.style.borderColor = border;
+      t.classList.add('show');
+      setTimeout(function() { t.classList.remove('show'); }, 4000);
+    }
+
+    try {
+      var res = await fetch('https://formspree.io/f/mvznygee', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ name: name, email: email, subject: subject, message: msg })
+      });
+      if (res.ok) {
+        showToast('✓ Message sent! I\'ll reply soon.', '#1C2A1C', '#5DCAA5', 'rgba(93,202,165,0.3)');
+        document.getElementById('fname').value = '';
+        document.getElementById('femail').value = '';
+        document.getElementById('fsubject').value = '';
+        document.getElementById('fmessage').value = '';
+      } else {
+        throw new Error('fail');
+      }
+    } catch(e) {
+      showToast('✗ Something went wrong. Try again.', '#2A1C1C', '#F09595', 'rgba(240,149,149,0.3)');
+    }
+    btn.textContent = 'Send message →';
+    btn.disabled = false;
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var id = this.getAttribute('href').slice(1);
+      var el = document.getElementById(id);
+      if (el) {
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+/* ═══════════════════════════════════════════
+   LIVE SUBSCRIBER COUNT
+   YouTube Data API v3
+═══════════════════════════════════════════ */
+var YT_API_KEY    = 'AIzaSyDAVZGuxVnic7tVFhLOM7L0M1V2vUWZrGc';
+var YT_CHANNEL_ID = 'UCJY_tpNTpkCBss5oPjLAiEg';
+
+function formatCount(n) {
+  if (n >= 1000000) return (n/1000000).toFixed(1).replace(/\.0$/,'')+'M';
+  if (n >= 1000)    return (n/1000).toFixed(1).replace(/\.0$/,'')+'K';
+  return n.toLocaleString();
+}
+function setSubCount(n) {
+  var el = document.getElementById('subCount');
+  var el2 = document.getElementById('statSubs');
+  var formatted = formatCount(n);
+  if (el)  { el.textContent = formatted; el.classList.remove('count-updated'); void el.offsetWidth; el.classList.add('count-updated'); }
+  if (el2) { el2.textContent = formatted; }
+}
+async function fetchSubCount() {
+  try {
+    var url = 'https://www.googleapis.com/youtube/v3/channels?part=statistics&id=' + YT_CHANNEL_ID + '&key=' + YT_API_KEY;
+    var res  = await fetch(url);
+    var data = await res.json();
+    var count = parseInt(data.items[0].statistics.subscriberCount, 10);
+    setSubCount(count);
+  } catch(e) {
+    var el = document.getElementById('subCount');
+    var el2 = document.getElementById('statSubs');
+    if (el)  el.textContent  = '500+';
+    if (el2) el2.textContent = '500+';
+  }
+}
+fetchSubCount();
+setInterval(fetchSubCount, 60000);
+
+/* ═══════════════════════════════════════════
+   3D TECH BACKGROUND ANIMATION
+═══════════════════════════════════════════ */
+(function() {
+  var canvas = document.getElementById('bgCanvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var W, H, t = 0;
+  var blobs = [], particles = [], techItems = [];
+
+  function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; initAll(); }
+
+  /* ── Aurora blobs ── */
+  function initBlobs() {
+    blobs = [];
+    var colors = ['rgba(232,53,42,','rgba(80,30,140,','rgba(15,55,150,','rgba(232,53,42,'];
+    for (var i = 0; i < 4; i++) {
+      blobs.push({ x: Math.random()*W, y: Math.random()*H, r: 240+Math.random()*180,
+        vx: (Math.random()-0.5)*0.3, vy: (Math.random()-0.5)*0.3,
+        color: colors[i], opacity: 0.055+Math.random()*0.05, phase: Math.random()*Math.PI*2 });
+    }
+  }
+
+  /* ── Small particles ── */
+  function initParticles() {
+    particles = [];
+    var count = Math.min(55, Math.floor(W*H/20000));
+    for (var i = 0; i < count; i++) {
+      particles.push({ x: Math.random()*W, y: Math.random()*H,
+        r: 0.7+Math.random()*1.6, vx: (Math.random()-0.5)*0.28, vy: (Math.random()-0.5)*0.28,
+        opacity: 0.1+Math.random()*0.22, phase: Math.random()*Math.PI*2 });
+    }
+  }
+
+  /* ── 3D Tech Items ── */
+  var TECH_TYPES = ['cpu','controller','wifi','code','circuit','monitor','chip','brackets','sword','shield','gamepad','trophy','headset','joystick','pixelchar','star'];
+
+  function initTechItems() {
+    techItems = [];
+    var count = Math.min(18, Math.floor(W/80));
+    for (var i = 0; i < count; i++) {
+      techItems.push({
+        type: TECH_TYPES[Math.floor(Math.random()*TECH_TYPES.length)],
+        x: Math.random()*W,
+        y: Math.random()*H,
+        z: 0.3 + Math.random()*0.7,           /* depth: 0.3=far, 1=close */
+        size: 18 + Math.random()*28,
+        vx: (Math.random()-0.5)*0.4,
+        vy: (Math.random()-0.5)*0.35,
+        rot: Math.random()*Math.PI*2,
+        rotSpeed: (Math.random()-0.5)*0.012,
+        tiltX: (Math.random()-0.5)*0.5,        /* 3D tilt */
+        tiltY: (Math.random()-0.5)*0.5,
+        tiltSpeedX: (Math.random()-0.5)*0.008,
+        tiltSpeedY: (Math.random()-0.5)*0.006,
+        phase: Math.random()*Math.PI*2,
+        opacity: 0.12 + Math.random()*0.18
+      });
+    }
+  }
+
+  function initAll() { initBlobs(); initParticles(); initTechItems(); initBgMatrix(); }
+
+  /* ── Draw CPU chip ── */
+  function drawCPU(ctx, s) {
+    var h = s*0.7;
+    ctx.strokeRect(-h/2,-h/2,h,h);
+    ctx.strokeRect(-h/2*0.6,-h/2*0.6,h*0.6,h*0.6);
+    var pins = 4, gap = h/5;
+    for (var i=0;i<pins;i++) {
+      var off = -h/2*0.4 + i*gap;
+      ctx.beginPath(); ctx.moveTo(-h/2,off); ctx.lineTo(-h/2-s*0.15,off); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(h/2,off); ctx.lineTo(h/2+s*0.15,off); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(off,-h/2); ctx.lineTo(off,-h/2-s*0.15); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(off,h/2); ctx.lineTo(off,h/2+s*0.15); ctx.stroke();
+    }
+  }
+
+  /* ── Draw Game Controller ── */
+  function drawController(ctx, s) {
+    ctx.beginPath();
+    ctx.ellipse(-s*0.22,0,s*0.32,s*0.22,0,0,Math.PI*2); ctx.stroke();
+    ctx.beginPath();
+    ctx.ellipse(s*0.22,0,s*0.32,s*0.22,0,0,Math.PI*2); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(-s*0.08,0); ctx.lineTo(s*0.08,0); ctx.stroke();
+    /* dpad */
+    ctx.beginPath(); ctx.moveTo(-s*0.28,-s*0.08); ctx.lineTo(-s*0.28,s*0.08); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(-s*0.36,0); ctx.lineTo(-s*0.2,0); ctx.stroke();
+    /* buttons */
+    ctx.beginPath(); ctx.arc(s*0.22,-s*0.08,s*0.05,0,Math.PI*2); ctx.stroke();
+    ctx.beginPath(); ctx.arc(s*0.3,0,s*0.05,0,Math.PI*2); ctx.stroke();
+    ctx.beginPath(); ctx.arc(s*0.22,s*0.08,s*0.05,0,Math.PI*2); ctx.stroke();
+    ctx.beginPath(); ctx.arc(s*0.14,0,s*0.05,0,Math.PI*2); ctx.stroke();
+  }
+
+  /* ── Draw WiFi ── */
+  function drawWifi(ctx, s) {
+    var arcs = [0.9,0.6,0.35];
+    arcs.forEach(function(r,i) {
+      ctx.beginPath();
+      ctx.arc(0,s*0.15,s*r,-Math.PI*0.75,-Math.PI*0.25,false);
+      ctx.stroke();
+    });
+    ctx.beginPath(); ctx.arc(0,s*0.15,s*0.07,0,Math.PI*2); ctx.fill();
+  }
+
+  /* ── Draw Code brackets ── */
+  function drawCode(ctx, s) {
+    ctx.font = 'bold '+(s*0.9)+'px monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('</>',0,0);
+  }
+
+  /* ── Draw Circuit ── */
+  function drawCircuit(ctx, s) {
+    var pts = [[-s*0.4,-s*0.2],[-s*0.1,-s*0.2],[-s*0.1,s*0.2],[s*0.3,s*0.2],
+               [s*0.3,-s*0.1],[s*0.5,-s*0.1]];
+    ctx.beginPath(); ctx.moveTo(pts[0][0],pts[0][1]);
+    for(var i=1;i<pts.length;i++) ctx.lineTo(pts[i][0],pts[i][1]);
+    ctx.stroke();
+    pts.forEach(function(p,i){ if(i%2===0){ ctx.beginPath(); ctx.arc(p[0],p[1],s*0.07,0,Math.PI*2); ctx.stroke(); }});
+  }
+
+  /* ── Draw Monitor ── */
+  function drawMonitor(ctx, s) {
+    ctx.strokeRect(-s*0.4,-s*0.28,s*0.8,s*0.5);
+    ctx.beginPath(); ctx.moveTo(-s*0.15,s*0.22); ctx.lineTo(s*0.15,s*0.22);
+    ctx.moveTo(0,s*0.22); ctx.lineTo(0,s*0.36); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(-s*0.28,-s*0.18); ctx.lineTo(-s*0.28+s*0.18,-s*0.18);
+    ctx.stroke();
+  }
+
+  /* ── Draw Chip ── */
+  function drawChip(ctx, s) {
+    ctx.strokeRect(-s*0.3,-s*0.3,s*0.6,s*0.6);
+    for(var i=0;i<3;i++){
+      var off = -s*0.15+i*s*0.15;
+      ctx.beginPath(); ctx.moveTo(off,-s*0.3); ctx.lineTo(off,-s*0.45); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(off,s*0.3); ctx.lineTo(off,s*0.45); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(-s*0.3,off); ctx.lineTo(-s*0.45,off); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(s*0.3,off); ctx.lineTo(s*0.45,off); ctx.stroke();
+    }
+    ctx.beginPath(); ctx.arc(0,0,s*0.12,0,Math.PI*2); ctx.stroke();
+  }
+
+  /* ── Draw Brackets ── */
+  function drawBrackets(ctx, s) {
+    ctx.font = 'bold '+(s*1.1)+'px monospace';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('{ }',0,0);
+  }
+
+
+  /* ── Draw Sword ── */
+  function drawSword(ctx, s) {
+    ctx.beginPath(); ctx.moveTo(0,-s*0.5); ctx.lineTo(0,s*0.5); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(-s*0.22,-s*0.05); ctx.lineTo(s*0.22,-s*0.05); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(-s*0.08,s*0.35); ctx.lineTo(s*0.08,s*0.35);
+    ctx.lineTo(s*0.05,s*0.5); ctx.lineTo(-s*0.05,s*0.5); ctx.closePath(); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0,-s*0.5); ctx.lineTo(-s*0.06,-s*0.3);
+    ctx.lineTo(s*0.06,-s*0.3); ctx.closePath(); ctx.stroke();
+  }
+
+  /* ── Draw Shield ── */
+  function drawShield(ctx, s) {
+    ctx.beginPath();
+    ctx.moveTo(0,-s*0.45);
+    ctx.lineTo(s*0.35,-s*0.2);
+    ctx.lineTo(s*0.35,s*0.1);
+    ctx.quadraticCurveTo(s*0.35,s*0.5,0,s*0.5);
+    ctx.quadraticCurveTo(-s*0.35,s*0.5,-s*0.35,s*0.1);
+    ctx.lineTo(-s*0.35,-s*0.2);
+    ctx.closePath(); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0,-s*0.3); ctx.lineTo(0,s*0.32); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(-s*0.22,s*0.0); ctx.lineTo(s*0.22,s*0.0); ctx.stroke();
+  }
+
+  /* ── Draw Gamepad (filled style) ── */
+  function drawGamepad(ctx, s) {
+    ctx.beginPath();
+    ctx.ellipse(0,0,s*0.45,s*0.28,0,0,Math.PI*2); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(-s*0.18,-s*0.08); ctx.lineTo(-s*0.18,s*0.08); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(-s*0.28,0); ctx.lineTo(-s*0.08,0); ctx.stroke();
+    [[-s*0.14,-s*0.06],[s*0.22,-s*0.1],[s*0.3,0],[s*0.22,s*0.1],[s*0.14,0]].forEach(function(p,i){
+      ctx.beginPath(); ctx.arc(p[0],p[1],s*(i===0?0.08:0.05),0,Math.PI*2); ctx.stroke();
+    });
+  }
+
+  /* ── Draw Trophy ── */
+  function drawTrophy(ctx, s) {
+    ctx.beginPath();
+    ctx.moveTo(-s*0.25,-s*0.4);
+    ctx.lineTo(-s*0.25,s*0.0);
+    ctx.quadraticCurveTo(-s*0.25,s*0.3,0,s*0.3);
+    ctx.quadraticCurveTo(s*0.25,s*0.3,s*0.25,s*0.0);
+    ctx.lineTo(s*0.25,-s*0.4);
+    ctx.closePath(); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(-s*0.15,s*0.3); ctx.lineTo(-s*0.15,s*0.45);
+    ctx.lineTo(s*0.15,s*0.45); ctx.lineTo(s*0.15,s*0.3); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(-s*0.22,s*0.45); ctx.lineTo(s*0.22,s*0.45); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(-s*0.25,-s*0.2); ctx.quadraticCurveTo(-s*0.42,-s*0.2,-s*0.38,s*0.05); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(s*0.25,-s*0.2); ctx.quadraticCurveTo(s*0.42,-s*0.2,s*0.38,s*0.05); ctx.stroke();
+  }
+
+  /* ── Draw Headset ── */
+  function drawHeadset(ctx, s) {
+    ctx.beginPath(); ctx.arc(0,-s*0.05,s*0.35,Math.PI,0,false); ctx.stroke();
+    ctx.beginPath();
+    ctx.rect(-s*0.42,-s*0.1,s*0.14,s*0.22); ctx.stroke();
+    ctx.beginPath();
+    ctx.rect(s*0.28,-s*0.1,s*0.14,s*0.22); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(s*0.06,s*0.1); ctx.quadraticCurveTo(s*0.06,s*0.32,s*0.22,s*0.32); ctx.stroke();
+    ctx.beginPath(); ctx.arc(s*0.26,s*0.32,s*0.06,0,Math.PI*2); ctx.stroke();
+  }
+
+  /* ── Draw Joystick ── */
+  function drawJoystick(ctx, s) {
+    ctx.beginPath(); ctx.ellipse(0,s*0.2,s*0.38,s*0.2,0,0,Math.PI*2); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0,s*0.2); ctx.lineTo(0,-s*0.15); ctx.stroke();
+    ctx.beginPath(); ctx.arc(0,-s*0.22,s*0.12,0,Math.PI*2); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(-s*0.25,s*0.12); ctx.lineTo(-s*0.38,s*0.12); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(s*0.25,s*0.12); ctx.lineTo(s*0.38,s*0.12); ctx.stroke();
+  }
+
+  /* ── Draw Pixel Character ── */
+  function drawPixelChar(ctx, s) {
+    var ps = s*0.12;
+    var grid = [
+      [0,1,0],[1,1,1],[0,1,0],[1,0,1]
+    ];
+    for (var row=0;row<grid.length;row++) {
+      for (var col=0;col<grid[row].length;col++) {
+        if (grid[row][col]) {
+          ctx.fillRect((col-1)*ps*1.1, (row-1.5)*ps*1.1, ps, ps);
+        }
+      }
+    }
+  }
+
+  /* ── Draw Star ── */
+  function drawStar(ctx, s) {
+    ctx.beginPath();
+    for (var i=0;i<5;i++) {
+      var outerA = (i*4*Math.PI/5) - Math.PI/2;
+      var innerA = outerA + 2*Math.PI/10;
+      if (i===0) ctx.moveTo(Math.cos(outerA)*s*0.4, Math.sin(outerA)*s*0.4);
+      else ctx.lineTo(Math.cos(outerA)*s*0.4, Math.sin(outerA)*s*0.4);
+      ctx.lineTo(Math.cos(innerA)*s*0.18, Math.sin(innerA)*s*0.18);
+    }
+    ctx.closePath(); ctx.stroke();
+  }
+
+  /* ── 3D Floor Grid (main bg) ── */
+  var floorPortalAngle = 0;
+
+  function drawMainFloor() {
+    var vp  = { x: W * 0.5, y: H * 0.58 };
+    var horizon = H * 0.58;
+    var floorH  = H - horizon;
+    ctx.save();
+    ctx.beginPath(); ctx.rect(0, horizon, W, floorH); ctx.clip();
+    var cols3d = 16, rows3d = 12;
+    for (var c = 0; c <= cols3d; c++) {
+      var xFrac   = c / cols3d;
+      var xBottom = xFrac * W;
+      var xTop    = vp.x + (xBottom - vp.x) * 0.015;
+      var dist    = Math.abs(xFrac - 0.5);
+      var a       = 0.04 + dist * 0.06;
+      var grad = ctx.createLinearGradient(xTop, horizon, xBottom, H);
+      grad.addColorStop(0,   'rgba(232,53,42,0)');
+      grad.addColorStop(0.3, 'rgba(232,53,42,' + (a * 0.5) + ')');
+      grad.addColorStop(1,   'rgba(232,53,42,' + a + ')');
+      ctx.strokeStyle = grad; ctx.lineWidth = 0.8;
+      ctx.beginPath(); ctx.moveTo(xTop, horizon); ctx.lineTo(xBottom, H); ctx.stroke();
+    }
+    for (var r = 0; r <= rows3d; r++) {
+      var rFrac  = r / rows3d;
+      var perspY = horizon + floorH * (rFrac * rFrac);
+      var xL     = vp.x - vp.x * rFrac;
+      var xR     = vp.x + (W - vp.x) * rFrac;
+      var ra     = (0.02 + rFrac * 0.055) * (0.5 + Math.sin(t * 0.6 + r * 0.5) * 0.3);
+      ctx.strokeStyle = 'rgba(232,53,42,' + ra + ')'; ctx.lineWidth = 0.7;
+      ctx.beginPath(); ctx.moveTo(xL, perspY); ctx.lineTo(xR, perspY); ctx.stroke();
+    }
+    // floor glow
+    var fg = ctx.createLinearGradient(0, horizon, 0, H);
+    var gv = 0.03 + Math.sin(t * 0.7) * 0.012;
+    fg.addColorStop(0,   'rgba(232,53,42,0)');
+    fg.addColorStop(0.5, 'rgba(232,53,42,' + gv + ')');
+    fg.addColorStop(1,   'rgba(180,30,20,' + (gv * 1.8) + ')');
+    ctx.fillStyle = fg; ctx.fillRect(0, horizon, W, floorH);
+    ctx.restore();
+  }
+
+  /* ── Portal ring (main bg, red) ── */
+  function drawMainPortal() {
+    floorPortalAngle += 0.01;
+    var cx = W * 0.5, cy = H * 0.36;
+    var r1 = Math.min(W, H) * 0.11;
+    // outer glow rings
+    for (var ring = 4; ring >= 0; ring--) {
+      var rr = r1 + ring * 9;
+      var ra = (0.07 - ring * 0.012) * (0.6 + Math.sin(t * 1.1) * 0.4);
+      ctx.beginPath(); ctx.arc(cx, cy, rr, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(232,53,42,' + ra + ')';
+      ctx.lineWidth = 2.5 - ring * 0.4; ctx.stroke();
+    }
+    // spinning segments
+    for (var seg = 0; seg < 14; seg++) {
+      var a1 = floorPortalAngle + seg * (Math.PI * 2 / 14);
+      var a2 = a1 + 0.16;
+      ctx.beginPath(); ctx.arc(cx, cy, r1, a1, a2);
+      ctx.strokeStyle = 'rgba(255,100,80,' + (0.4 + Math.sin(t * 2 + seg) * 0.15) + ')';
+      ctx.lineWidth = 2; ctx.stroke();
+    }
+    // counter inner ring
+    for (var seg2 = 0; seg2 < 9; seg2++) {
+      var b1 = -floorPortalAngle * 1.4 + seg2 * (Math.PI * 2 / 9);
+      var b2 = b1 + 0.2;
+      ctx.beginPath(); ctx.arc(cx, cy, r1 * 0.68, b1, b2);
+      ctx.strokeStyle = 'rgba(255,180,80,' + (0.18 + Math.sin(t + seg2) * 0.08) + ')';
+      ctx.lineWidth = 1.4; ctx.stroke();
+    }
+    // center dot
+    var dg = ctx.createRadialGradient(cx, cy, 0, cx, cy, r1 * 0.3);
+    var dp = 0.1 + Math.sin(t * 1.9) * 0.05;
+    dg.addColorStop(0, 'rgba(255,120,80,' + dp + ')');
+    dg.addColorStop(1, 'rgba(232,53,42,0)');
+    ctx.fillStyle = dg;
+    ctx.beginPath(); ctx.arc(cx, cy, r1 * 0.3, 0, Math.PI * 2); ctx.fill();
+  }
+
+  /* ── Matrix rain (edges, red theme) ── */
+  var bgMatrixCols = [];
+  function initBgMatrix() {
+    bgMatrixCols = [];
+    var cols = Math.floor(W / 20);
+    for (var i = 0; i < cols; i++) {
+      if (i / cols > 0.14 && i / cols < 0.86) continue; // only side edges
+      bgMatrixCols.push({
+        x: i * 20 + 10, y: -Math.random() * H,
+        speed: 0.5 + Math.random() * 1.0,
+        len: 3 + Math.floor(Math.random() * 7),
+        chars: [], timer: 0
+      });
+      for (var j = 0; j < 10; j++)
+        bgMatrixCols[bgMatrixCols.length-1].chars.push(String.fromCharCode(0x30A0 + Math.floor(Math.random()*96)));
+    }
+  }
+
+  function drawBgMatrix() {
+    if (!bgMatrixCols.length) initBgMatrix();
+    ctx.font = '10px monospace';
+    bgMatrixCols.forEach(function(col) {
+      col.y += col.speed;
+      if (col.y > H + 80) col.y = -Math.random() * H * 0.5;
+      col.timer++;
+      if (col.timer % 10 === 0)
+        col.chars[Math.floor(Math.random()*col.chars.length)] = String.fromCharCode(0x30A0 + Math.floor(Math.random()*96));
+      for (var ci = 0; ci < col.len; ci++) {
+        var cy = col.y - ci * 14;
+        if (cy < 0 || cy > H) continue;
+        var ca  = ci === 0 ? 0.65 : (0.05 + (col.len - ci) / col.len * 0.2);
+        var cc  = ci === 0 ? 'rgba(255,160,140,' : 'rgba(232,53,42,';
+        ctx.fillStyle = cc + ca + ')';
+        ctx.fillText(col.chars[ci % col.chars.length], col.x, cy);
+      }
+    });
+  }
+
+  /* ── Depth fog (main bg) ── */
+  function drawMainFog() {
+    var top = ctx.createLinearGradient(0, 0, 0, H * 0.22);
+    top.addColorStop(0, 'rgba(11,12,16,0.88)'); top.addColorStop(1, 'rgba(11,12,16,0)');
+    ctx.fillStyle = top; ctx.fillRect(0, 0, W, H * 0.22);
+    var bot = ctx.createLinearGradient(0, H * 0.78, 0, H);
+    bot.addColorStop(0, 'rgba(11,12,16,0)'); bot.addColorStop(1, 'rgba(11,12,16,0.92)');
+    ctx.fillStyle = bot; ctx.fillRect(0, H * 0.78, W, H * 0.22);
+    var lv = ctx.createLinearGradient(0, 0, W * 0.16, 0);
+    lv.addColorStop(0, 'rgba(11,12,16,0.65)'); lv.addColorStop(1, 'rgba(11,12,16,0)');
+    ctx.fillStyle = lv; ctx.fillRect(0, 0, W * 0.16, H);
+    var rv = ctx.createLinearGradient(W * 0.84, 0, W, 0);
+    rv.addColorStop(0, 'rgba(11,12,16,0)'); rv.addColorStop(1, 'rgba(11,12,16,0.65)');
+    ctx.fillStyle = rv; ctx.fillRect(W * 0.84, 0, W * 0.16, H);
+  }
+
+  /* ── Main draw loop ── */
+  function drawScene() {
+    t += 0.007;
+    ctx.clearRect(0,0,W,H);
+
+    /* LAYER 1 — aurora blobs */
+    blobs.forEach(function(b) {
+      b.x += b.vx; b.y += b.vy;
+      if (b.x < -b.r) b.x = W+b.r; if (b.x > W+b.r) b.x = -b.r;
+      if (b.y < -b.r) b.y = H+b.r; if (b.y > H+b.r) b.y = -b.r;
+      var pulse = b.opacity + Math.sin(t+b.phase)*0.018;
+      var grad = ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r);
+      grad.addColorStop(0, b.color+pulse+')');
+      grad.addColorStop(0.5, b.color+(pulse*0.35)+')');
+      grad.addColorStop(1, b.color+'0)');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.ellipse(b.x,b.y,b.r,b.r*0.6,t*0.08,0,Math.PI*2);
+      ctx.fill();
+    });
+
+    /* LAYER 2 — 3D perspective floor grid */
+    drawMainFloor();
+
+    /* LAYER 3 — matrix rain (edges) */
+    drawBgMatrix();
+
+    /* LAYER 4 — portal ring */
+    drawMainPortal();
+
+    /* LAYER 5 — flat grid lines (subtle) */
+    ctx.strokeStyle = 'rgba(255,255,255,0.018)'; ctx.lineWidth = 1;
+    for (var gx=0; gx<W; gx+=80) { ctx.beginPath(); ctx.moveTo(gx,0); ctx.lineTo(gx,H); ctx.stroke(); }
+    for (var gy=0; gy<H; gy+=80) { ctx.beginPath(); ctx.moveTo(0,gy); ctx.lineTo(W,gy); ctx.stroke(); }
+
+    /* LAYER 6 — 3D TECH+GAMING ITEMS sorted by z */
+    techItems.sort(function(a,b){ return a.z - b.z; });
+    techItems.forEach(function(item) {
+      item.x += item.vx; item.y += item.vy;
+      if (item.x < -80) item.x = W+80; if (item.x > W+80) item.x = -80;
+      if (item.y < -80) item.y = H+80; if (item.y > H+80) item.y = -80;
+      item.rot += item.rotSpeed;
+      item.tiltX += item.tiltSpeedX;
+      item.tiltY += item.tiltSpeedY;
+
+      /* 3D scale based on depth + float bob */
+      var bob = Math.sin(t*0.9 + item.phase) * 8;
+      var scale3d = item.z;
+      var drawSize = item.size * scale3d;
+      var alpha = item.opacity * item.z * (0.8 + Math.sin(t*1.1+item.phase)*0.2);
+
+      /* 3D skew transform using tilt */
+      ctx.save();
+      ctx.translate(item.x, item.y + bob);
+
+      /* simulate 3D perspective with setTransform */
+      var cos = Math.cos(item.rot);
+      var sin = Math.sin(item.rot);
+      var skewX = Math.sin(item.tiltY) * 0.4;
+      var skewY = Math.sin(item.tiltX) * 0.25;
+      var scaleX = scale3d * Math.cos(item.tiltY);
+      var scaleY = scale3d * Math.cos(item.tiltX);
+      ctx.transform(
+        cos*scaleX - sin*skewY,
+        sin*scaleX + cos*skewY,
+        cos*skewX - sin*scaleY,
+        sin*skewX + cos*scaleY,
+        0, 0
+      );
+
+      /* glow shadow for depth */
+      ctx.shadowColor = 'rgba(232,53,42,' + (alpha*1.5) + ')';
+      ctx.shadowBlur = 12 * item.z;
+
+      var redAlpha = alpha;
+      ctx.strokeStyle = 'rgba(232,53,42,' + redAlpha + ')';
+      ctx.fillStyle   = 'rgba(232,53,42,' + (redAlpha*0.7) + ')';
+      ctx.lineWidth = 1.2 * item.z;
+
+      switch(item.type) {
+        case 'cpu':        drawCPU(ctx, drawSize); break;
+        case 'controller': drawController(ctx, drawSize); break;
+        case 'wifi':       drawWifi(ctx, drawSize); break;
+        case 'code':       drawCode(ctx, drawSize); break;
+        case 'circuit':    drawCircuit(ctx, drawSize); break;
+        case 'monitor':    drawMonitor(ctx, drawSize); break;
+        case 'chip':       drawChip(ctx, drawSize); break;
+        case 'brackets':   drawBrackets(ctx, drawSize); break;
+        case 'sword':      drawSword(ctx, drawSize); break;
+        case 'shield':     drawShield(ctx, drawSize); break;
+        case 'gamepad':    drawGamepad(ctx, drawSize); break;
+        case 'trophy':     drawTrophy(ctx, drawSize); break;
+        case 'headset':    drawHeadset(ctx, drawSize); break;
+        case 'joystick':   drawJoystick(ctx, drawSize); break;
+        case 'pixelchar':  drawPixelChar(ctx, drawSize); break;
+        case 'star':       drawStar(ctx, drawSize); break;
+      }
+
+      ctx.shadowBlur = 0;
+      ctx.restore();
+    });
+
+    /* small particles */
+    particles.forEach(function(p,i) {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x<0) p.x=W; if (p.x>W) p.x=0;
+      if (p.y<0) p.y=H; if (p.y>H) p.y=0;
+      var pulse = p.opacity + Math.sin(t*1.5+p.phase)*0.07;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle = 'rgba(255,255,255,'+pulse+')'; ctx.fill();
+      for (var j=i+1; j<particles.length; j++) {
+        var q=particles[j], dx=p.x-q.x, dy=p.y-q.y, dist=Math.sqrt(dx*dx+dy*dy);
+        if (dist<110) {
+          ctx.strokeStyle='rgba(232,53,42,'+(1-dist/110)*0.07+')';
+          ctx.lineWidth=0.5; ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.stroke();
+        }
+      }
+    });
+
+    /* LAYER 8 — depth fog */
+    drawMainFog();
+
+    requestAnimationFrame(drawScene);
+  }
+
+  window.addEventListener('mousemove', function(e) {
+    var mx=e.clientX, my=e.clientY;
+    techItems.forEach(function(item) {
+      var dx=item.x-mx, dy=item.y-my, d=Math.sqrt(dx*dx+dy*dy);
+      if (d < 160) {
+        item.vx += (dx/d)*0.06;
+        item.vy += (dy/d)*0.06;
+        item.rotSpeed += 0.003;
+      }
+    });
+  });
+
+  window.addEventListener('resize', function() { resize(); });
+  resize();
+  drawScene();
+})();
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════ */
+(function() {
+  var els = document.querySelectorAll('.reveal');
+  ['videos-grid','blog-grid','shop-grid'].forEach(function(cls) {
+    var grid = document.querySelector('.'+cls);
+    if (!grid) return;
+    grid.querySelectorAll('.reveal').forEach(function(el,i) {
+      el.style.transitionDelay = (i%3*0.12)+'s';
+    });
+  });
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  els.forEach(function(el) { observer.observe(el); });
+})();
+
+
+/* ═══ LOADING SCREEN ═══ */
+(function() {
+  var screen = document.getElementById('loadingScreen');
+  if (!screen) return;
+
+  // Prevent scroll while loading
+  document.body.style.overflow = 'hidden';
+
+  function hideLoader() {
+    screen.classList.add('hidden');
+    document.body.style.overflow = '';
+    // After transition ends, remove from DOM
+    screen.addEventListener('transitionend', function() {
+      screen.remove();
+    }, { once: true });
+  }
+
+  // Hide after 3 seconds
+  var timer = setTimeout(hideLoader, 3000);
+
+  // Also hide when page fully loaded (whichever comes last)
+  window.addEventListener('load', function() {
+    // ensure minimum 3s show time
+    // timer already set above
+  });
+})();
+
+
+/* VB GAMING LIVE SUBSCRIBER COUNT */
+(function() {
+  async function fetchGamingSubs() {
+    try {
+      var url = 'https://www.googleapis.com/youtube/v3/channels?part=statistics&id=UC2wXDj9npkg0IauwEfccgCA&key=AIzaSyDAVZGuxVnic7tVFhLOM7L0M1V2vUWZrGc';
+      var res = await fetch(url);
+      var data = await res.json();
+      if (data.items && data.items[0]) {
+        var n = parseInt(data.items[0].statistics.subscriberCount, 10);
+        var formatted = n >= 1000000 ? (n/1000000).toFixed(1).replace(/\.0$/,'')+'M'
+                      : n >= 1000    ? (n/1000).toFixed(1).replace(/\.0$/,'')+'K'
+                      : n.toLocaleString();
+        var el = document.getElementById('gamingSubCount');
+        if (el) el.textContent = formatted;
+      }
+    } catch(e) {
+      var el = document.getElementById('gamingSubCount');
+      if (el) el.textContent = '100+';
+    }
+  }
+  fetchGamingSubs();
+  setInterval(fetchGamingSubs, 60000);
+})();
+
+
+/* ═══════════════════════════════════════════
+   GAMING SECTION 3D BACKGROUND
+═══════════════════════════════════════════ */
+(function() {
+  var section = document.getElementById('gaming');
+  var canvas  = document.getElementById('gamingCanvas');
+  if (!canvas || !section) return;
+  var ctx = canvas.getContext('2d');
+  var W, H, t = 0;
+  var stars = [], hexes = [], beams = [], floaters = [];
+
+  function resize() {
+    var rect = section.getBoundingClientRect();
+    W = canvas.width  = section.offsetWidth;
+    H = canvas.height = section.offsetHeight;
+    initAll();
+  }
+
+  /* ── Stars / space dust ── */
+  function initStars() {
+    stars = [];
+    var count = Math.floor(W * H / 5000);
+    for (var i = 0; i < count; i++) {
+      stars.push({
+        x: Math.random()*W, y: Math.random()*H,
+        r: Math.random()*1.2,
+        opacity: 0.1 + Math.random()*0.5,
+        phase: Math.random()*Math.PI*2,
+        speed: 0.3 + Math.random()*0.5
+      });
+    }
+  }
+
+  /* ── Hex grid cells ── */
+  function initHexes() {
+    hexes = [];
+    var size = 38, cols = Math.ceil(W/(size*1.75))+2, rows = Math.ceil(H/(size*1.5))+2;
+    for (var row=0; row<rows; row++) {
+      for (var col=0; col<cols; col++) {
+        var x = col * size * 1.73 + (row%2 ? size*0.87 : 0);
+        var y = row * size * 1.5;
+        hexes.push({
+          x: x, y: y, size: size,
+          opacity: 0.0,
+          targetOpacity: Math.random() < 0.12 ? 0.08 + Math.random()*0.12 : 0.02,
+          phase: Math.random()*Math.PI*2,
+          lit: Math.random() < 0.08,
+          litOpacity: 0,
+          litTarget: Math.random()*0.18,
+          litTimer: Math.random()*200
+        });
+      }
+    }
+  }
+
+  /* ── Energy beams ── */
+  function initBeams() {
+    beams = [];
+    for (var i = 0; i < 5; i++) {
+      beams.push(makeBeam());
+    }
+  }
+  function makeBeam() {
+    var horiz = Math.random() < 0.5;
+    return {
+      horiz: horiz,
+      pos: horiz ? Math.random()*H : Math.random()*W,
+      speed: (0.15 + Math.random()*0.25) * (Math.random()<0.5?1:-1),
+      opacity: 0.04 + Math.random()*0.08,
+      width: 1 + Math.random()*1.5,
+      color: Math.random() < 0.6 ? 'rgba(168,85,247,' : 'rgba(232,53,42,'
+    };
+  }
+
+  /* ── 3D floating gaming icons ── */
+  var ICONS = ['sword','shield','trophy','star','gamepad','headset','joystick','pixelchar','controller'];
+  function initFloaters() {
+    floaters = [];
+    var count = Math.min(22, Math.floor(W/55));
+    for (var i = 0; i < count; i++) {
+      floaters.push({
+        type: ICONS[Math.floor(Math.random()*ICONS.length)],
+        x: Math.random()*W, y: Math.random()*H,
+        z: 0.25 + Math.random()*0.75,
+        size: 14 + Math.random()*24,
+        vx: (Math.random()-0.5)*0.45,
+        vy: (Math.random()-0.5)*0.4,
+        rot: Math.random()*Math.PI*2,
+        rotSpeed: (Math.random()-0.5)*0.015,
+        tiltX: (Math.random()-0.5)*0.5,
+        tiltY: (Math.random()-0.5)*0.5,
+        tiltSpeedX: (Math.random()-0.5)*0.009,
+        tiltSpeedY: (Math.random()-0.5)*0.007,
+        phase: Math.random()*Math.PI*2,
+        opacity: 0.08 + Math.random()*0.16,
+        color: Math.random() < 0.65 ? 'rgba(168,85,247,' : 'rgba(232,53,42,'
+      });
+    }
+  }
+
+  var matrixCols = [];
+  function initAll() { initStars(); initHexes(); initBeams(); initFloaters(); initMatrix(); }
+
+  /* ── Draw hex ── */
+  function hexPath(ctx, x, y, size) {
+    ctx.beginPath();
+    for (var i=0; i<6; i++) {
+      var angle = Math.PI/180 * (60*i - 30);
+      var px = x + size * Math.cos(angle);
+      var py = y + size * Math.sin(angle);
+      i===0 ? ctx.moveTo(px,py) : ctx.lineTo(px,py);
+    }
+    ctx.closePath();
+  }
+
+  /* ── Draw floater icon ── */
+  function drawFloaterIcon(ctx, type, s) {
+    switch(type) {
+      case 'sword':
+        ctx.beginPath(); ctx.moveTo(0,-s*0.5); ctx.lineTo(0,s*0.5); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(-s*0.22,-s*0.05); ctx.lineTo(s*0.22,-s*0.05); ctx.stroke();
+        break;
+      case 'shield':
+        ctx.beginPath();
+        ctx.moveTo(0,-s*0.45); ctx.lineTo(s*0.32,-s*0.2);
+        ctx.lineTo(s*0.32,s*0.08); ctx.quadraticCurveTo(s*0.32,s*0.48,0,s*0.48);
+        ctx.quadraticCurveTo(-s*0.32,s*0.48,-s*0.32,s*0.08);
+        ctx.lineTo(-s*0.32,-s*0.2); ctx.closePath(); ctx.stroke();
+        break;
+      case 'trophy':
+        ctx.beginPath();
+        ctx.moveTo(-s*0.25,-s*0.4); ctx.lineTo(-s*0.25,0);
+        ctx.quadraticCurveTo(-s*0.25,s*0.3,0,s*0.3);
+        ctx.quadraticCurveTo(s*0.25,s*0.3,s*0.25,0);
+        ctx.lineTo(s*0.25,-s*0.4); ctx.closePath(); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(-s*0.15,s*0.3); ctx.lineTo(-s*0.15,s*0.44);
+        ctx.lineTo(s*0.15,s*0.44); ctx.lineTo(s*0.15,s*0.3); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(-s*0.22,s*0.44); ctx.lineTo(s*0.22,s*0.44); ctx.stroke();
+        break;
+      case 'star':
+        ctx.beginPath();
+        for (var i=0;i<5;i++) {
+          var oa=(i*4*Math.PI/5)-Math.PI/2, ia=oa+2*Math.PI/10;
+          i===0 ? ctx.moveTo(Math.cos(oa)*s*0.42,Math.sin(oa)*s*0.42) : ctx.lineTo(Math.cos(oa)*s*0.42,Math.sin(oa)*s*0.42);
+          ctx.lineTo(Math.cos(ia)*s*0.17,Math.sin(ia)*s*0.17);
+        }
+        ctx.closePath(); ctx.stroke();
+        break;
+      case 'gamepad':
+        ctx.beginPath(); ctx.ellipse(0,0,s*0.44,s*0.27,0,0,Math.PI*2); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(-s*0.18,-s*0.08); ctx.lineTo(-s*0.18,s*0.08); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(-s*0.28,0); ctx.lineTo(-s*0.08,0); ctx.stroke();
+        ctx.beginPath(); ctx.arc(s*0.22,-s*0.08,s*0.05,0,Math.PI*2); ctx.stroke();
+        ctx.beginPath(); ctx.arc(s*0.3,0,s*0.05,0,Math.PI*2); ctx.stroke();
+        ctx.beginPath(); ctx.arc(s*0.14,0,s*0.05,0,Math.PI*2); ctx.stroke();
+        break;
+      case 'headset':
+        ctx.beginPath(); ctx.arc(0,-s*0.05,s*0.33,Math.PI,0,false); ctx.stroke();
+        ctx.strokeRect(-s*0.42,-s*0.1,s*0.13,s*0.22);
+        ctx.strokeRect(s*0.29,-s*0.1,s*0.13,s*0.22);
+        break;
+      case 'joystick':
+        ctx.beginPath(); ctx.ellipse(0,s*0.22,s*0.36,s*0.18,0,0,Math.PI*2); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(0,s*0.22); ctx.lineTo(0,-s*0.15); ctx.stroke();
+        ctx.beginPath(); ctx.arc(0,-s*0.22,s*0.11,0,Math.PI*2); ctx.stroke();
+        break;
+      case 'pixelchar':
+        var ps=s*0.13, grid=[[0,1,0],[1,1,1],[0,1,0],[1,0,1]];
+        for(var r=0;r<grid.length;r++) for(var c=0;c<grid[r].length;c++)
+          if(grid[r][c]) ctx.fillRect((c-1)*ps*1.1,(r-1.5)*ps*1.1,ps,ps);
+        break;
+      case 'controller':
+        ctx.beginPath(); ctx.ellipse(-s*0.22,0,s*0.3,s*0.2,0,0,Math.PI*2); ctx.stroke();
+        ctx.beginPath(); ctx.ellipse(s*0.22,0,s*0.3,s*0.2,0,0,Math.PI*2); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(-s*0.08,0); ctx.lineTo(s*0.08,0); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(-s*0.28,-s*0.07); ctx.lineTo(-s*0.28,s*0.07); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(-s*0.35,0); ctx.lineTo(-s*0.21,0); ctx.stroke();
+        ctx.beginPath(); ctx.arc(s*0.22,-s*0.07,s*0.05,0,Math.PI*2); ctx.stroke();
+        ctx.beginPath(); ctx.arc(s*0.29,0,s*0.05,0,Math.PI*2); ctx.stroke();
+        break;
+    }
+  }
+
+  /* ── Matrix rain columns ── */
+  var matrixCols = [];
+  function initMatrix() {
+    matrixCols = [];
+    var cols = Math.floor(W / 22);
+    for (var i = 0; i < cols; i++) {
+      matrixCols.push({
+        x: i * 22 + 11,
+        y: -Math.random() * H,
+        speed: 0.6 + Math.random() * 1.2,
+        len: 4 + Math.floor(Math.random() * 8),
+        chars: [],
+        timer: 0
+      });
+      for (var j = 0; j < 12; j++) matrixCols[i].chars.push(String.fromCharCode(0x30A0 + Math.floor(Math.random()*96)));
+    }
+  }
+
+  /* ── Portal ring at center ── */
+  var portalAngle = 0;
+
+  /* ── 3D perspective floor grid ── */
+  function drawFloorGrid() {
+    var vp = { x: W/2, y: H * 0.62 }; // vanishing point
+    var horizon = H * 0.62;
+    var floorH = H - horizon;
+    var cols3d = 14, rows3d = 10;
+    ctx.save();
+    // clip to floor area
+    ctx.beginPath(); ctx.rect(0, horizon, W, floorH); ctx.clip();
+
+    for (var c = 0; c <= cols3d; c++) {
+      var xFrac = c / cols3d;
+      var xBottom = xFrac * W;
+      var xTop = vp.x + (xBottom - vp.x) * 0.02;
+      var alpha = 0.05 + Math.abs(xFrac - 0.5) * 0.04;
+      var grad = ctx.createLinearGradient(xTop, horizon, xBottom, H);
+      grad.addColorStop(0, 'rgba(168,85,247,0)');
+      grad.addColorStop(0.4, 'rgba(168,85,247,' + (alpha*0.6) + ')');
+      grad.addColorStop(1, 'rgba(168,85,247,' + alpha + ')');
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = 0.8;
+      ctx.beginPath(); ctx.moveTo(xTop, horizon); ctx.lineTo(xBottom, H); ctx.stroke();
+    }
+    for (var r = 0; r <= rows3d; r++) {
+      var rFrac = r / rows3d;
+      var perspY = horizon + floorH * (rFrac * rFrac);
+      var xLeft  = vp.x - (vp.x) * rFrac;
+      var xRight = vp.x + (W - vp.x) * rFrac;
+      var rowAlpha = (0.03 + rFrac * 0.06) * (0.5 + Math.sin(t * 0.5 + r * 0.4) * 0.3);
+      ctx.strokeStyle = 'rgba(168,85,247,' + rowAlpha + ')';
+      ctx.lineWidth = 0.7;
+      ctx.beginPath(); ctx.moveTo(xLeft, perspY); ctx.lineTo(xRight, perspY); ctx.stroke();
+    }
+    // floor glow pulse
+    var floorGrad = ctx.createLinearGradient(0, horizon, 0, H);
+    var gp = 0.04 + Math.sin(t*0.8)*0.015;
+    floorGrad.addColorStop(0, 'rgba(147,51,234,0)');
+    floorGrad.addColorStop(0.5, 'rgba(147,51,234,' + gp + ')');
+    floorGrad.addColorStop(1, 'rgba(80,20,180,' + (gp*1.5) + ')');
+    ctx.fillStyle = floorGrad;
+    ctx.fillRect(0, horizon, W, floorH);
+    ctx.restore();
+  }
+
+  /* ── Portal ring ── */
+  function drawPortal() {
+    portalAngle += 0.012;
+    var cx = W * 0.5, cy = H * 0.38;
+    var r1 = Math.min(W, H) * 0.13;
+    // outer glow ring
+    for (var ring = 3; ring >= 0; ring--) {
+      var rr = r1 + ring * 8;
+      var ra = (0.06 - ring * 0.012) * (0.7 + Math.sin(t * 1.2) * 0.3);
+      ctx.beginPath(); ctx.arc(cx, cy, rr, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(147,51,234,' + ra + ')';
+      ctx.lineWidth = 3 - ring * 0.5;
+      ctx.stroke();
+    }
+    // spinning dashes
+    for (var seg = 0; seg < 12; seg++) {
+      var a1 = portalAngle + seg * (Math.PI * 2 / 12);
+      var a2 = a1 + 0.18;
+      ctx.beginPath();
+      ctx.arc(cx, cy, r1, a1, a2);
+      ctx.strokeStyle = 'rgba(192,132,252,' + (0.35 + Math.sin(t * 2 + seg) * 0.15) + ')';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+    // counter-rotating inner
+    for (var seg2 = 0; seg2 < 8; seg2++) {
+      var b1 = -portalAngle * 1.5 + seg2 * (Math.PI * 2 / 8);
+      var b2 = b1 + 0.22;
+      ctx.beginPath();
+      ctx.arc(cx, cy, r1 * 0.72, b1, b2);
+      ctx.strokeStyle = 'rgba(232,53,42,' + (0.2 + Math.sin(t + seg2 * 0.8) * 0.1) + ')';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+    // center glow dot
+    var dotGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r1 * 0.35);
+    var dp = 0.12 + Math.sin(t * 1.8) * 0.06;
+    dotGrad.addColorStop(0, 'rgba(192,132,252,' + dp + ')');
+    dotGrad.addColorStop(1, 'rgba(147,51,234,0)');
+    ctx.fillStyle = dotGrad;
+    ctx.beginPath(); ctx.arc(cx, cy, r1 * 0.35, 0, Math.PI * 2); ctx.fill();
+  }
+
+  /* ── Depth fog overlay ── */
+  function drawDepthFog() {
+    // top fade-in fog
+    var topFog = ctx.createLinearGradient(0, 0, 0, H * 0.25);
+    topFog.addColorStop(0, 'rgba(7,5,15,0.85)');
+    topFog.addColorStop(1, 'rgba(7,5,15,0)');
+    ctx.fillStyle = topFog; ctx.fillRect(0, 0, W, H * 0.25);
+    // bottom fade-out fog
+    var botFog = ctx.createLinearGradient(0, H * 0.75, 0, H);
+    botFog.addColorStop(0, 'rgba(7,5,15,0)');
+    botFog.addColorStop(1, 'rgba(7,5,15,0.9)');
+    ctx.fillStyle = botFog; ctx.fillRect(0, H * 0.75, W, H * 0.25);
+    // side vignettes
+    var leftV = ctx.createLinearGradient(0, 0, W * 0.18, 0);
+    leftV.addColorStop(0, 'rgba(7,5,15,0.6)'); leftV.addColorStop(1, 'rgba(7,5,15,0)');
+    ctx.fillStyle = leftV; ctx.fillRect(0, 0, W * 0.18, H);
+    var rightV = ctx.createLinearGradient(W * 0.82, 0, W, 0);
+    rightV.addColorStop(0, 'rgba(7,5,15,0)'); rightV.addColorStop(1, 'rgba(7,5,15,0.6)');
+    ctx.fillStyle = rightV; ctx.fillRect(W * 0.82, 0, W * 0.18, H);
+  }
+
+  /* ── Main draw ── */
+  function draw() {
+    t += 0.007;
+    ctx.clearRect(0,0,W,H);
+
+    /* ── LAYER 1: deep space stars ── */
+    stars.forEach(function(s) {
+      var op = s.opacity * (0.5 + Math.sin(t * s.speed + s.phase) * 0.5);
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255,255,255,' + op + ')'; ctx.fill();
+    });
+
+    /* ── LAYER 2: 3D perspective floor ── */
+    drawFloorGrid();
+
+    /* ── LAYER 3: hex grid (upper area only) ── */
+    hexes.forEach(function(h) {
+      if (h.y > H * 0.6) return; // only above floor
+      h.litTimer--;
+      if (h.litTimer <= 0) {
+        h.lit = !h.lit;
+        h.litTarget = h.lit ? 0.05 + Math.random() * 0.14 : 0;
+        h.litTimer = 80 + Math.random() * 280;
+      }
+      h.litOpacity += (h.litTarget - h.litOpacity) * 0.035;
+      var baseOp = 0.018 + Math.sin(t * 0.4 + h.phase) * 0.008;
+      hexPath(ctx, h.x, h.y, h.size);
+      ctx.strokeStyle = 'rgba(168,85,247,' + (baseOp + h.litOpacity) + ')';
+      ctx.lineWidth = 0.6; ctx.stroke();
+      if (h.litOpacity > 0.03) {
+        hexPath(ctx, h.x, h.y, h.size);
+        ctx.fillStyle = 'rgba(147,51,234,' + h.litOpacity * 0.2 + ')';
+        ctx.fill();
+      }
+    });
+
+    /* ── LAYER 4: matrix rain (edges only) ── */
+    if (!matrixCols.length) initMatrix();
+    ctx.font = '11px monospace';
+    matrixCols.forEach(function(col) {
+      // only left 15% and right 15%
+      if (col.x > W * 0.15 && col.x < W * 0.85) return;
+      col.y += col.speed;
+      if (col.y > H + 100) { col.y = -Math.random() * H * 0.5; }
+      col.timer++;
+      if (col.timer % 8 === 0) col.chars[Math.floor(Math.random()*col.chars.length)] = String.fromCharCode(0x30A0 + Math.floor(Math.random()*96));
+      for (var ci = 0; ci < col.len; ci++) {
+        var cy2 = col.y - ci * 14;
+        if (cy2 < 0 || cy2 > H) continue;
+        var charAlpha = ci === 0 ? 0.7 : (0.06 + (col.len - ci) / col.len * 0.22);
+        var charColor = ci === 0 ? 'rgba(220,180,255,' : 'rgba(147,51,234,';
+        ctx.fillStyle = charColor + charAlpha + ')';
+        ctx.fillText(col.chars[ci % col.chars.length], col.x, cy2);
+      }
+    });
+
+    /* ── LAYER 5: energy beams ── */
+    beams.forEach(function(b) {
+      if (b.horiz) {
+        b.pos += b.speed;
+        if (b.pos < -5) b.pos = H + 5;
+        if (b.pos > H + 5) b.pos = -5;
+        var grad = ctx.createLinearGradient(0, b.pos, W, b.pos + 1);
+        grad.addColorStop(0, b.color + '0)');
+        grad.addColorStop(0.25, b.color + b.opacity + ')');
+        grad.addColorStop(0.75, b.color + b.opacity + ')');
+        grad.addColorStop(1, b.color + '0)');
+        ctx.strokeStyle = grad; ctx.lineWidth = b.width;
+        ctx.beginPath(); ctx.moveTo(0, b.pos); ctx.lineTo(W, b.pos); ctx.stroke();
+      } else {
+        b.pos += b.speed;
+        if (b.pos < -5) b.pos = W + 5;
+        if (b.pos > W + 5) b.pos = -5;
+        var grad2 = ctx.createLinearGradient(b.pos, 0, b.pos + 1, H);
+        grad2.addColorStop(0, b.color + '0)');
+        grad2.addColorStop(0.25, b.color + b.opacity + ')');
+        grad2.addColorStop(0.75, b.color + b.opacity + ')');
+        grad2.addColorStop(1, b.color + '0)');
+        ctx.strokeStyle = grad2; ctx.lineWidth = b.width;
+        ctx.beginPath(); ctx.moveTo(b.pos, 0); ctx.lineTo(b.pos, H); ctx.stroke();
+      }
+    });
+
+    /* ── LAYER 6: portal ring ── */
+    drawPortal();
+
+    /* ── LAYER 7: 3D floating gaming icons ── */
+    floaters.sort(function(a, b) { return a.z - b.z; });
+    floaters.forEach(function(f) {
+      f.x += f.vx; f.y += f.vy;
+      if (f.x < -60) f.x = W + 60; if (f.x > W + 60) f.x = -60;
+      if (f.y < -60) f.y = H + 60; if (f.y > H + 60) f.y = -60;
+      f.rot += f.rotSpeed;
+      f.tiltX += f.tiltSpeedX; f.tiltY += f.tiltSpeedY;
+
+      var bob = Math.sin(t * 0.85 + f.phase) * 7;
+      var drawSize = f.size * f.z;
+      var alpha = f.opacity * f.z * (0.75 + Math.sin(t + f.phase) * 0.25);
+
+      ctx.save();
+      ctx.translate(f.x, f.y + bob);
+      var cos = Math.cos(f.rot), sin = Math.sin(f.rot);
+      var skewX = Math.sin(f.tiltY) * 0.38;
+      var skewY = Math.sin(f.tiltX) * 0.22;
+      var scaleX = f.z * Math.cos(f.tiltY);
+      var scaleY = f.z * Math.cos(f.tiltX);
+      ctx.transform(
+        cos*scaleX - sin*skewY, sin*scaleX + cos*skewY,
+        cos*skewX  - sin*scaleY, sin*skewX  + cos*scaleY,
+        0, 0
+      );
+      ctx.shadowColor = f.color + (alpha * 2.5) + ')';
+      ctx.shadowBlur = 16 * f.z;
+      ctx.strokeStyle = f.color + alpha + ')';
+      ctx.fillStyle   = f.color + (alpha * 0.55) + ')';
+      ctx.lineWidth   = 1.2 * f.z;
+      drawFloaterIcon(ctx, f.type, drawSize);
+      ctx.shadowBlur = 0;
+      ctx.restore();
+    });
+
+    /* ── LAYER 8: depth fog ── */
+    drawDepthFog();
+
+    requestAnimationFrame(draw);
+  }
+
+  /* resize observer watches the section height */
+  if (window.ResizeObserver) {
+    new ResizeObserver(resize).observe(section);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+})();
+
+
+/* VLOG CHANNEL SUB COUNT */
+(function() {
+  setTimeout(function() {
+    var el = document.getElementById('vlogSubCount');
+    if (el) el.textContent = '400+';
+  }, 500);
+  // To get live count, add Day of VB channel to fetchSubs below
+})();
+
+
+/* ════════════════════════════════════════
+   YOUTUBE LIVE THUMBNAILS + VIDEO DATA
+════════════════════════════════════════ */
+(function() {
+  var API_KEY       = 'AIzaSyDAVZGuxVnic7tVFhLOM7L0M1V2vUWZrGc';
+  var DAYOFVB_ID    = 'UCJY_tpNTpkCBss5oPjLAiEg';
+  var VBGAMING_ID   = 'UC2wXDj9npkg0IauwEfccgCA';
+  var PLAY_SVG      = '<svg viewBox="0 0 24 24" fill="#fff" width="18" height="18" style="margin-left:3px"><path d="M5 3l14 9-14 9V3z"/></svg>';
+  var PLAY_SVG_SM   = '<svg viewBox="0 0 24 24" fill="#fff" width="16" height="16" style="margin-left:2px"><path d="M5 3l14 9-14 9V3z"/></svg>';
+
+  function timeAgo(dateStr) {
+    var now  = new Date();
+    var then = new Date(dateStr);
+    var sec  = Math.floor((now - then) / 1000);
+    if (sec < 60)    return 'Just now';
+    if (sec < 3600)  return Math.floor(sec/60) + 'm ago';
+    if (sec < 86400) return Math.floor(sec/3600) + 'h ago';
+    if (sec < 2592000) return Math.floor(sec/86400) + 'd ago';
+    if (sec < 31536000) return Math.floor(sec/2592000) + ' months ago';
+    return Math.floor(sec/31536000) + 'y ago';
+  }
+
+  function fmtViews(n) {
+    n = parseInt(n) || 0;
+    if (n >= 1000000) return (n/1000000).toFixed(1).replace(/\.0$/,'') + 'M views';
+    if (n >= 1000)    return (n/1000).toFixed(1).replace(/\.0$/,'') + 'K views';
+    return n + ' views';
+  }
+
+  function fmtDuration(iso) {
+    if (!iso) return '';
+    var m = iso.match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+    if (!m) return '';
+    var h = parseInt(m[1]||0), mn = parseInt(m[2]||0), s = parseInt(m[3]||0);
+    if (h > 0) return h + ':' + String(mn).padStart(2,'0') + ':' + String(s).padStart(2,'0');
+    return mn + ':' + String(s).padStart(2,'0');
+  }
+
+  function getBestThumb(thumbnails) {
+    return (thumbnails.maxres || thumbnails.standard || thumbnails.high || thumbnails.medium || thumbnails.default || {}).url || '';
+  }
+
+  /* Fetch latest videos from a channel */
+  async function fetchChannelVideos(channelId, maxResults) {
+    maxResults = maxResults || 6;
+    try {
+      /* Step 1: get uploads playlist ID */
+      var chanRes = await fetch('https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=' + channelId + '&key=' + API_KEY);
+      var chanData = await chanRes.json();
+      if (!chanData.items || !chanData.items[0]) return [];
+      var uploadsId = chanData.items[0].contentDetails.relatedPlaylists.uploads;
+
+      /* Step 2: get latest video IDs from playlist */
+      var plRes = await fetch('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=' + uploadsId + '&maxResults=' + maxResults + '&key=' + API_KEY);
+      var plData = await plRes.json();
+      if (!plData.items) return [];
+      var videoIds = plData.items.map(function(i){ return i.snippet.resourceId.videoId; }).join(',');
+
+      /* Step 3: get video details (stats + duration) */
+      var vidRes = await fetch('https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics,contentDetails&id=' + videoIds + '&key=' + API_KEY);
+      var vidData = await vidRes.json();
+      return vidData.items || [];
+    } catch(e) {
+      console.error('YT API error:', e);
+      return [];
+    }
+  }
+
+  /* Build Day of VB video card HTML */
+  function buildDayofVBCard(video) {
+    var id       = video.id;
+    var snip     = video.snippet;
+    var stats    = video.statistics || {};
+    var content  = video.contentDetails || {};
+    var thumb    = getBestThumb(snip.thumbnails);
+    var title    = snip.title;
+    var views    = fmtViews(stats.viewCount);
+    var ago      = timeAgo(snip.publishedAt);
+    var dur      = fmtDuration(content.duration);
+    var url      = 'https://www.youtube.com/watch?v=' + id;
+
+    /* tag based on title keywords */
+    var tag = 'tag-review', tagLabel = 'Review';
+    var tl  = title.toLowerCase();
+    if (tl.includes('unbox') || tl.includes('review mic') || tl.includes('haul')) { tag = 'tag-unboxing'; tagLabel = 'Unboxing'; }
+    else if (tl.includes('vlog') || tl.includes('day') || tl.includes('life'))    { tag = 'tag-vlog';     tagLabel = 'Vlog'; }
+    else if (tl.includes('#shorts') || dur === '0:00' || (content.duration && content.duration.indexOf('PT') === 0 && !content.duration.includes('M') && parseInt((content.duration.match(/PT(\d+)S/)||[0,0])[1]) < 61)) { tag = 'tag-short'; tagLabel = 'Short'; }
+
+    return '<a href="' + url + '" target="_blank" class="vid-card reveal visible">' +
+      '<div class="vid-thumb" style="position:relative">' +
+        (thumb ? '<img class="vid-thumb-real" src="' + thumb + '" alt="' + title.replace(/"/g,'') + '" loading="lazy">' : '<div class="vid-thumb-bg"></div>') +
+        '<div class="play-overlay"><div class="play-circle">' + PLAY_SVG + '</div></div>' +
+        (dur ? '<div class="vid-duration">' + dur + '</div>' : '') +
+      '</div>' +
+      '<div class="vid-body">' +
+        '<span class="vid-tag ' + tag + '">' + tagLabel + '</span>' +
+        '<div class="vid-title">' + title + '</div>' +
+        '<div class="vid-meta">' + views + ' · ' + ago + '</div>' +
+      '</div>' +
+    '</a>';
+  }
+
+  /* Build VB Gaming card HTML */
+  function buildGamingCard(video) {
+    var id       = video.id;
+    var snip     = video.snippet;
+    var stats    = video.statistics || {};
+    var content  = video.contentDetails || {};
+    var thumb    = getBestThumb(snip.thumbnails);
+    var title    = snip.title;
+    var views    = fmtViews(stats.viewCount);
+    var ago      = timeAgo(snip.publishedAt);
+    var dur      = fmtDuration(content.duration);
+    var url      = 'https://www.youtube.com/watch?v=' + id;
+
+    var tag = 'tag-gameplay', tagLabel = 'Gameplay';
+    var tl  = title.toLowerCase();
+    if (tl.includes('stream') || tl.includes('live'))  { tag = 'tag-stream';   tagLabel = 'Stream'; }
+    else if (tl.includes('guide') || tl.includes('tip') || tl.includes('how')) { tag = 'tag-guide'; tagLabel = 'Guide'; }
+
+    return '<a href="' + url + '" target="_blank" class="gaming-vid-card reveal visible">' +
+      '<div class="gaming-thumb" style="position:relative;overflow:hidden">' +
+        (thumb ? '<img class="gaming-thumb-real" src="' + thumb + '" alt="' + title.replace(/"/g,'') + '" loading="lazy">' : '') +
+        '<div class="gaming-play"><div class="gaming-play-circle">' + PLAY_SVG_SM + '</div></div>' +
+        (dur ? '<div class="gaming-vid-duration">' + dur + '</div>' : '') +
+      '</div>' +
+      '<div class="gaming-vid-body">' +
+        '<span class="gaming-vid-tag ' + tag + '">' + tagLabel + '</span>' +
+        '<div class="gaming-vid-title">' + title + '</div>' +
+        '<div class="gaming-vid-meta">' + views + ' · ' + ago + '</div>' +
+      '</div>' +
+    '</a>';
+  }
+
+  /* Load Day of VB videos */
+  async function loadDayofVB() {
+    var grid = document.getElementById('dayofvbGrid');
+    if (!grid) return;
+    var videos = await fetchChannelVideos(DAYOFVB_ID, 6);
+    if (videos.length === 0) return; // keep skeletons
+    grid.innerHTML = videos.map(buildDayofVBCard).join('');
+  }
+
+  /* Load VB Gaming videos */
+  async function loadVBGaming() {
+    var grid = document.getElementById('vbGamingGrid');
+    if (!grid) return;
+    var videos = await fetchChannelVideos(VBGAMING_ID, 3);
+    if (videos.length === 0) return;
+    grid.innerHTML = videos.map(buildGamingCard).join('');
+  }
+
+  /* Run both on page load */
+  window.addEventListener('load', function() {
+    loadDayofVB();
+    loadVBGaming();
+  });
+})();
+
+</script>
+</body>
+</html>
