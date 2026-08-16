@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Visal — Day of VB</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --red:#FF2D55; --red-dark:#CC0033; --cyan:#06b6d4; --purple:#a855f7;
+      --bg:#060810; --bg2:#0D0F1A; --bg3:#141625;
+      --border:rgba(255,255,255,0.08); --border2:rgba(255,255,255,0.14);
+      --text:#F0F0F0; --text2:#9A9BA8; --text3:#6B6C78;
+      --font-display:'Orbitron',sans-serif;
+      --font-body:'Rajdhani',sans-serif;
+      --radius:10px; --radius-lg:16px;
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:15px;min-height:100vh;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+
+    /* ── BACKGROUND CANVAS ── */
+    #contactBg{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+    /* ── CYBER GRID ── */
+    .cyber-grid{position:fixed;inset:0;pointer-events:none;z-index:0;
+      background-image:linear-gradient(rgba(255,45,85,0.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,45,85,0.022) 1px,transparent 1px);
+      background-size:55px 55px;animation:gridScroll 18s linear infinite}
+    @keyframes gridScroll{0%{background-position:0 0}100%{background-position:55px 55px}}
+
+    /* ── NAV ── */
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 28px;height:58px;
+      background:rgba(6,8,16,0.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,45,85,0.15)}
+    .nav-logo{display:flex;align-items:center;gap:10px}
+    .nav-logo img{width:32px;height:32px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,45,85,0.5)}
+    .nav-logo-text{font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--text)}
+    .nav-logo-text span{color:var(--red)}
+    .back-btn{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-family:var(--font-display);
+      letter-spacing:0.1em;text-transform:uppercase;color:var(--text2);
+      border:1px solid var(--border2);padding:7px 14px;border-radius:var(--radius);
+      transition:all 0.2s;position:relative;z-index:1}
+    .back-btn:hover{color:var(--text);border-color:rgba(255,45,85,0.5);box-shadow:0 0 12px rgba(255,45,85,0.2)}
+
+    /* ── MAIN LAYOUT ── */
+    .contact-page{position:relative;z-index:1;min-height:calc(100vh - 58px);
+      display:grid;grid-template-columns:1fr 1fr;max-width:1100px;margin:0 auto;padding:48px 24px;gap:60px;align-items:start}
+
+    /* ── LEFT — anime character panel ── */
+    .anime-panel{position:relative;display:flex;flex-direction:column;align-items:center}
+
+    .char-stage{position:relative;width:100%;max-width:380px;height:520px;margin:0 auto}
+
+    /* ground glow */
+    .char-ground{position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+      width:260px;height:30px;background:radial-gradient(ellipse,rgba(255,45,85,0.35) 0%,transparent 70%);
+      filter:blur(8px);animation:groundPulse 2.5s ease-in-out infinite}
+    @keyframes groundPulse{0%,100%{opacity:0.6;width:240px}50%{opacity:1;width:280px}}
+
+    /* floating anime character SVG */
+    .char-svg-wrap{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
+      width:300px;height:490px;animation:charFloat 4s ease-in-out infinite;filter:drop-shadow(0 0 20px rgba(255,45,85,0.4))}
+    @keyframes charFloat{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-14px)}}
+
+    /* floating runes around character */
+    .rune{position:absolute;font-size:18px;opacity:0;color:var(--red);font-family:serif;
+      animation:runeFly 4s ease-in-out infinite}
+    .rune:nth-child(1){top:15%;left:5%;animation-delay:0s}
+    .rune:nth-child(2){top:30%;right:8%;animation-delay:0.8s;color:var(--cyan)}
+    .rune:nth-child(3){top:55%;left:3%;animation-delay:1.6s;color:var(--purple)}
+    .rune:nth-child(4){top:70%;right:5%;animation-delay:2.4s}
+    .rune:nth-child(5){top:10%;right:12%;animation-delay:3.2s;color:var(--cyan)}
+    @keyframes runeFly{0%,100%{opacity:0;transform:translateY(0) rotate(0deg)}30%,70%{opacity:0.7}50%{transform:translateY(-18px) rotate(15deg)}}
+
+    /* particles */
+    .particle{position:absolute;width:4px;height:4px;border-radius:50%;background:var(--red);
+      animation:particleFly 3s ease-in-out infinite}
+    @keyframes particleFly{0%{opacity:0;transform:translateY(0) scale(0)}50%{opacity:1;transform:translateY(-30px) scale(1)}100%{opacity:0;transform:translateY(-60px) scale(0)}}
+
+    /* channel badges */
+    .channel-badges{display:flex;flex-direction:column;gap:12px;width:100%;max-width:340px;margin-top:24px}
+    .channel-badge{display:flex;align-items:center;gap:12px;background:rgba(255,45,85,0.05);
+      border:1px solid rgba(255,45,85,0.2);border-radius:var(--radius-lg);padding:14px 18px;
+      transition:all 0.3s;position:relative;overflow:hidden}
+    .channel-badge::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:2px;
+      background:linear-gradient(90deg,transparent,var(--red),transparent);
+      animation:neonSweep 3s ease-in-out infinite}
+    .channel-badge.cyan{border-color:rgba(6,182,212,0.2);background:rgba(6,182,212,0.05)}
+    .channel-badge.cyan::before{background:linear-gradient(90deg,transparent,var(--cyan),transparent);animation-delay:1s}
+    .channel-badge.purple{border-color:rgba(168,85,247,0.2);background:rgba(168,85,247,0.05)}
+    .channel-badge.purple::before{background:linear-gradient(90deg,transparent,var(--purple),transparent);animation-delay:2s}
+    @keyframes neonSweep{0%{left:-100%}100%{left:100%}}
+    .channel-badge:hover{transform:translateX(4px);border-color:rgba(255,45,85,0.5);box-shadow:0 0 15px rgba(255,45,85,0.15)}
+    .channel-badge.cyan:hover{border-color:rgba(6,182,212,0.5);box-shadow:0 0 15px rgba(6,182,212,0.15)}
+    .channel-badge.purple:hover{border-color:rgba(168,85,247,0.5);box-shadow:0 0 15px rgba(168,85,247,0.15)}
+    .badge-icon{width:42px;height:42px;border-radius:50%;object-fit:cover;flex-shrink:0;border:2px solid rgba(255,45,85,0.4)}
+    .badge-icon.cyan{border-color:rgba(6,182,212,0.4)}
+    .badge-icon.purple{border-color:rgba(168,85,247,0.4)}
+    .badge-info{flex:1}
+    .badge-name{font-family:var(--font-display);font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px}
+    .badge-handle{font-size:11px;color:var(--text3)}
+    .badge-arrow{color:var(--text3);font-size:16px;transition:transform 0.2s}
+    .channel-badge:hover .badge-arrow{transform:translateX(4px);color:var(--red)}
+
+    /* ── RIGHT — form panel ── */
+    .form-panel{position:relative}
+    .form-header{margin-bottom:32px}
+    .form-eyebrow{font-family:var(--font-display);font-size:10px;font-weight:700;letter-spacing:0.2em;
+      text-transform:uppercase;color:var(--red);text-shadow:0 0 10px var(--red);margin-bottom:12px}
+    .form-title{font-family:var(--font-display);font-size:clamp(28px,3.5vw,42px);font-weight:900;
+      letter-spacing:-1px;line-height:1.05;margin-bottom:12px}
+    .form-title .glitch{position:relative;display:inline-block;color:var(--red);text-shadow:0 0 20px rgba(255,45,85,0.5)}
+    .form-title .glitch::before,.form-title .glitch::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%}
+    .form-title .glitch::before{color:var(--cyan);animation:glitchT 5s infinite;clip-path:polygon(0 0,100% 0,100% 35%,0 35%)}
+    .form-title .glitch::after{color:#ff2d55;animation:glitchB 5s infinite;clip-path:polygon(0 65%,100% 65%,100% 100%,0 100%)}
+    @keyframes glitchT{0%,88%,100%{transform:translate(0);opacity:0}90%{transform:translate(-3px,-2px);opacity:0.8}92%{transform:translate(3px,2px);opacity:0.5}94%{transform:translate(0);opacity:0}}
+    @keyframes glitchB{0%,89%,100%{transform:translate(0);opacity:0}91%{transform:translate(3px,2px);opacity:0.7}93%{transform:translate(-2px,-1px);opacity:0.4}95%{transform:translate(0);opacity:0}}
+    .form-subtitle{font-size:14px;color:var(--text2);line-height:1.7}
+    .form-subtitle::after{content:'|';color:var(--red);animation:blink 1s step-start infinite;margin-left:2px}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+    /* form card */
+    .form-card{background:rgba(13,15,26,0.8);border:1px solid rgba(255,45,85,0.2);
+      border-radius:var(--radius-lg);padding:32px;backdrop-filter:blur(16px);
+      box-shadow:0 0 40px rgba(255,45,85,0.08),0 20px 60px rgba(0,0,0,0.5);
+      position:relative;overflow:hidden}
+    /* corner deco */
+    .form-card::before{content:'';position:absolute;top:10px;left:10px;width:24px;height:24px;
+      border-top:2px solid rgba(255,45,85,0.6);border-left:2px solid rgba(255,45,85,0.6)}
+    .form-card::after{content:'';position:absolute;bottom:10px;right:10px;width:24px;height:24px;
+      border-bottom:2px solid rgba(255,45,85,0.6);border-right:2px solid rgba(255,45,85,0.6)}
+    /* scan sweep */
+    .form-scan{position:absolute;top:-40%;left:0;width:100%;height:40%;
+      background:linear-gradient(to bottom,transparent,rgba(255,45,85,0.025),transparent);
+      animation:formScan 5s ease-in-out infinite;pointer-events:none;z-index:0}
+    @keyframes formScan{0%{top:-40%}100%{top:110%}}
+
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;position:relative;z-index:1}
+    .form-full{grid-column:1/-1}
+    .form-group{display:flex;flex-direction:column;gap:6px}
+    .form-group label{font-family:var(--font-display);font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text3)}
+    .form-group input,.form-group textarea,.form-group select{
+      background:rgba(6,8,16,0.9);border:1px solid rgba(255,45,85,0.2);border-radius:var(--radius);
+      padding:11px 14px;font-size:14px;color:var(--text);font-family:var(--font-body);outline:none;
+      transition:border-color 0.2s,box-shadow 0.2s;width:100%}
+    .form-group input:focus,.form-group textarea:focus,.form-group select:focus{
+      border-color:var(--red);box-shadow:0 0 12px rgba(255,45,85,0.2)}
+    .form-group textarea{height:110px;resize:vertical}
+    .form-group select option{background:var(--bg2)}
+    .form-group input::placeholder,.form-group textarea::placeholder{color:var(--text3);opacity:0.7}
+
+    /* submit btn */
+    .send-btn{position:relative;width:100%;padding:14px;margin-top:6px;
+      font-family:var(--font-display);font-size:13px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;
+      color:#fff;background:linear-gradient(135deg,var(--red),var(--red-dark));
+      border:none;border-radius:var(--radius);cursor:pointer;overflow:hidden;
+      box-shadow:0 0 0 0 rgba(255,45,85,0.5);animation:sendPulse 2.5s ease-in-out infinite;
+      transition:transform 0.15s}
+    .send-btn::before{content:'';position:absolute;top:0;left:-80%;width:60%;height:100%;
+      background:linear-gradient(120deg,transparent,rgba(255,255,255,0.25),transparent);
+      animation:shimmer 2.8s ease-in-out infinite}
+    @keyframes sendPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,45,85,0.5),0 4px 18px rgba(255,45,85,0.3)}50%{box-shadow:0 0 0 10px rgba(255,45,85,0),0 4px 24px rgba(255,45,85,0.5)}}
+    @keyframes shimmer{0%{left:-80%}60%{left:130%}100%{left:130%}}
+    .send-btn:hover{transform:translateY(-2px) scale(1.01)}
+    .send-btn:active{transform:scale(0.98)}
+    .send-btn:disabled{opacity:0.6;animation:none;cursor:not-allowed}
+
+    /* success state */
+    .success-overlay{position:absolute;inset:0;background:rgba(6,8,16,0.95);
+      display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
+      border-radius:var(--radius-lg);opacity:0;pointer-events:none;transition:opacity 0.4s;z-index:10}
+    .success-overlay.show{opacity:1;pointer-events:all}
+    .success-icon{font-size:56px;animation:successPop 0.5s ease both}
+    @keyframes successPop{from{transform:scale(0) rotate(-20deg)}to{transform:scale(1) rotate(0)}}
+    .success-title{font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--cyan);text-shadow:0 0 15px var(--cyan)}
+    .success-sub{font-size:13px;color:var(--text2);text-align:center}
+    .success-back{margin-top:8px;font-family:var(--font-display);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+      color:var(--red);border:1px solid rgba(255,45,85,0.3);padding:8px 18px;border-radius:var(--radius);cursor:pointer;
+      background:none;transition:all 0.2s}
+    .success-back:hover{background:rgba(255,45,85,0.1)}
+
+    /* toast */
+    .toast{position:fixed;bottom:24px;right:24px;padding:12px 20px;border-radius:var(--radius);
+      font-size:14px;font-weight:600;opacity:0;transform:translateY(8px);transition:all 0.3s;z-index:999;pointer-events:none}
+    .toast.show{opacity:1;transform:translateY(0)}
+
+    /* footer strip */
+    .contact-footer{position:relative;z-index:1;text-align:center;padding:24px;font-size:11px;color:var(--text3);
+      border-top:1px solid rgba(255,45,85,0.1)}
+    .contact-footer a{color:var(--red);margin:0 6px}
+    .contact-footer a:hover{text-shadow:0 0 8px var(--red)}
+
+    /* mobile */
+    @media(max-width:768px){
+      .contact-page{grid-template-columns:1fr;padding:28px 16px;gap:36px}
+      .char-stage{height:360px;max-width:280px}
+      .char-svg-wrap{width:230px;height:370px}
+      .channel-badges{max-width:100%}
+      .form-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+<div class="cyber-grid"></div>
+<canvas id="contactBg"></canvas>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="channels4_profile.jpg" alt="Day of VB"/>
+    <span class="nav-logo-text">Day of <span>VB</span></span>
+  </a>
+  <a href="index.html" class="back-btn">
+    ← Back to Home
+  </a>
+</nav>
+
+<div class="contact-page">
+
+  <!-- LEFT — ANIME PANEL -->
+  <div class="anime-panel">
+
+    <div class="char-stage">
+      <!-- floating runes -->
+      <span class="rune">⟁</span>
+      <span class="rune">ꕤ</span>
+      <span class="rune">⟆</span>
+      <span class="rune">ꔪ</span>
+      <span class="rune">⍟</span>
+
+      <!-- SVG anime messenger girl -->
+      <div class="char-svg-wrap">
+        <svg viewBox="0 0 300 490" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+          <!-- ── GLOW AURA ── -->
+          <ellipse cx="150" cy="460" rx="90" ry="18" fill="rgba(255,45,85,0.25)" filter="url(#glow)"/>
+          <defs>
+            <filter id="glow"><feGaussianBlur stdDeviation="6" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <filter id="softglow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+
+          <!-- ── LONG FLOWING HAIR (back layer) ── -->
+          <path d="M90 72 Q50 120 42 240 Q58 200 72 175 Q80 138 88 115" fill="rgba(200,30,60,0.35)" stroke="rgba(255,45,85,0.5)" stroke-width="1.2"/>
+          <path d="M96 70 Q70 100 60 180 Q74 155 82 135" fill="rgba(180,20,50,0.28)" stroke="rgba(255,45,85,0.4)" stroke-width="1"/>
+          <path d="M210 72 Q250 120 258 240 Q242 200 228 175 Q220 138 212 115" fill="rgba(200,30,60,0.35)" stroke="rgba(255,45,85,0.5)" stroke-width="1.2"/>
+
+          <!-- ── HAIR TOP ── -->
+          <ellipse cx="150" cy="72" rx="58" ry="55" fill="rgba(160,20,45,0.5)" stroke="rgba(255,45,85,0.75)" stroke-width="1.5"/>
+          <!-- hair spiky top -->
+          <path d="M130 22 Q140 5 150 18 Q155 2 162 16 Q170 0 175 18 Q182 8 185 22" fill="rgba(180,20,50,0.55)" stroke="rgba(255,45,85,0.7)" stroke-width="1.2"/>
+          <!-- hair highlights -->
+          <path d="M118 45 Q125 35 132 48" stroke="rgba(255,150,150,0.4)" stroke-width="1.5" fill="none"/>
+          <path d="M162 35 Q170 25 178 38" stroke="rgba(255,150,150,0.4)" stroke-width="1.5" fill="none"/>
+          <!-- hair pin / ornament -->
+          <circle cx="176" cy="48" r="6" fill="rgba(255,45,85,0.7)" stroke="rgba(255,150,150,0.9)" stroke-width="1.2"/>
+          <circle cx="176" cy="48" r="3" fill="rgba(255,200,200,0.9)"><animate attributeName="opacity" values="0.9;1;0.6;1;0.9" dur="2.5s" repeatCount="indefinite"/></circle>
+          <line x1="182" y1="42" x2="192" y2="32" stroke="rgba(255,45,85,0.7)" stroke-width="1.2"/>
+          <line x1="178" y1="55" x2="190" y2="58" stroke="rgba(255,45,85,0.6)" stroke-width="1"/>
+
+          <!-- ── FACE ── -->
+          <ellipse cx="150" cy="90" rx="36" ry="40" fill="rgba(255,200,190,0.12)" stroke="rgba(255,45,85,0.4)" stroke-width="1"/>
+
+          <!-- ── BIG ANIME EYES ── -->
+          <!-- left eye -->
+          <ellipse cx="135" cy="88" rx="11" ry="13" fill="rgba(255,45,85,0.12)" stroke="rgba(255,45,85,0.75)" stroke-width="1.5"/>
+          <ellipse cx="135" cy="88" rx="8" ry="10" fill="rgba(255,45,85,0.85)"/>
+          <ellipse cx="135" cy="88" rx="4.5" ry="6" fill="rgba(120,0,30,0.9)"/>
+          <ellipse cx="132" cy="85" rx="2.5" ry="3" fill="white" opacity="0.95"/>
+          <ellipse cx="137" cy="91" rx="1.2" ry="1.5" fill="white" opacity="0.6"/>
+          <!-- right eye -->
+          <ellipse cx="165" cy="88" rx="11" ry="13" fill="rgba(255,45,85,0.12)" stroke="rgba(255,45,85,0.75)" stroke-width="1.5"/>
+          <ellipse cx="165" cy="88" rx="8" ry="10" fill="rgba(255,45,85,0.85)"/>
+          <ellipse cx="165" cy="88" rx="4.5" ry="6" fill="rgba(120,0,30,0.9)"/>
+          <ellipse cx="162" cy="85" rx="2.5" ry="3" fill="white" opacity="0.95"/>
+          <ellipse cx="167" cy="91" rx="1.2" ry="1.5" fill="white" opacity="0.6"/>
+          <!-- eyelashes -->
+          <path d="M124 79 L127 75 M131 76 L133 72 M138 76 L139 72 M144 79 L147 76" stroke="rgba(255,45,85,0.8)" stroke-width="1.2"/>
+          <path d="M154 79 L157 76 M161 76 L162 72 M167 76 L169 72 M174 79 L177 75" stroke="rgba(255,45,85,0.8)" stroke-width="1.2"/>
+          <!-- blush -->
+          <ellipse cx="122" cy="100" rx="10" ry="5" fill="rgba(255,45,85,0.2)"/>
+          <ellipse cx="178" cy="100" rx="10" ry="5" fill="rgba(255,45,85,0.2)"/>
+          <!-- nose + smile -->
+          <circle cx="150" cy="108" r="2" fill="rgba(255,100,100,0.5)"/>
+          <path d="M140 116 Q150 122 160 116" stroke="rgba(255,120,120,0.7)" stroke-width="1.5" fill="none"/>
+
+          <!-- ── HOODIE / JACKET ── -->
+          <path d="M110 132 L98 240 L150 255 L202 240 L190 132 Q172 118 150 115 Q128 118 110 132Z" fill="rgba(30,10,50,0.6)" stroke="rgba(255,45,85,0.45)" stroke-width="1.3"/>
+          <!-- hoodie details — zip line -->
+          <line x1="150" y1="132" x2="150" y2="255" stroke="rgba(255,45,85,0.35)" stroke-width="1"/>
+          <!-- collar -->
+          <path d="M132 130 Q150 138 168 130 Q162 120 150 118 Q138 120 132 130Z" fill="rgba(20,5,40,0.7)" stroke="rgba(255,45,85,0.55)" stroke-width="1"/>
+          <!-- pocket lines -->
+          <path d="M116 190 L130 188 L132 210 L118 210Z" fill="rgba(255,45,85,0.08)" stroke="rgba(255,45,85,0.3)" stroke-width="0.8"/>
+          <path d="M170 190 L184 188 L182 210 L168 210Z" fill="rgba(255,45,85,0.08)" stroke="rgba(255,45,85,0.3)" stroke-width="0.8"/>
+          <!-- glowing emblem on chest -->
+          <circle cx="150" cy="160" r="12" fill="rgba(255,45,85,0.1)" stroke="rgba(255,45,85,0.5)" stroke-width="1">
+            <animate attributeName="r" values="11;14;11" dur="2.2s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.8;1;0.8" dur="2.2s" repeatCount="indefinite"/>
+          </circle>
+          <text x="150" y="164" text-anchor="middle" font-size="11" font-family="serif" fill="rgba(255,45,85,0.9)" font-weight="bold">VB</text>
+
+          <!-- ── SLEEVES ── -->
+          <path d="M110 136 Q75 162 65 218 Q80 206 92 194 L100 155Z" fill="rgba(25,8,45,0.55)" stroke="rgba(255,45,85,0.4)" stroke-width="1.2"/>
+          <path d="M190 136 Q225 162 235 218 Q220 206 208 194 L200 155Z" fill="rgba(25,8,45,0.55)" stroke="rgba(255,45,85,0.4)" stroke-width="1.2"/>
+
+          <!-- ── LEFT HAND holding phone/envelope ── -->
+          <ellipse cx="72" cy="225" rx="14" ry="10" fill="rgba(255,200,190,0.15)" stroke="rgba(255,45,85,0.4)" stroke-width="1"/>
+          <!-- envelope -->
+          <rect x="55" y="235" width="34" height="24" rx="3" fill="rgba(255,45,85,0.15)" stroke="rgba(255,45,85,0.7)" stroke-width="1.2"/>
+          <path d="M55 235 L72 248 L89 235" stroke="rgba(255,45,85,0.8)" stroke-width="1.2" fill="none"/>
+          <!-- envelope glow -->
+          <rect x="55" y="235" width="34" height="24" rx="3" fill="none" stroke="rgba(255,45,85,0.4)" stroke-width="3" filter="url(#softglow)"/>
+          <!-- mail floating particles -->
+          <circle cx="65" cy="228" r="2" fill="rgba(255,45,85,0.7)"><animate attributeName="cy" values="228;215;228" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite"/></circle>
+          <circle cx="82" cy="222" r="1.5" fill="rgba(255,45,85,0.5)"><animate attributeName="cy" values="222;208;222" dur="2.5s" repeatCount="indefinite"/></circle>
+          <circle cx="72" cy="218" r="1.8" fill="rgba(255,150,150,0.6)"><animate attributeName="cy" values="218;203;218" dur="1.8s" repeatCount="indefinite"/></circle>
+
+          <!-- ── RIGHT HAND raised / waving ── -->
+          <ellipse cx="228" cy="218" rx="14" ry="10" fill="rgba(255,200,190,0.15)" stroke="rgba(255,45,85,0.35)" stroke-width="1"/>
+          <!-- fingers raised -->
+          <line x1="222" y1="213" x2="220" y2="200" stroke="rgba(255,200,190,0.4)" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="227" y1="211" x2="226" y2="196" stroke="rgba(255,200,190,0.4)" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="232" y1="212" x2="232" y2="198" stroke="rgba(255,200,190,0.4)" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="237" y1="214" x2="238" y2="202" stroke="rgba(255,200,190,0.4)" stroke-width="2.5" stroke-linecap="round"/>
+
+          <!-- ── SKIRT ── -->
+          <path d="M112 252 L100 370 L138 375 L150 310 L162 375 L200 370 L188 252Z" fill="rgba(20,5,45,0.55)" stroke="rgba(255,45,85,0.4)" stroke-width="1.2"/>
+          <!-- skirt pleats -->
+          <line x1="122" y1="255" x2="110" y2="368" stroke="rgba(255,45,85,0.15)" stroke-width="0.8"/>
+          <line x1="140" y1="255" x2="133" y2="373" stroke="rgba(255,45,85,0.15)" stroke-width="0.8"/>
+          <line x1="160" y1="255" x2="167" y2="373" stroke="rgba(255,45,85,0.15)" stroke-width="0.8"/>
+          <line x1="178" y1="255" x2="190" y2="368" stroke="rgba(255,45,85,0.15)" stroke-width="0.8"/>
+          <!-- skirt trim -->
+          <path d="M100 370 Q150 380 200 370" stroke="rgba(255,45,85,0.4)" stroke-width="1.2" fill="none"/>
+
+          <!-- ── BOOTS ── -->
+          <path d="M100 368 L92 415 Q98 428 116 424 L120 378Z" fill="rgba(30,8,55,0.7)" stroke="rgba(255,45,85,0.5)" stroke-width="1.2"/>
+          <path d="M200 368 L208 415 Q202 428 184 424 L180 378Z" fill="rgba(30,8,55,0.7)" stroke="rgba(255,45,85,0.5)" stroke-width="1.2"/>
+          <!-- boot highlights -->
+          <line x1="104" y1="378" x2="100" y2="418" stroke="rgba(255,45,85,0.25)" stroke-width="0.8"/>
+          <line x1="196" y1="378" x2="200" y2="418" stroke="rgba(255,45,85,0.25)" stroke-width="0.8"/>
+          <!-- boot soles -->
+          <ellipse cx="104" cy="424" rx="22" ry="6" fill="rgba(255,45,85,0.15)" stroke="rgba(255,45,85,0.4)" stroke-width="1"/>
+          <ellipse cx="196" cy="424" rx="22" ry="6" fill="rgba(255,45,85,0.15)" stroke="rgba(255,45,85,0.4)" stroke-width="1"/>
+
+          <!-- ── SPARKLE STARS around character ── -->
+          <path d="M42 120 L44 112 L46 120 L54 122 L46 124 L44 132 L42 124 L34 122Z" fill="rgba(255,45,85,0.7)"><animate attributeName="opacity" values="0.7;1;0.3;0.9;0.7" dur="2.4s" repeatCount="indefinite"/></path>
+          <path d="M256 95 L257.5 89 L259 95 L265 96.5 L259 98 L257.5 104 L256 98 L250 96.5Z" fill="rgba(6,182,212,0.7)"><animate attributeName="opacity" values="0.3;1;0.6;0.2;0.3" dur="3s" repeatCount="indefinite"/></path>
+          <path d="M38 320 L39.5 314 L41 320 L47 321.5 L41 323 L39.5 329 L38 323 L32 321.5Z" fill="rgba(168,85,247,0.6)"><animate attributeName="opacity" values="0.6;1;0.2;0.8;0.6" dur="3.5s" repeatCount="indefinite"/></path>
+          <path d="M260 300 L261 296 L262 300 L266 301 L262 302 L261 306 L260 302 L256 301Z" fill="rgba(255,45,85,0.5)"><animate attributeName="opacity" values="0.5;1;0.3;0.7;0.5" dur="2.8s" repeatCount="indefinite"/></path>
+
+          <!-- ── FLOATING MESSAGE BUBBLES ── -->
+          <rect x="200" y="130" width="70" height="28" rx="8" fill="rgba(255,45,85,0.15)" stroke="rgba(255,45,85,0.5)" stroke-width="1">
+            <animate attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite"/>
+          </rect>
+          <path d="M200 148 L192 155 L200 152" fill="rgba(255,45,85,0.3)" stroke="rgba(255,45,85,0.5)" stroke-width="0.8"/>
+          <text x="235" y="149" text-anchor="middle" font-size="9" font-family="Orbitron,sans-serif" fill="rgba(255,45,85,0.9)">Hello!</text>
+
+          <rect x="30" y="280" width="60" height="24" rx="8" fill="rgba(6,182,212,0.12)" stroke="rgba(6,182,212,0.45)" stroke-width="1">
+            <animate attributeName="opacity" values="0.6;1;0.6" dur="3.5s" repeatCount="indefinite"/>
+          </rect>
+          <path d="M90 292 L98 298 L90 295" fill="rgba(6,182,212,0.2)" stroke="rgba(6,182,212,0.45)" stroke-width="0.8"/>
+          <text x="60" y="296" text-anchor="middle" font-size="9" font-family="Orbitron,sans-serif" fill="rgba(6,182,212,0.85)">Message!</text>
+        </svg>
+      </div>
+      <div class="char-ground"></div>
+    </div>
+
+    <!-- CHANNEL BADGES -->
+    <div class="channel-badges">
+      <a href="https://www.youtube.com/@DayofVB" target="_blank" class="channel-badge">
+        <img src="channels4_profile.jpg" alt="Day of VB" class="badge-icon"/>
+        <div class="badge-info">
+          <div class="badge-name">Day of VB</div>
+          <div class="badge-handle">@DayofVB · Reviews & Vlogs</div>
+        </div>
+        <span class="badge-arrow">→</span>
+      </a>
+      <a href="https://youtube.com/@vb_gaming01" target="_blank" class="channel-badge purple">
+        <img src="vb_gaming_logo.jpg" alt="VB Gaming" class="badge-icon purple"/>
+        <div class="badge-info">
+          <div class="badge-name">VB Gaming</div>
+          <div class="badge-handle">@vb_gaming01 · Gameplay</div>
+        </div>
+        <span class="badge-arrow">→</span>
+      </a>
+      <a href="mailto:dayofvb@gmail.com" class="channel-badge cyan">
+        <div class="badge-icon cyan" style="background:rgba(6,182,212,0.1);display:flex;align-items:center;justify-content:center;font-size:18px;">✉️</div>
+        <div class="badge-info">
+          <div class="badge-name">Email</div>
+          <div class="badge-handle">dayofvb@gmail.com</div>
+        </div>
+        <span class="badge-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- RIGHT — FORM PANEL -->
+  <div class="form-panel">
+    <div class="form-header">
+      <div class="form-eyebrow">// GET IN TOUCH</div>
+      <h1 class="form-title">Contact <span class="glitch" data-text="Visal">Visal</span></h1>
+      <p class="form-subtitle">Business inquiries, collabs, sponsorships, or just to say hi</p>
+    </div>
+
+    <div class="form-card">
+      <div class="form-scan"></div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" id="fname" placeholder="Your name"/>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="femail" placeholder="your@email.com"/>
+        </div>
+        <div class="form-group form-full">
+          <label>Subject</label>
+          <select id="fsubject">
+            <option value="">Select a topic...</option>
+            <option>Sponsorship / Collaboration</option>
+            <option>Video Suggestion</option>
+            <option>General Question</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group form-full">
+          <label>Message</label>
+          <textarea id="fmessage" placeholder="Write your message here..."></textarea>
+        </div>
+        <div class="form-full">
+          <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+            ✉ SEND MESSAGE
+          </button>
+        </div>
+      </div>
+
+      <!-- SUCCESS OVERLAY -->
+      <div class="success-overlay" id="successOverlay">
+        <div class="success-icon">✅</div>
+        <div class="success-title">Message Sent!</div>
+        <div class="success-sub">Thank you! I'll reply soon 🎮</div>
+        <button class="success-back" onclick="resetForm()">Send Another</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="contact-footer">
+  <a href="index.html">← Home</a> · © 2026 Day of VB · Made with ❤️ in Sri Lanka 🇱🇰
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ── BACKGROUND PARTICLES ── */
+(function(){
+  var c=document.getElementById('contactBg');
+  if(!c)return;
+  var ctx=c.getContext('2d'),W,H,t=0,pts=[];
+  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;init()}
+  function init(){
+    pts=[];
+    var n=Math.min(40,Math.floor(W*H/22000));
+    for(var i=0;i<n;i++) pts.push({x:Math.random()*W,y:Math.random()*H,r:0.8+Math.random()*1.5,vx:(Math.random()-0.5)*0.28,vy:(Math.random()-0.5)*0.28,op:0.08+Math.random()*0.2,ph:Math.random()*Math.PI*2});
+  }
+  function draw(){
+    t+=0.007;ctx.clearRect(0,0,W,H);
+    /* aurora */
+    [{x:W*0.3,y:H*0.4,r:280,c:'rgba(255,45,85,'},{x:W*0.7,y:H*0.6,r:220,c:'rgba(168,85,247,'},{x:W*0.5,y:H*0.2,r:200,c:'rgba(6,182,212,'}].forEach(function(b){
+      var g=ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r);
+      var op=0.05+Math.sin(t+b.r)*0.02;
+      g.addColorStop(0,b.c+op+')');g.addColorStop(0.5,b.c+(op*0.3)+')');g.addColorStop(1,b.c+'0)');
+      ctx.fillStyle=g;ctx.beginPath();ctx.ellipse(b.x,b.y,b.r,b.r*0.6,t*0.05,0,Math.PI*2);ctx.fill();
+    });
+    /* perspective floor */
+    var vpy=H*0.65,flH=H-vpy;
+    ctx.save();ctx.beginPath();ctx.rect(0,vpy,W,flH);ctx.clip();
+    for(var ci=0;ci<=12;ci++){var xf=ci/12,xb=xf*W,xt=W/2+(xb-W/2)*0.01,a=0.03+Math.abs(xf-0.5)*0.05;var gr=ctx.createLinearGradient(xt,vpy,xb,H);gr.addColorStop(0,'rgba(255,45,85,0)');gr.addColorStop(1,'rgba(255,45,85,'+a+')');ctx.strokeStyle=gr;ctx.lineWidth=0.7;ctx.beginPath();ctx.moveTo(xt,vpy);ctx.lineTo(xb,H);ctx.stroke();}
+    for(var ri=0;ri<=8;ri++){var rf=ri/8,py=vpy+flH*(rf*rf);var al=(0.02+rf*0.04)*(0.5+Math.sin(t*0.5+ri*0.4)*0.3);ctx.strokeStyle='rgba(255,45,85,'+al+')';ctx.lineWidth=0.6;ctx.beginPath();ctx.moveTo(W/2-W/2*rf,py);ctx.lineTo(W/2+W/2*rf,py);ctx.stroke();}
+    ctx.restore();
+    /* grid */
+    ctx.strokeStyle='rgba(255,255,255,0.015)';ctx.lineWidth=1;
+    for(var gx=0;gx<W;gx+=80){ctx.beginPath();ctx.moveTo(gx,0);ctx.lineTo(gx,H);ctx.stroke();}
+    for(var gy=0;gy<H;gy+=80){ctx.beginPath();ctx.moveTo(0,gy);ctx.lineTo(W,gy);ctx.stroke();}
+    /* particles */
+    pts.forEach(function(p,i){
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(255,255,255,'+(p.op+Math.sin(t+p.ph)*0.05)+')';ctx.fill();
+      for(var j=i+1;j<pts.length;j++){var q=pts[j],dx=p.x-q.x,dy=p.y-q.y,d=Math.sqrt(dx*dx+dy*dy);if(d<100){ctx.strokeStyle='rgba(255,45,85,'+(1-d/100)*0.06+')';ctx.lineWidth=0.5;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();}}
+    });
+    /* fog */
+    var tf=ctx.createLinearGradient(0,0,0,H*0.2);tf.addColorStop(0,'rgba(6,8,16,0.9)');tf.addColorStop(1,'rgba(6,8,16,0)');ctx.fillStyle=tf;ctx.fillRect(0,0,W,H*0.2);
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',resize);
+  resize();draw();
+})();
+
+/* ── FORM SUBMIT ── */
+async function sendMessage(){
+  var n=document.getElementById('fname').value.trim();
+  var e=document.getElementById('femail').value.trim();
+  var s=document.getElementById('fsubject').value;
+  var m=document.getElementById('fmessage').value.trim();
+  if(!n||!e||!m){showToast('Please fill all fields!','#2A1C1C','#F09595');return;}
+  var btn=document.getElementById('sendBtn');
+  btn.textContent='Sending...';btn.disabled=true;
+  try{
+    var res=await fetch('https://formspree.io/f/mvznygee',{
+      method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({name:n,email:e,subject:s,message:m})
+    });
+    if(res.ok){
+      document.getElementById('successOverlay').classList.add('show');
+    } else {throw new Error('fail');}
+  }catch(err){
+    showToast('Something went wrong. Try again!','#2A1C1C','#F09595');
+  }
+  btn.textContent='✉ SEND MESSAGE';btn.disabled=false;
+}
+
+function resetForm(){
+  document.getElementById('successOverlay').classList.remove('show');
+  document.getElementById('fname').value='';
+  document.getElementById('femail').value='';
+  document.getElementById('fsubject').value='';
+  document.getElementById('fmessage').value='';
+}
+
+function showToast(msg,bg,color){
+  var t=document.getElementById('toast');
+  t.textContent=msg;t.style.background=bg;t.style.color=color;
+  t.style.border='1px solid '+color+'55';
+  t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},3800);
+}
+</script>
+</body>
+</html>
