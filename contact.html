@@ -448,6 +448,8 @@ rimCyan.position.set(3, -1, -2);
 scene.add(rimCyan);
 
 let model = null;
+let baseScale = 1;
+let baseY = 0;
 const loader = new GLTFLoader();
 loader.load(
   'vb_character.glb',
@@ -465,6 +467,8 @@ loader.load(
     model.position.x = -center.x * scale;
     model.position.z = -center.z * scale;
     model.position.y = -box.min.y * scale;
+    baseScale = scale;
+    baseY = model.position.y;
 
     scene.add(model);
   },
@@ -479,9 +483,15 @@ function animate(){
   requestAnimationFrame(animate);
   t += 0.012;
   if (model){
-    /* gentle sway so the character keeps facing forward most of the time,
-       rather than a full spin */
+    /* main sway - keeps the character facing forward most of the time */
     model.rotation.y = Math.sin(t * 0.5) * 0.45;
+    /* subtle counter-tilt so the sway feels less like a metronome */
+    model.rotation.z = Math.sin(t * 0.33 + 1.0) * 0.025;
+    /* gentle breathing pulse */
+    var breathe = 1 + Math.sin(t * 1.4) * 0.014;
+    model.scale.set(baseScale * (1 + Math.sin(t*1.4)*0.008), baseScale * breathe, baseScale * (1 + Math.sin(t*1.4)*0.008));
+    /* small idle weight-shift bob, independent of the CSS float on the wrapper */
+    model.position.y = baseY + Math.sin(t * 0.8) * 0.035;
   }
   renderer.render(scene, camera);
 }
