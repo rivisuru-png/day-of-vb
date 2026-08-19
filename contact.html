@@ -229,139 +229,9 @@
       <span class="rune">ꔪ</span>
       <span class="rune">⍟</span>
 
-      <!-- SVG anime messenger girl -->
+      <!-- 3D anime character (Three.js / GLB) -->
       <div class="char-svg-wrap">
-        <svg viewBox="0 0 300 490" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-          <!-- ── GLOW AURA ── -->
-          <ellipse cx="150" cy="460" rx="90" ry="18" fill="rgba(255,45,85,0.25)" filter="url(#glow)"/>
-          <defs>
-            <filter id="glow"><feGaussianBlur stdDeviation="6" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-            <filter id="softglow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-          </defs>
-
-          <!-- ── LONG FLOWING HAIR (back layer) ── -->
-          <path d="M90 72 Q50 120 42 240 Q58 200 72 175 Q80 138 88 115" fill="rgba(200,30,60,0.35)" stroke="rgba(255,45,85,0.5)" stroke-width="1.2"/>
-          <path d="M96 70 Q70 100 60 180 Q74 155 82 135" fill="rgba(180,20,50,0.28)" stroke="rgba(255,45,85,0.4)" stroke-width="1"/>
-          <path d="M210 72 Q250 120 258 240 Q242 200 228 175 Q220 138 212 115" fill="rgba(200,30,60,0.35)" stroke="rgba(255,45,85,0.5)" stroke-width="1.2"/>
-
-          <!-- ── HAIR TOP ── -->
-          <ellipse cx="150" cy="72" rx="58" ry="55" fill="rgba(160,20,45,0.5)" stroke="rgba(255,45,85,0.75)" stroke-width="1.5"/>
-          <!-- hair spiky top -->
-          <path d="M130 22 Q140 5 150 18 Q155 2 162 16 Q170 0 175 18 Q182 8 185 22" fill="rgba(180,20,50,0.55)" stroke="rgba(255,45,85,0.7)" stroke-width="1.2"/>
-          <!-- hair highlights -->
-          <path d="M118 45 Q125 35 132 48" stroke="rgba(255,150,150,0.4)" stroke-width="1.5" fill="none"/>
-          <path d="M162 35 Q170 25 178 38" stroke="rgba(255,150,150,0.4)" stroke-width="1.5" fill="none"/>
-          <!-- hair pin / ornament -->
-          <circle cx="176" cy="48" r="6" fill="rgba(255,45,85,0.7)" stroke="rgba(255,150,150,0.9)" stroke-width="1.2"/>
-          <circle cx="176" cy="48" r="3" fill="rgba(255,200,200,0.9)"><animate attributeName="opacity" values="0.9;1;0.6;1;0.9" dur="2.5s" repeatCount="indefinite"/></circle>
-          <line x1="182" y1="42" x2="192" y2="32" stroke="rgba(255,45,85,0.7)" stroke-width="1.2"/>
-          <line x1="178" y1="55" x2="190" y2="58" stroke="rgba(255,45,85,0.6)" stroke-width="1"/>
-
-          <!-- ── FACE ── -->
-          <ellipse cx="150" cy="90" rx="36" ry="40" fill="rgba(255,200,190,0.12)" stroke="rgba(255,45,85,0.4)" stroke-width="1"/>
-
-          <!-- ── BIG ANIME EYES ── -->
-          <!-- left eye -->
-          <ellipse cx="135" cy="88" rx="11" ry="13" fill="rgba(255,45,85,0.12)" stroke="rgba(255,45,85,0.75)" stroke-width="1.5"/>
-          <ellipse cx="135" cy="88" rx="8" ry="10" fill="rgba(255,45,85,0.85)"/>
-          <ellipse cx="135" cy="88" rx="4.5" ry="6" fill="rgba(120,0,30,0.9)"/>
-          <ellipse cx="132" cy="85" rx="2.5" ry="3" fill="white" opacity="0.95"/>
-          <ellipse cx="137" cy="91" rx="1.2" ry="1.5" fill="white" opacity="0.6"/>
-          <!-- right eye -->
-          <ellipse cx="165" cy="88" rx="11" ry="13" fill="rgba(255,45,85,0.12)" stroke="rgba(255,45,85,0.75)" stroke-width="1.5"/>
-          <ellipse cx="165" cy="88" rx="8" ry="10" fill="rgba(255,45,85,0.85)"/>
-          <ellipse cx="165" cy="88" rx="4.5" ry="6" fill="rgba(120,0,30,0.9)"/>
-          <ellipse cx="162" cy="85" rx="2.5" ry="3" fill="white" opacity="0.95"/>
-          <ellipse cx="167" cy="91" rx="1.2" ry="1.5" fill="white" opacity="0.6"/>
-          <!-- eyelashes -->
-          <path d="M124 79 L127 75 M131 76 L133 72 M138 76 L139 72 M144 79 L147 76" stroke="rgba(255,45,85,0.8)" stroke-width="1.2"/>
-          <path d="M154 79 L157 76 M161 76 L162 72 M167 76 L169 72 M174 79 L177 75" stroke="rgba(255,45,85,0.8)" stroke-width="1.2"/>
-          <!-- blush -->
-          <ellipse cx="122" cy="100" rx="10" ry="5" fill="rgba(255,45,85,0.2)"/>
-          <ellipse cx="178" cy="100" rx="10" ry="5" fill="rgba(255,45,85,0.2)"/>
-          <!-- nose + smile -->
-          <circle cx="150" cy="108" r="2" fill="rgba(255,100,100,0.5)"/>
-          <path d="M140 116 Q150 122 160 116" stroke="rgba(255,120,120,0.7)" stroke-width="1.5" fill="none"/>
-
-          <!-- ── HOODIE / JACKET ── -->
-          <path d="M110 132 L98 240 L150 255 L202 240 L190 132 Q172 118 150 115 Q128 118 110 132Z" fill="rgba(30,10,50,0.6)" stroke="rgba(255,45,85,0.45)" stroke-width="1.3"/>
-          <!-- hoodie details — zip line -->
-          <line x1="150" y1="132" x2="150" y2="255" stroke="rgba(255,45,85,0.35)" stroke-width="1"/>
-          <!-- collar -->
-          <path d="M132 130 Q150 138 168 130 Q162 120 150 118 Q138 120 132 130Z" fill="rgba(20,5,40,0.7)" stroke="rgba(255,45,85,0.55)" stroke-width="1"/>
-          <!-- pocket lines -->
-          <path d="M116 190 L130 188 L132 210 L118 210Z" fill="rgba(255,45,85,0.08)" stroke="rgba(255,45,85,0.3)" stroke-width="0.8"/>
-          <path d="M170 190 L184 188 L182 210 L168 210Z" fill="rgba(255,45,85,0.08)" stroke="rgba(255,45,85,0.3)" stroke-width="0.8"/>
-          <!-- glowing emblem on chest -->
-          <circle cx="150" cy="160" r="12" fill="rgba(255,45,85,0.1)" stroke="rgba(255,45,85,0.5)" stroke-width="1">
-            <animate attributeName="r" values="11;14;11" dur="2.2s" repeatCount="indefinite"/>
-            <animate attributeName="opacity" values="0.8;1;0.8" dur="2.2s" repeatCount="indefinite"/>
-          </circle>
-          <text x="150" y="164" text-anchor="middle" font-size="11" font-family="serif" fill="rgba(255,45,85,0.9)" font-weight="bold">VB</text>
-
-          <!-- ── SLEEVES ── -->
-          <path d="M110 136 Q75 162 65 218 Q80 206 92 194 L100 155Z" fill="rgba(25,8,45,0.55)" stroke="rgba(255,45,85,0.4)" stroke-width="1.2"/>
-          <path d="M190 136 Q225 162 235 218 Q220 206 208 194 L200 155Z" fill="rgba(25,8,45,0.55)" stroke="rgba(255,45,85,0.4)" stroke-width="1.2"/>
-
-          <!-- ── LEFT HAND holding phone/envelope ── -->
-          <ellipse cx="72" cy="225" rx="14" ry="10" fill="rgba(255,200,190,0.15)" stroke="rgba(255,45,85,0.4)" stroke-width="1"/>
-          <!-- envelope -->
-          <rect x="55" y="235" width="34" height="24" rx="3" fill="rgba(255,45,85,0.15)" stroke="rgba(255,45,85,0.7)" stroke-width="1.2"/>
-          <path d="M55 235 L72 248 L89 235" stroke="rgba(255,45,85,0.8)" stroke-width="1.2" fill="none"/>
-          <!-- envelope glow -->
-          <rect x="55" y="235" width="34" height="24" rx="3" fill="none" stroke="rgba(255,45,85,0.4)" stroke-width="3" filter="url(#softglow)"/>
-          <!-- mail floating particles -->
-          <circle cx="65" cy="228" r="2" fill="rgba(255,45,85,0.7)"><animate attributeName="cy" values="228;215;228" dur="2s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite"/></circle>
-          <circle cx="82" cy="222" r="1.5" fill="rgba(255,45,85,0.5)"><animate attributeName="cy" values="222;208;222" dur="2.5s" repeatCount="indefinite"/></circle>
-          <circle cx="72" cy="218" r="1.8" fill="rgba(255,150,150,0.6)"><animate attributeName="cy" values="218;203;218" dur="1.8s" repeatCount="indefinite"/></circle>
-
-          <!-- ── RIGHT HAND raised / waving ── -->
-          <ellipse cx="228" cy="218" rx="14" ry="10" fill="rgba(255,200,190,0.15)" stroke="rgba(255,45,85,0.35)" stroke-width="1"/>
-          <!-- fingers raised -->
-          <line x1="222" y1="213" x2="220" y2="200" stroke="rgba(255,200,190,0.4)" stroke-width="2.5" stroke-linecap="round"/>
-          <line x1="227" y1="211" x2="226" y2="196" stroke="rgba(255,200,190,0.4)" stroke-width="2.5" stroke-linecap="round"/>
-          <line x1="232" y1="212" x2="232" y2="198" stroke="rgba(255,200,190,0.4)" stroke-width="2.5" stroke-linecap="round"/>
-          <line x1="237" y1="214" x2="238" y2="202" stroke="rgba(255,200,190,0.4)" stroke-width="2.5" stroke-linecap="round"/>
-
-          <!-- ── SKIRT ── -->
-          <path d="M112 252 L100 370 L138 375 L150 310 L162 375 L200 370 L188 252Z" fill="rgba(20,5,45,0.55)" stroke="rgba(255,45,85,0.4)" stroke-width="1.2"/>
-          <!-- skirt pleats -->
-          <line x1="122" y1="255" x2="110" y2="368" stroke="rgba(255,45,85,0.15)" stroke-width="0.8"/>
-          <line x1="140" y1="255" x2="133" y2="373" stroke="rgba(255,45,85,0.15)" stroke-width="0.8"/>
-          <line x1="160" y1="255" x2="167" y2="373" stroke="rgba(255,45,85,0.15)" stroke-width="0.8"/>
-          <line x1="178" y1="255" x2="190" y2="368" stroke="rgba(255,45,85,0.15)" stroke-width="0.8"/>
-          <!-- skirt trim -->
-          <path d="M100 370 Q150 380 200 370" stroke="rgba(255,45,85,0.4)" stroke-width="1.2" fill="none"/>
-
-          <!-- ── BOOTS ── -->
-          <path d="M100 368 L92 415 Q98 428 116 424 L120 378Z" fill="rgba(30,8,55,0.7)" stroke="rgba(255,45,85,0.5)" stroke-width="1.2"/>
-          <path d="M200 368 L208 415 Q202 428 184 424 L180 378Z" fill="rgba(30,8,55,0.7)" stroke="rgba(255,45,85,0.5)" stroke-width="1.2"/>
-          <!-- boot highlights -->
-          <line x1="104" y1="378" x2="100" y2="418" stroke="rgba(255,45,85,0.25)" stroke-width="0.8"/>
-          <line x1="196" y1="378" x2="200" y2="418" stroke="rgba(255,45,85,0.25)" stroke-width="0.8"/>
-          <!-- boot soles -->
-          <ellipse cx="104" cy="424" rx="22" ry="6" fill="rgba(255,45,85,0.15)" stroke="rgba(255,45,85,0.4)" stroke-width="1"/>
-          <ellipse cx="196" cy="424" rx="22" ry="6" fill="rgba(255,45,85,0.15)" stroke="rgba(255,45,85,0.4)" stroke-width="1"/>
-
-          <!-- ── SPARKLE STARS around character ── -->
-          <path d="M42 120 L44 112 L46 120 L54 122 L46 124 L44 132 L42 124 L34 122Z" fill="rgba(255,45,85,0.7)"><animate attributeName="opacity" values="0.7;1;0.3;0.9;0.7" dur="2.4s" repeatCount="indefinite"/></path>
-          <path d="M256 95 L257.5 89 L259 95 L265 96.5 L259 98 L257.5 104 L256 98 L250 96.5Z" fill="rgba(6,182,212,0.7)"><animate attributeName="opacity" values="0.3;1;0.6;0.2;0.3" dur="3s" repeatCount="indefinite"/></path>
-          <path d="M38 320 L39.5 314 L41 320 L47 321.5 L41 323 L39.5 329 L38 323 L32 321.5Z" fill="rgba(168,85,247,0.6)"><animate attributeName="opacity" values="0.6;1;0.2;0.8;0.6" dur="3.5s" repeatCount="indefinite"/></path>
-          <path d="M260 300 L261 296 L262 300 L266 301 L262 302 L261 306 L260 302 L256 301Z" fill="rgba(255,45,85,0.5)"><animate attributeName="opacity" values="0.5;1;0.3;0.7;0.5" dur="2.8s" repeatCount="indefinite"/></path>
-
-          <!-- ── FLOATING MESSAGE BUBBLES ── -->
-          <rect x="200" y="130" width="70" height="28" rx="8" fill="rgba(255,45,85,0.15)" stroke="rgba(255,45,85,0.5)" stroke-width="1">
-            <animate attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite"/>
-          </rect>
-          <path d="M200 148 L192 155 L200 152" fill="rgba(255,45,85,0.3)" stroke="rgba(255,45,85,0.5)" stroke-width="0.8"/>
-          <text x="235" y="149" text-anchor="middle" font-size="9" font-family="Orbitron,sans-serif" fill="rgba(255,45,85,0.9)">Hello!</text>
-
-          <rect x="30" y="280" width="60" height="24" rx="8" fill="rgba(6,182,212,0.12)" stroke="rgba(6,182,212,0.45)" stroke-width="1">
-            <animate attributeName="opacity" values="0.6;1;0.6" dur="3.5s" repeatCount="indefinite"/>
-          </rect>
-          <path d="M90 292 L98 298 L90 295" fill="rgba(6,182,212,0.2)" stroke="rgba(6,182,212,0.45)" stroke-width="0.8"/>
-          <text x="60" y="296" text-anchor="middle" font-size="9" font-family="Orbitron,sans-serif" fill="rgba(6,182,212,0.85)">Message!</text>
-        </svg>
+        <canvas id="char3d" style="width:100%;height:100%;display:block"></canvas>
       </div>
       <div class="char-ground"></div>
     </div>
@@ -537,6 +407,92 @@ function showToast(msg,bg,color){
   t.classList.add('show');
   setTimeout(function(){t.classList.remove('show');},3800);
 }
+</script>
+
+<!-- ── 3D CHARACTER VIEWER ── -->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+const canvas = document.getElementById('char3d');
+const wrap = canvas.parentElement;
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(35, wrap.clientWidth / wrap.clientHeight, 0.1, 100);
+camera.position.set(0, 1.3, 4.6);
+camera.lookAt(0, 1.15, 0);
+
+const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+renderer.setSize(wrap.clientWidth, wrap.clientHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+/* lighting matched to the site's neon red/cyan palette */
+scene.add(new THREE.AmbientLight(0xffffff, 0.75));
+const keyLight = new THREE.DirectionalLight(0xffffff, 1.3);
+keyLight.position.set(2, 4, 3);
+scene.add(keyLight);
+const rimRed = new THREE.DirectionalLight(0xff2d55, 1.2);
+rimRed.position.set(-3, 1.5, -2);
+scene.add(rimRed);
+const rimCyan = new THREE.DirectionalLight(0x06b6d4, 0.5);
+rimCyan.position.set(3, -1, -2);
+scene.add(rimCyan);
+
+let model = null;
+const loader = new GLTFLoader();
+loader.load(
+  'vb_character.glb',
+  function(gltf){
+    model = gltf.scene;
+
+    const box = new THREE.Box3().setFromObject(model);
+    const size = new THREE.Vector3();
+    box.getSize(size);
+    const center = new THREE.Vector3();
+    box.getCenter(center);
+    const maxDim = Math.max(size.x, size.y, size.z);
+    const scale = 2.4 / maxDim;
+    model.scale.setScalar(scale);
+    model.position.x = -center.x * scale;
+    model.position.z = -center.z * scale;
+    model.position.y = -box.min.y * scale;
+
+    scene.add(model);
+  },
+  undefined,
+  function(err){
+    console.error('Character load error:', err);
+  }
+);
+
+let t = 0;
+function animate(){
+  requestAnimationFrame(animate);
+  t += 0.012;
+  if (model){
+    /* gentle sway so the character keeps facing forward most of the time,
+       rather than a full spin */
+    model.rotation.y = Math.sin(t * 0.5) * 0.45;
+  }
+  renderer.render(scene, camera);
+}
+animate();
+
+window.addEventListener('resize', function(){
+  var w = wrap.clientWidth, h = wrap.clientHeight;
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+  renderer.setSize(w, h);
+});
 </script>
 </body>
 </html>
