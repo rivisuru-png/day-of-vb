@@ -456,6 +456,7 @@ rimCyan.position.set(3, -1, -2);
 scene.add(rimCyan);
 
 let model = null;
+let mixer = null;
 let baseScale = 1;
 let baseY = 0;
 const loader = new GLTFLoader();
@@ -478,6 +479,29 @@ loader.load(
     baseScale = scale;
     baseY = model.position.y;
 
+    /* this model currently has no embedded clips, but if a future export
+       ever adds them, pick up a wave/hello clip once then settle into a
+       looping idle clip automatically - otherwise the procedural sway/
+       breathing/bob below keeps handling it exactly as now */
+    if (gltf.animations && gltf.animations.length){
+      mixer = new THREE.AnimationMixer(model);
+      var greet = gltf.animations.find(function(c){ return /wave|hello|greet/i.test(c.name); });
+      var idle = gltf.animations.find(function(c){ return /idle|breath/i.test(c.name); }) || gltf.animations[0];
+      if (greet){
+        var greetAction = mixer.clipAction(greet);
+        greetAction.setLoop(THREE.LoopOnce);
+        greetAction.clampWhenFinished = true;
+        greetAction.play();
+        if (idle){
+          mixer.addEventListener('finished', function(){
+            mixer.clipAction(idle).reset().fadeIn(0.4).play();
+          });
+        }
+      } else if (idle){
+        mixer.clipAction(idle).play();
+      }
+    }
+
     scene.add(model);
   },
   undefined,
@@ -486,10 +510,14 @@ loader.load(
   }
 );
 
-let t = 0;
+const clock = new THREE.Clock();
+let elapsed = 0;
 function animate(){
   requestAnimationFrame(animate);
-  t += 0.012;
+  var delta = clock.getDelta();
+  if (mixer) mixer.update(delta);
+  elapsed += delta * 0.72; /* keeps the previously-tuned speeds, now frame-rate independent */
+  var t = elapsed;
   if (model){
     /* main sway - a bit bigger and slightly faster than before */
     model.rotation.y = Math.sin(t * 0.55) * 0.55;
