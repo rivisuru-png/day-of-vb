@@ -2331,7 +2331,7 @@
     <span></span><span></span><span></span>
   </button>
 </nav>
-<nav class="nav-sub" id="navSub">
+<nav class="nav-sub" id="navSub" style="display:none">
   <a href="#videos" onclick="toggleMenu()">Videos</a>
   <a href="#blog" onclick="toggleMenu()">Blog</a>
   <a href="#shop" onclick="toggleMenu()">Shop</a>
@@ -2910,7 +2910,9 @@
 
 <script>
   function toggleMenu() {
-    document.getElementById('navSub').classList.toggle('open');
+    var el = document.getElementById('navSub');
+    var isOpen = el.classList.toggle('open');
+    el.style.display = isOpen ? 'flex' : 'none';
   }
 
   function openShop() {
