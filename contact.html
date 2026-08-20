@@ -254,11 +254,11 @@
         </div>
         <span class="badge-arrow">→</span>
       </a>
-      <a href="mailto:dayofvb@gmail.com" class="channel-badge cyan">
+      <a href="mailto:officevb307@gmail.com" class="channel-badge cyan">
         <div class="badge-icon cyan" style="background:rgba(6,182,212,0.1);display:flex;align-items:center;justify-content:center;font-size:18px;">✉️</div>
         <div class="badge-info">
           <div class="badge-name">Email</div>
-          <div class="badge-handle">dayofvb@gmail.com</div>
+          <div class="badge-handle">officevb307@gmail.com</div>
         </div>
         <span class="badge-arrow">→</span>
       </a>
@@ -491,15 +491,26 @@ function animate(){
   requestAnimationFrame(animate);
   t += 0.012;
   if (model){
-    /* main sway - keeps the character facing forward most of the time */
-    model.rotation.y = Math.sin(t * 0.5) * 0.45;
-    /* subtle counter-tilt so the sway feels less like a metronome */
-    model.rotation.z = Math.sin(t * 0.33 + 1.0) * 0.025;
-    /* gentle breathing pulse */
-    var breathe = 1 + Math.sin(t * 1.4) * 0.014;
-    model.scale.set(baseScale * (1 + Math.sin(t*1.4)*0.008), baseScale * breathe, baseScale * (1 + Math.sin(t*1.4)*0.008));
-    /* small idle weight-shift bob, independent of the CSS float on the wrapper */
-    model.position.y = baseY + Math.sin(t * 0.8) * 0.035;
+    /* main sway - a bit bigger and slightly faster than before */
+    model.rotation.y = Math.sin(t * 0.55) * 0.55;
+    /* second rotation axis so it reads as alive, not a single-axis metronome */
+    model.rotation.x = Math.sin(t * 0.4 + 0.6) * 0.035;
+    model.rotation.z = Math.sin(t * 0.33 + 1.0) * 0.03;
+
+    /* breathing pulse */
+    var breathe = 1 + Math.sin(t * 1.4) * 0.016;
+    var breatheXZ = 1 + Math.sin(t * 1.4) * 0.009;
+
+    /* periodic "perk" bounce every ~5s - a quick, clearly visible bounce
+       so the motion reads at a glance, not just continuous subtle sway */
+    var cyclePos = (t % 5.0) / 5.0;
+    var perk = 0;
+    if (cyclePos < 0.25) {
+      perk = Math.sin(cyclePos / 0.25 * Math.PI) * 0.09;
+    }
+
+    model.scale.set(baseScale * breatheXZ, baseScale * (breathe + perk * 0.4), baseScale * breatheXZ);
+    model.position.y = baseY + Math.sin(t * 0.8) * 0.035 + perk * 0.5;
   }
   renderer.render(scene, camera);
 }
