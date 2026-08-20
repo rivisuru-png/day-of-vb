@@ -751,7 +751,10 @@
         top: 60px;
         left: 0;
         right: 0;
-        background: var(--bg2);
+        height: auto;
+        max-height: calc(100vh - 60px);
+        overflow-y: auto;
+        background: var(--bg2) !important;
         border-bottom: 1px solid var(--border);
         padding: 16px 24px;
         display: none;
