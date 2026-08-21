@@ -438,9 +438,15 @@ const camera = new THREE.PerspectiveCamera(35, wrap.clientWidth / wrap.clientHei
 camera.position.set(0, 1.3, 4.6);
 camera.lookAt(0, 1.15, 0);
 
-const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+/* ~4GB-or-less devices get a lighter setup: no MSAA, lower pixel cap,
+   one fewer light. navigator.deviceMemory isn't supported everywhere
+   (e.g. Safari) so this only trims quality where it's actually known
+   to be low-end, never guesses low-end from its absence. */
+const isLowEnd = !!(navigator.deviceMemory && navigator.deviceMemory <= 4);
+
+const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: !isLowEnd });
 renderer.setSize(wrap.clientWidth, wrap.clientHeight);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, isLowEnd ? 1 : 1.5));
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 
 /* lighting matched to the site's neon red/cyan palette */
@@ -451,9 +457,11 @@ scene.add(keyLight);
 const rimRed = new THREE.DirectionalLight(0xff2d55, 1.2);
 rimRed.position.set(-3, 1.5, -2);
 scene.add(rimRed);
-const rimCyan = new THREE.DirectionalLight(0x06b6d4, 0.5);
-rimCyan.position.set(3, -1, -2);
-scene.add(rimCyan);
+if (!isLowEnd){
+  const rimCyan = new THREE.DirectionalLight(0x06b6d4, 0.5);
+  rimCyan.position.set(3, -1, -2);
+  scene.add(rimCyan);
+}
 
 let model = null;
 let mixer = null;
