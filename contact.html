@@ -231,7 +231,7 @@
 
       <!-- 3D anime character (Three.js / GLB) -->
       <div class="char-svg-wrap">
-        <canvas id="char3d" style="width:100%;height:100%;display:block"></canvas>
+        <canvas id="char3d" style="width:100%;height:100%;display:block;cursor:pointer" title="Click me"></canvas>
       </div>
       <div class="char-ground"></div>
     </div>
@@ -520,6 +520,10 @@ loader.load(
 
 const clock = new THREE.Clock();
 let elapsed = 0;
+let angryUntil = -1;
+canvas.addEventListener('click', function(){
+  angryUntil = elapsed + 0.9;
+});
 function animate(){
   requestAnimationFrame(animate);
   var delta = clock.getDelta();
@@ -547,6 +551,21 @@ function animate(){
 
     model.scale.set(baseScale * breatheXZ, baseScale * (breathe + perk * 0.4), baseScale * breatheXZ);
     model.position.y = baseY + Math.sin(t * 0.8) * 0.035 + perk * 0.5;
+
+    /* click-triggered "angry" reaction: sharp fast shake + red flash,
+       since the uploaded Mixamo clip can't drive this model (different
+       skeleton, and the mesh isn't skinned to its own armature either) */
+    var angryLeft = angryUntil - t;
+    if (angryLeft > 0){
+      var decay = Math.min(1, angryLeft / 0.9);
+      model.rotation.z += Math.sin(t * 45) * 0.05 * decay;
+      model.rotation.y += Math.sin(t * 38 + 1) * 0.04 * decay;
+      model.position.x = Math.sin(t * 50) * 0.025 * decay;
+      rimRed.intensity = 1.2 + decay * 2.2;
+    } else {
+      model.position.x = 0;
+      rimRed.intensity = 1.2;
+    }
   }
   renderer.render(scene, camera);
 }
