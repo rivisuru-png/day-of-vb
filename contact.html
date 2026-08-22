@@ -465,6 +465,7 @@ if (!isLowEnd){
 
 let model = null;
 let mixer = null;
+let headPivot = null;
 let baseScale = 1;
 let baseY = 0;
 const loader = new GLTFLoader();
@@ -510,6 +511,23 @@ loader.load(
       }
     }
 
+    /* head + hair get their own pivot near the neck, so the head can
+       subtly turn toward the cursor independent of the body sway */
+    var headObj = model.getObjectByName('Cabeza.001');
+    var hairObj = model.getObjectByName('export.001');
+    if (headObj || hairObj){
+      headPivot = new THREE.Group();
+      var headBox = new THREE.Box3();
+      if (headObj) headBox.expandByObject(headObj);
+      if (hairObj) headBox.expandByObject(hairObj);
+      var headCenter = new THREE.Vector3();
+      headBox.getCenter(headCenter);
+      headPivot.position.set(headCenter.x, headBox.min.y + (headBox.max.y - headBox.min.y) * 0.12, headCenter.z);
+      model.add(headPivot);
+      if (headObj) headPivot.attach(headObj);
+      if (hairObj) headPivot.attach(hairObj);
+    }
+
     scene.add(model);
   },
   undefined,
@@ -524,6 +542,22 @@ let angryUntil = -1;
 canvas.addEventListener('click', function(){
   angryUntil = elapsed + 0.9;
 });
+
+/* the character's head turns toward the cursor - falls back to a gentle
+   idle look-around when there's no recent pointer input (e.g. mobile) */
+let mouseTargetX = 0, mouseTargetY = 0, lastPointerTime = 0;
+window.addEventListener('mousemove', function(e){
+  mouseTargetX = (e.clientX / window.innerWidth) * 2 - 1;
+  mouseTargetY = (e.clientY / window.innerHeight) * 2 - 1;
+  lastPointerTime = performance.now();
+});
+window.addEventListener('touchmove', function(e){
+  if (e.touches && e.touches[0]){
+    mouseTargetX = (e.touches[0].clientX / window.innerWidth) * 2 - 1;
+    mouseTargetY = (e.touches[0].clientY / window.innerHeight) * 2 - 1;
+    lastPointerTime = performance.now();
+  }
+}, { passive: true });
 function animate(){
   requestAnimationFrame(animate);
   var delta = clock.getDelta();
@@ -565,6 +599,22 @@ function animate(){
     } else {
       model.position.x = 0;
       rimRed.intensity = 1.2;
+    }
+
+    /* "living" head turn - tracks the cursor, with a gentle idle
+       look-around fallback when there's no recent pointer input */
+    if (headPivot){
+      var idlePointer = (performance.now() - lastPointerTime) > 2500;
+      var targetYaw, targetPitch;
+      if (idlePointer){
+        targetYaw = Math.sin(t * 0.35) * 0.25;
+        targetPitch = Math.sin(t * 0.27 + 1) * 0.08;
+      } else {
+        targetYaw = mouseTargetX * 0.4;
+        targetPitch = -mouseTargetY * 0.22;
+      }
+      headPivot.rotation.y += (targetYaw - headPivot.rotation.y) * 0.06;
+      headPivot.rotation.x += (targetPitch - headPivot.rotation.x) * 0.06;
     }
   }
   renderer.render(scene, camera);
