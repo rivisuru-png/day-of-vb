@@ -58,7 +58,12 @@
     + '#vbAchToast .vbAchIcon{font-size:24px}'
     + '#vbAchToast .vbAchToastLabel{font-size:10px;color:#FF2D55;font-family:"Orbitron",sans-serif;'
     + 'letter-spacing:0.05em;text-transform:uppercase}'
-    + '#vbAchToast .vbAchName{font-size:13px;color:#fff}';
+    + '#vbAchToast .vbAchName{font-size:13px;color:#fff}'
+    + '#vbAchToast.vbAchClickable{cursor:pointer;border-color:#FFD24C;box-shadow:0 0 24px rgba(255,210,76,0.5)}'
+    + '.vbAchSecretLink{font-size:10px;color:#FFD24C;margin-top:2px}'
+    + '#vbAchSecretRow{display:flex;align-items:center;gap:10px;padding:10px 6px;margin-top:8px;'
+    + 'border-top:1px solid rgba(255,210,76,0.25);cursor:pointer;color:#FFD24C;font-size:12px;font-weight:700}'
+    + '#vbAchSecretRow:hover{text-shadow:0 0 8px #FFD24C}';
   var styleEl = document.createElement('style');
   styleEl.textContent = css;
   document.head.appendChild(styleEl);
@@ -79,17 +84,32 @@
           + '<div class="vbAchDesc">' + (isUnlocked ? a.desc : 'Not unlocked yet') + '</div></div>'
           + '</div>';
       }).join('');
+      var oldRow = document.getElementById('vbAchSecretRow');
+      if (oldRow) oldRow.remove();
+      if (unlocked['complete']){
+        var row = document.createElement('div');
+        row.id = 'vbAchSecretRow';
+        row.innerHTML = '🔓 Open your secret reward →';
+        row.addEventListener('click', function(){ window.location.href = 'secret.html'; });
+        list.parentNode.appendChild(row);
+      }
     }
   }
 
   function showToast(a){
     var toast = document.getElementById('vbAchToast');
     if (!toast) return;
-    toast.innerHTML = '<div class="vbAchIcon">' + a.icon + '</div>'
+    var isComplete = a.id === 'complete';
+    var inner = '<div class="vbAchIcon">' + a.icon + '</div>'
       + '<div><div class="vbAchToastLabel">Achievement Unlocked</div>'
-      + '<div class="vbAchName">' + a.name + '</div></div>';
+      + '<div class="vbAchName">' + a.name + '</div>'
+      + (isComplete ? '<div class="vbAchSecretLink">🔓 Tap to open your reward →</div>' : '')
+      + '</div>';
+    toast.innerHTML = inner;
+    toast.onclick = isComplete ? function(){ window.location.href = 'secret.html'; } : null;
+    toast.classList.toggle('vbAchClickable', isComplete);
     toast.classList.add('show');
-    setTimeout(function(){ toast.classList.remove('show'); }, 3200);
+    setTimeout(function(){ toast.classList.remove('show'); }, isComplete ? 6000 : 3200);
   }
 
   window.unlockAchievement = function(id){
