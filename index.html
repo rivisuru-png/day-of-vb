@@ -2399,26 +2399,39 @@
 <!-- LATEST UPDATE -->
 <section id="updates" style="position:relative;z-index:1;padding:0 24px 50px;max-width:900px;margin:0 auto">
   <style>
-    .upd-latest{background:linear-gradient(135deg,rgba(255,45,85,0.1),rgba(6,182,212,0.06));
-      border:1px solid rgba(255,45,85,0.35);border-radius:16px;padding:22px 26px;
-      display:flex;align-items:center;gap:16px;flex-wrap:wrap;box-shadow:0 0 30px rgba(255,45,85,0.08)}
-    .upd-dot{width:10px;height:10px;border-radius:50%;background:#FF2D55;flex-shrink:0;
-      box-shadow:0 0 10px #FF2D55;animation:updPulse 1.6s ease-in-out infinite}
-    @keyframes updPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}}
+    .upd-latest{position:relative;overflow:hidden;
+      background:
+        repeating-linear-gradient(0deg,rgba(92,158,49,0.05) 0 8px,rgba(0,0,0,0) 8px 16px),
+        repeating-linear-gradient(90deg,rgba(92,158,49,0.05) 0 8px,rgba(0,0,0,0) 8px 16px),
+        linear-gradient(135deg,rgba(92,158,49,0.12),rgba(139,90,43,0.08));
+      border:3px solid #5C9E31;border-radius:2px;padding:22px 26px 22px 90px;
+      display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+      box-shadow:0 0 0 3px #060810,0 0 0 6px #3E6B21,0 0 30px rgba(92,158,49,0.15)}
+    .upd-block{position:absolute;left:22px;top:50%;transform:translateY(-50%);
+      width:52px;height:52px;image-rendering:pixelated;
+      box-shadow:0 0 0 2px #060810,0 0 14px rgba(92,158,49,0.4)}
+    .upd-block-top{position:absolute;top:0;left:0;right:0;height:35%;background:#6BAA37;
+      box-shadow:inset -4px -4px 0 rgba(0,0,0,0.15),inset 4px 4px 0 rgba(255,255,255,0.15)}
+    .upd-block-side{position:absolute;top:35%;left:0;right:0;bottom:0;background:#8B5A2B;
+      box-shadow:inset -4px -4px 0 rgba(0,0,0,0.2),inset 4px 4px 0 rgba(255,255,255,0.08)}
+    .upd-block-side::before,.upd-block-side::after{content:'';position:absolute;width:20%;height:22%;background:rgba(0,0,0,0.18)}
+    .upd-block-side::before{top:15%;left:15%}
+    .upd-block-side::after{bottom:12%;right:20%}
     .upd-tag{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em;
-      text-transform:uppercase;color:#FF2D55}
+      text-transform:uppercase;color:#8BD450;text-shadow:2px 2px 0 #1a3a0a}
     .upd-latest p{margin-top:4px;font-size:15px;color:#F0F0F0;line-height:1.5}
-    .upd-latest .upd-date{font-size:11px;color:#6B6C78;margin-left:auto;white-space:nowrap}
+    .upd-latest .upd-date{font-size:11px;color:#6B6C78;margin-left:auto;white-space:nowrap;font-family:'Orbitron',sans-serif}
     .upd-log{margin-top:14px;display:flex;flex-direction:column;gap:0}
     .upd-item{display:flex;gap:14px;padding:12px 6px;border-bottom:1px solid rgba(255,255,255,0.06);
       font-size:13px;color:#9A9BA8}
     .upd-item .upd-date{flex-shrink:0;width:80px;color:#6B6C78;font-family:'Orbitron',sans-serif;font-size:10px}
+    @media(max-width:600px){.upd-latest{padding:70px 20px 20px}.upd-block{left:20px;top:16px;transform:none;width:40px;height:40px}}
   </style>
   <div class="upd-latest">
-    <div class="upd-dot"></div>
+    <div class="upd-block"><div class="upd-block-top"></div><div class="upd-block-side"></div></div>
     <div>
-      <div class="upd-tag">📢 Latest Update</div>
-      <p>Starting a brand new <strong>Minecraft gameplay series</strong> soon — Sinhala commentary, survival mode, the usual chaos. Subscribe so you don't miss episode 1! 🎮⛏️</p>
+      <div class="upd-tag">⛏️ Latest Update</div>
+      <p>Starting a brand new <strong>Minecraft gameplay series</strong> soon — Sinhala commentary, survival mode, the usual chaos. Subscribe so you don't miss episode 1! 🎮🧱</p>
     </div>
     <div class="upd-date">Aug 2026</div>
   </div>
