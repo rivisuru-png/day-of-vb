@@ -2319,6 +2319,7 @@
 <nav>
   <a href="#" class="nav-logo"><img src="channels4_profile.jpg" alt="Day of VB" class="nav-logo-img" /><span class="nav-logo-text">Day of <span>VB</span></span></a>
   <ul class="nav-links">
+    <li><a href="#updates" style="color:#FF2D55;font-weight:600">📢 Updates</a></li>
     <li><a href="#videos">Videos</a></li>
     <li><a href="#blog">Blog</a></li>
     <li><a href="#shop">Shop</a></li>
@@ -2332,6 +2333,7 @@
   </button>
 </nav>
 <nav class="nav-sub" id="navSub" style="display:none">
+  <a href="#updates" onclick="toggleMenu()" style="color:#FF2D55;font-weight:600">📢 Updates</a>
   <a href="#videos" onclick="toggleMenu()">Videos</a>
   <a href="#blog" onclick="toggleMenu()">Blog</a>
   <a href="#shop" onclick="toggleMenu()">Shop</a>
@@ -2394,6 +2396,42 @@
   </div>
 </section>
 
+<!-- LATEST UPDATE -->
+<section id="updates" style="position:relative;z-index:1;padding:0 24px 50px;max-width:900px;margin:0 auto">
+  <style>
+    .upd-latest{background:linear-gradient(135deg,rgba(255,45,85,0.1),rgba(6,182,212,0.06));
+      border:1px solid rgba(255,45,85,0.35);border-radius:16px;padding:22px 26px;
+      display:flex;align-items:center;gap:16px;flex-wrap:wrap;box-shadow:0 0 30px rgba(255,45,85,0.08)}
+    .upd-dot{width:10px;height:10px;border-radius:50%;background:#FF2D55;flex-shrink:0;
+      box-shadow:0 0 10px #FF2D55;animation:updPulse 1.6s ease-in-out infinite}
+    @keyframes updPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.8)}}
+    .upd-tag{font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em;
+      text-transform:uppercase;color:#FF2D55}
+    .upd-latest p{margin-top:4px;font-size:15px;color:#F0F0F0;line-height:1.5}
+    .upd-latest .upd-date{font-size:11px;color:#6B6C78;margin-left:auto;white-space:nowrap}
+    .upd-log{margin-top:14px;display:flex;flex-direction:column;gap:0}
+    .upd-item{display:flex;gap:14px;padding:12px 6px;border-bottom:1px solid rgba(255,255,255,0.06);
+      font-size:13px;color:#9A9BA8}
+    .upd-item .upd-date{flex-shrink:0;width:80px;color:#6B6C78;font-family:'Orbitron',sans-serif;font-size:10px}
+  </style>
+  <div class="upd-latest">
+    <div class="upd-dot"></div>
+    <div>
+      <div class="upd-tag">📢 Latest Update</div>
+      <p>Starting a brand new <strong>Minecraft gameplay series</strong> soon — Sinhala commentary, survival mode, the usual chaos. Subscribe so you don't miss episode 1! 🎮⛏️</p>
+    </div>
+    <div class="upd-date">Aug 2026</div>
+  </div>
+  <!-- To add a new update: copy an .upd-item block below and edit the date/text.
+       Newest entries go first. -->
+  <div class="upd-log">
+    <div class="upd-item">
+      <div class="upd-date">AUG 2026</div>
+      <div>Minecraft series announced — coming soon.</div>
+    </div>
+  </div>
+</section>
+
 <!-- VIDEOS -->
 <section id="videos" class="section">
   <div class="section-header reveal">
@@ -2425,6 +2463,16 @@
       <p>Gaming news, tips, and thoughts from Visal.</p>
     </div>
     <div class="blog-grid">
+
+      <div class="blog-card reveal">
+        <div class="blog-card-top">
+          <span class="blog-cat cat-gaming">Gaming</span>
+          <span class="blog-date">August 2026</span>
+        </div>
+        <h3>🎮 New Minecraft Series Coming to the Channel</h3>
+        <p>Getting ready to start a full Minecraft gameplay series in Sinhala — survival, builds, and probably a few disasters along the way. First episode drops soon, subscribe so you don't miss it.</p>
+        <div class="blog-card-footer">Read more →</div>
+      </div>
 
       <div class="blog-card reveal">
         <div class="blog-card-top">
