@@ -5,6 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Day of VB — Gaming Reviews, Unboxing & Vlogs</title>
   <meta name="description" content="Sinhala gaming reviews, unboxings and vlogs by Visal. Subscribe on YouTube @DayofVB" />
+  <link rel="canonical" href="https://rivisuru-png.github.io/day-of-vb/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Day of VB" />
+  <meta property="og:title" content="Day of VB — Gaming Reviews, Unboxing & Vlogs" />
+  <meta property="og:description" content="Sinhala gaming reviews, unboxings and vlogs for the Sri Lankan gaming community. New Minecraft series coming soon!" />
+  <meta property="og:url" content="https://rivisuru-png.github.io/day-of-vb/" />
+  <meta property="og:image" content="https://rivisuru-png.github.io/day-of-vb/channels4_profile.jpg" />
+  <meta property="og:locale" content="en_US" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Day of VB — Gaming Reviews, Unboxing & Vlogs" />
+  <meta name="twitter:description" content="Sinhala gaming reviews, unboxings and vlogs for the Sri Lankan gaming community." />
+  <meta name="twitter:image" content="https://rivisuru-png.github.io/day-of-vb/channels4_profile.jpg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Visal",
+    "alternateName": "Day of VB",
+    "url": "https://rivisuru-png.github.io/day-of-vb/",
+    "image": "https://rivisuru-png.github.io/day-of-vb/channels4_profile.jpg",
+    "jobTitle": "Content Creator",
+    "sameAs": [
+      "https://www.youtube.com/@DayofVB",
+      "https://www.youtube.com/@vb_gaming01"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Day of VB",
+    "url": "https://rivisuru-png.github.io/day-of-vb/",
+    "description": "Sinhala gaming reviews, unboxings and vlogs for the Sri Lankan gaming community.",
+    "inLanguage": ["si", "en"]
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&family=Rajdhani:wght@500;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet" />
@@ -4267,6 +4307,35 @@ setInterval(fetchSubCount, 60000);
     '</a>';
   }
 
+  /* Inject VideoObject structured data matching the videos actually shown,
+     so it can never drift out of sync with real content */
+  function injectVideoSchema(videos, key){
+    if (!videos.length) return;
+    var items = videos.slice(0, 6).map(function(v, i){
+      var snip = v.snippet;
+      return {
+        "@type": "ListItem",
+        "position": i + 1,
+        "item": {
+          "@type": "VideoObject",
+          "name": snip.title,
+          "description": (snip.description || snip.title).slice(0, 4900),
+          "thumbnailUrl": getBestThumb(snip.thumbnails),
+          "uploadDate": snip.publishedAt,
+          "contentUrl": "https://www.youtube.com/watch?v=" + v.id,
+          "embedUrl": "https://www.youtube.com/embed/" + v.id
+        }
+      };
+    });
+    var old = document.getElementById(key + 'Schema');
+    if (old) old.remove();
+    var script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = key + 'Schema';
+    script.textContent = JSON.stringify({ "@context": "https://schema.org", "@type": "ItemList", "itemListElement": items });
+    document.head.appendChild(script);
+  }
+
   /* Load Day of VB videos */
   async function loadDayofVB() {
     var grid = document.getElementById('dayofvbGrid');
@@ -4274,6 +4343,7 @@ setInterval(fetchSubCount, 60000);
     var videos = await fetchChannelVideos(DAYOFVB_ID, 6);
     if (videos.length === 0) return; // keep skeletons
     grid.innerHTML = videos.map(buildDayofVBCard).join('');
+    injectVideoSchema(videos, 'dayofvb');
   }
 
   /* Load VB Gaming videos */
@@ -4283,6 +4353,7 @@ setInterval(fetchSubCount, 60000);
     var videos = await fetchChannelVideos(VBGAMING_ID, 3);
     if (videos.length === 0) return;
     grid.innerHTML = videos.map(buildGamingCard).join('');
+    injectVideoSchema(videos, 'vbgaming');
   }
 
   /* Run both on page load */
