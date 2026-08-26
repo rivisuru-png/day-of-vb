@@ -1,0 +1,23 @@
+{
+  "updated": "2026-08-25",
+  "games": [
+    {
+      "name": "Cardpocalypse",
+      "platform": "epic",
+      "url": "https://store.epicgames.com/en-US/p/cardpocalypse",
+      "until": "2026-08-27"
+    },
+    {
+      "name": "Epic Mage Bundle (Albion Online)",
+      "platform": "epic",
+      "url": "https://store.epicgames.com/en-US/free-games",
+      "until": "2026-08-27"
+    },
+    {
+      "name": "Check this week's Free Weekend",
+      "platform": "steam",
+      "url": "https://store.steampowered.com/genre/Free%20to%20Play/",
+      "until": ""
+    }
+  ]
+}
