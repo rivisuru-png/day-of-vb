@@ -24,6 +24,20 @@ function fetchJson(url) {
   });
 }
 
+function fetchText(url) {
+  return new Promise((resolve, reject) => {
+    https.get(
+      url,
+      { headers: { 'User-Agent': 'day-of-vb-site-bot (+https://rivisuru-png.github.io/day-of-vb/)' } },
+      (res) => {
+        let data = '';
+        res.on('data', (chunk) => { data += chunk; });
+        res.on('end', () => resolve(data));
+      }
+    ).on('error', reject);
+  });
+}
+
 function detectPlatform(entry) {
   const raw = (entry.platforms || entry.platform || '').toString().toLowerCase();
   if (raw.includes('epic')) return 'epic';
@@ -32,19 +46,35 @@ function detectPlatform(entry) {
 }
 
 async function main() {
-  const url = 'https://www.gamerpower.com/api/giveaways?platform=epic-games-store+steam&type=game&sort-by=date';
-  let raw;
+  // multi-platform "+" combining is a /api/filter feature, not /api/giveaways
+  const url = 'https://www.gamerpower.com/api/filter?platform=epic-games-store+steam&type=game&sort-by=date';
+  let rawText;
   try {
-    raw = await fetchJson(url);
+    rawText = await fetchText(url);
   } catch (e) {
     console.error('Fetch failed, leaving free-games.json unchanged:', e.message);
-    process.exit(0); // don't fail the workflow - just skip this run
+    process.exit(0);
   }
+
+  console.log('Raw response (first 400 chars):', rawText.slice(0, 400));
+
+  let raw;
+  try {
+    raw = JSON.parse(rawText);
+  } catch (e) {
+    console.error('Invalid JSON response, leaving free-games.json unchanged:', e.message);
+    process.exit(0);
+  }
+
+  console.log('Parsed shape:', Array.isArray(raw) ? 'array[' + raw.length + ']' : 'object keys=' + Object.keys(raw).join(','));
 
   let list = [];
   if (Array.isArray(raw)) list = raw;
   else if (Array.isArray(raw.giveaways)) list = raw.giveaways;
   else if (raw.data && Array.isArray(raw.data.free_games)) list = raw.data.free_games;
+  else if (raw.data && Array.isArray(raw.data)) list = raw.data;
+
+  console.log('Extracted list length:', list.length);
 
   if (!list.length) {
     console.log('No active giveaways returned - leaving free-games.json unchanged.');
