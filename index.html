@@ -130,8 +130,13 @@
 
     .nav-links {
       display: flex;
-      gap: 28px;
+      gap: 18px;
       list-style: none;
+    }
+
+    @media (min-width: 769px) and (max-width: 980px) {
+      .nav-links { gap: 11px; }
+      .nav-links a { font-size: 12px; white-space: nowrap; }
     }
 
     .nav-links a {
@@ -2534,6 +2539,12 @@
       .catch(function(){
         var asOf = document.getElementById('fgAsOf');
         if (asOf) asOf.textContent = '';
+        var grid = document.getElementById('fgGrid');
+        if (grid) {
+          grid.innerHTML = '<a href="https://www.gamerpower.com/" target="_blank" class="fg-card" style="grid-column:1/-1;text-align:center">'
+            + '<div class="fg-name">Couldn\'t load the list right now</div>'
+            + '<div class="fg-until" style="color:#9A9BA8">Tap to check GamerPower directly →</div></a>';
+        }
       });
   })();
   </script>
@@ -3173,6 +3184,9 @@ setInterval(fetchSubCount, 60000);
   var ctx = canvas.getContext('2d');
   var W, H, t = 0;
   var blobs = [], particles = [], techItems = [];
+  /* ~4GB-or-less devices get lighter background animation - fewer particles
+     and tech icons, since this canvas runs continuously behind everything */
+  var isLowEndDevice = !!(navigator.deviceMemory && navigator.deviceMemory <= 4);
 
   function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; initAll(); }
 
@@ -3190,7 +3204,7 @@ setInterval(fetchSubCount, 60000);
   /* ── Small particles ── */
   function initParticles() {
     particles = [];
-    var count = Math.min(55, Math.floor(W*H/20000));
+    var count = Math.min(isLowEndDevice ? 22 : 55, Math.floor(W*H / (isLowEndDevice ? 34000 : 20000)));
     for (var i = 0; i < count; i++) {
       particles.push({ x: Math.random()*W, y: Math.random()*H,
         r: 0.7+Math.random()*1.6, vx: (Math.random()-0.5)*0.28, vy: (Math.random()-0.5)*0.28,
@@ -3203,7 +3217,7 @@ setInterval(fetchSubCount, 60000);
 
   function initTechItems() {
     techItems = [];
-    var count = Math.min(18, Math.floor(W/80));
+    var count = Math.min(isLowEndDevice ? 8 : 18, Math.floor(W / (isLowEndDevice ? 130 : 80)));
     for (var i = 0; i < count; i++) {
       techItems.push({
         type: TECH_TYPES[Math.floor(Math.random()*TECH_TYPES.length)],
