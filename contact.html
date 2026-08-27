@@ -339,7 +339,8 @@
   function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;init()}
   function init(){
     pts=[];
-    var n=Math.min(40,Math.floor(W*H/22000));
+    var isLowEndDevice=!!(navigator.deviceMemory && navigator.deviceMemory<=4);
+    var n=Math.min(isLowEndDevice?18:40,Math.floor(W*H/(isLowEndDevice?36000:22000)));
     for(var i=0;i<n;i++) pts.push({x:Math.random()*W,y:Math.random()*H,r:0.8+Math.random()*1.5,vx:(Math.random()-0.5)*0.28,vy:(Math.random()-0.5)*0.28,op:0.08+Math.random()*0.2,ph:Math.random()*Math.PI*2});
   }
   function draw(){
