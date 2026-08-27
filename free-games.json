@@ -1,41 +1,41 @@
 {
-  "updated": "2026-08-26",
+  "updated": "2026-08-27",
   "games": [
     {
-      "name": "Dokimon Quest (Steam) Giveaway",
-      "platform": "steam",
-      "url": "https://www.gamerpower.com/open/dokimon-quest-steam-giveaway",
-      "until": "2026-08-26"
+      "name": "Down in Bermuda (Mobile) Giveaway",
+      "platform": "epic",
+      "url": "https://www.gamerpower.com/open/down-in-bermuda-mobile-giveaway",
+      "until": "2026-09-03"
     },
     {
-      "name": "Bolmn (Epic Games) Giveaway",
+      "name": "Rival Stars Horse Racing (Epic Games) Giveaway",
       "platform": "epic",
-      "url": "https://www.gamerpower.com/open/bolmn-epic-games-giveaway",
-      "until": "2026-08-27"
+      "url": "https://www.gamerpower.com/open/rival-stars-horse-racing-epic-games-giveaway",
+      "until": "2026-09-03"
     },
     {
-      "name": "Caravan SandWitch (Mobile) Giveaway",
+      "name": "Breathedge (Epic Games) Giveaway",
       "platform": "epic",
-      "url": "https://www.gamerpower.com/open/caravan-sandwitch-mobile-giveaway",
-      "until": "2026-08-27"
+      "url": "https://www.gamerpower.com/open/breathedge-epic-games-giveaway",
+      "until": "2026-09-03"
     },
     {
-      "name": "Cardpocalypse (Epic Games) Giveaway",
+      "name": "Leaper (IndieGala) Giveaway",
       "platform": "epic",
-      "url": "https://www.gamerpower.com/open/cardpocalypse-epic-games-giveaway",
-      "until": "2026-08-27"
+      "url": "https://www.gamerpower.com/open/leaper-pc-giveaway",
+      "until": "N/A"
+    },
+    {
+      "name": "Together After Dark (Epic Games) Giveaway",
+      "platform": "epic",
+      "url": "https://www.gamerpower.com/open/together-after-dark-epic-games-giveaway",
+      "until": "2026-09-02"
     },
     {
       "name": "Wordle (IndieGala) Giveaway",
       "platform": "epic",
       "url": "https://www.gamerpower.com/open/wordle-pc-giveaway",
       "until": "N/A"
-    },
-    {
-      "name": "Targeted – 10 Days (Epic Games) Giveaway",
-      "platform": "epic",
-      "url": "https://www.gamerpower.com/open/targeted-10-days-epic-games-giveaway",
-      "until": "2026-08-31"
     }
   ]
 }
