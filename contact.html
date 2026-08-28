@@ -62,6 +62,7 @@
     .char-svg-wrap{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);
       width:300px;height:490px;animation:charFloat 4s ease-in-out infinite;filter:drop-shadow(0 0 20px rgba(255,45,85,0.4))}
     @keyframes charFloat{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-14px)}}
+    @keyframes charSpin{to{transform:rotate(360deg)}}
 
     /* floating runes around character */
     .rune{position:absolute;font-size:18px;opacity:0;color:var(--red);font-family:serif;
@@ -232,6 +233,10 @@
       <!-- 3D anime character (Three.js / GLB) -->
       <div class="char-svg-wrap">
         <canvas id="char3d" style="width:100%;height:100%;display:block;cursor:pointer" title="Click me"></canvas>
+        <div id="charLoading" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;pointer-events:none">
+          <div style="width:38px;height:38px;border-radius:50%;border:3px solid rgba(255,45,85,0.15);border-top-color:#FF2D55;animation:charSpin 0.8s linear infinite"></div>
+          <div style="font-family:'Orbitron',sans-serif;font-size:10px;letter-spacing:0.08em;color:#9A9BA8;text-transform:uppercase">Loading…</div>
+        </div>
       </div>
       <div class="char-ground"></div>
     </div>
@@ -530,10 +535,14 @@ loader.load(
     }
 
     scene.add(model);
+    var loadingEl = document.getElementById('charLoading');
+    if (loadingEl) loadingEl.style.display = 'none';
   },
   undefined,
   function(err){
     console.error('Character load error:', err);
+    var loadingEl = document.getElementById('charLoading');
+    if (loadingEl) loadingEl.innerHTML = '<div style="font-size:11px;color:#9A9BA8">Couldn\'t load character</div>';
   }
 );
 
