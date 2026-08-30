@@ -6,7 +6,6 @@
     { id:'welcome',  icon:'🎮', name:'Welcome, Player',   desc:'Visited the site for the first time' },
     { id:'videos',   icon:'📼', name:'Video Scout',       desc:'Checked out the Videos section' },
     { id:'blog',     icon:'📜', name:'Lore Reader',       desc:'Visited the Blog' },
-    { id:'shop',     icon:'🛒', name:'Window Shopper',    desc:'Visited the Shop' },
     { id:'contact',  icon:'💬', name:'Made Contact',      desc:'Visited the Contact page' },
     { id:'poked',    icon:'😤', name:'Poked the Bear',    desc:'Clicked the 3D character' },
     { id:'gaming',   icon:'🕹️', name:'Two-Channel Fan',   desc:'Checked out VB Gaming' },
@@ -167,7 +166,7 @@
     if (hour >= 0 && hour < 5) window.unlockAchievement('nightowl');
 
     /* section-view based unlocks - catches scrolling too, not just nav clicks */
-    var sectionMap = { videos:'videos', blog:'blog', shop:'shop', gaming:'gaming', contact:'contact' };
+    var sectionMap = { videos:'videos', blog:'blog', gaming:'gaming', contact:'contact' };
     if ('IntersectionObserver' in window){
       var obs = new IntersectionObserver(function(entries){
         entries.forEach(function(entry){
