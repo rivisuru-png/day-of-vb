@@ -1,6 +1,18 @@
 {
-  "updated": "2026-08-27",
+  "updated": "2026-08-31",
   "games": [
+    {
+      "name": "Beneath Europa (Itch.io) Giveaway",
+      "platform": "epic",
+      "url": "https://www.gamerpower.com/open/beneath-europa-itch-io-giveaway",
+      "until": "2026-09-04"
+    },
+    {
+      "name": "NoRush! - Tower Edition (Epic Games) Giveaways",
+      "platform": "epic",
+      "url": "https://www.gamerpower.com/open/norush-tower-edition-epic-games-giveaways",
+      "until": "2026-09-09"
+    },
     {
       "name": "Down in Bermuda (Mobile) Giveaway",
       "platform": "epic",
@@ -23,18 +35,6 @@
       "name": "Leaper (IndieGala) Giveaway",
       "platform": "epic",
       "url": "https://www.gamerpower.com/open/leaper-pc-giveaway",
-      "until": "N/A"
-    },
-    {
-      "name": "Together After Dark (Epic Games) Giveaway",
-      "platform": "epic",
-      "url": "https://www.gamerpower.com/open/together-after-dark-epic-games-giveaway",
-      "until": "2026-09-02"
-    },
-    {
-      "name": "Wordle (IndieGala) Giveaway",
-      "platform": "epic",
-      "url": "https://www.gamerpower.com/open/wordle-pc-giveaway",
       "until": "N/A"
     }
   ]
