@@ -1,6 +1,30 @@
 {
-  "updated": "2026-08-31",
+  "updated": "2026-09-03",
   "games": [
+    {
+      "name": "Poubelle City (Itch.io) Giveaway",
+      "platform": "epic",
+      "url": "https://www.gamerpower.com/open/poubelle-city-itch-io-giveaway",
+      "until": "2026-09-04"
+    },
+    {
+      "name": "Evan's Remains (Mobile) Giveaway",
+      "platform": "epic",
+      "url": "https://www.gamerpower.com/open/evan-s-remains-mobile-giveaway",
+      "until": "2026-09-10"
+    },
+    {
+      "name": "Alone With You (Epic Games) Giveaway",
+      "platform": "epic",
+      "url": "https://www.gamerpower.com/open/alone-with-you-epic-games-giveaway",
+      "until": "2026-09-10"
+    },
+    {
+      "name": "Battle Ram (IndieGala) Giveaway",
+      "platform": "epic",
+      "url": "https://www.gamerpower.com/open/battle-ram-pc-giveaway",
+      "until": "N/A"
+    },
     {
       "name": "Beneath Europa (Itch.io) Giveaway",
       "platform": "epic",
@@ -12,30 +36,6 @@
       "platform": "epic",
       "url": "https://www.gamerpower.com/open/norush-tower-edition-epic-games-giveaways",
       "until": "2026-09-09"
-    },
-    {
-      "name": "Down in Bermuda (Mobile) Giveaway",
-      "platform": "epic",
-      "url": "https://www.gamerpower.com/open/down-in-bermuda-mobile-giveaway",
-      "until": "2026-09-03"
-    },
-    {
-      "name": "Rival Stars Horse Racing (Epic Games) Giveaway",
-      "platform": "epic",
-      "url": "https://www.gamerpower.com/open/rival-stars-horse-racing-epic-games-giveaway",
-      "until": "2026-09-03"
-    },
-    {
-      "name": "Breathedge (Epic Games) Giveaway",
-      "platform": "epic",
-      "url": "https://www.gamerpower.com/open/breathedge-epic-games-giveaway",
-      "until": "2026-09-03"
-    },
-    {
-      "name": "Leaper (IndieGala) Giveaway",
-      "platform": "epic",
-      "url": "https://www.gamerpower.com/open/leaper-pc-giveaway",
-      "until": "N/A"
     }
   ]
 }
